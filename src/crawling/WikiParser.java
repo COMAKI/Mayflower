@@ -8,28 +8,14 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.StringTokenizer;
 
-/**
- * 
- */
-/**
- * @author downey
- *
- */
+
 public class WikiParser {
 	
-	// the list of paragraphs we should search
 	private Elements paragraphs;
 	
-	// the stack of open delimiters
-	// TODO: consider simplifying this by counting parentheses
 	private Deque<String> parenthesisStack;
 	
 
-	/**
-	 * Initializes a WikiParser with a list of Elements.
-	 * 
-	 * @param paragraphs
-	 */
 	public WikiParser(Elements paragraphs) {
 		this.paragraphs = paragraphs;
 		this.parenthesisStack = new ArrayDeque<String>();
@@ -102,7 +88,6 @@ public class WikiParser {
 
 
 	private boolean isItalic(Element start) {
-		// follow the parent chain until we get to null
 		for (Element elt=start; elt != null; elt = elt.parent()) {
 			if (elt.tagName().equals("i") || elt.tagName().equals("em")) {
 				return true;
@@ -115,7 +100,6 @@ public class WikiParser {
 		StringTokenizer st = new StringTokenizer(node.text(), " ()", true);
 		while (st.hasMoreTokens()) {
 		     String token = st.nextToken();
-		     // System.out.print(token);
 		     if (token.equals("(")) {
 		    	 parenthesisStack.push(token);
 		     }
