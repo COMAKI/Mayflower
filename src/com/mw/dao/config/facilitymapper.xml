@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hw.dao.mapper.ItemMapper">
+
+	<select id="select" parameterType="String" 
+	resultType="item">
+		SELECT * FROM TITEM WHERE ID=#{id}
+	</select>
+	<select id="selectall" resultType="item">
+		SELECT * FROM TITEM
+	</select>
+	<insert id="insert" parameterType="item">
+		INSERT INTO TITEM VALUES (#{id},#{name},#{price},#{imgname})
+	</insert>
+	<update id="update" parameterType="item">
+		UPDATE TITEM SET NAME=#{name},PRICE=#{price},IMGNAME=#{imgname} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="String">
+		DELETE FROM TITEM WHERE ID=#{id}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
