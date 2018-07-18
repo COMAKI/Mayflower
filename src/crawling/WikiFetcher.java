@@ -11,7 +11,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
 public class WikiFetcher {
 	private long lastRequestTime = -1;
 	private long minInterval = 1000;
@@ -21,13 +20,11 @@ public class WikiFetcher {
 
 		Connection conn = Jsoup.connect(url);
 		Document doc = conn.get();
-
-		Element content = doc.getElementById("mw-content-text");
 		
-		Elements paras = content.select("p");
+		//Element content = doc.getElementById("content_container");
+		Elements paras = doc.select("p");
 		return paras;
 	}
-
 
 	public Elements readWikipedia(String url) throws IOException {
 		URL realURL = new URL(url);
@@ -38,11 +35,10 @@ public class WikiFetcher {
 		InputStream stream = WikiFetcher.class.getClassLoader().getResourceAsStream(filename);
 		Document doc = Jsoup.parse(stream, "UTF-8", filename);
 
-		Element content = doc.getElementById("mw-content-text");
-		Elements paras = content.select("p");
+		//Element content = doc.getElementById("content_container");
+		Elements paras = doc.select("p");
 		return paras;
 	}
-
 
 	private void sleepIfNeeded() {
 		if (lastRequestTime != -1) {
@@ -50,7 +46,7 @@ public class WikiFetcher {
 			long nextRequestTime = lastRequestTime + minInterval;
 			if (currentTime < nextRequestTime) {
 				try {
-					//System.out.println("Sleeping until " + nextRequestTime);
+					// System.out.println("Sleeping until " + nextRequestTime);
 					Thread.sleep(nextRequestTime - currentTime);
 				} catch (InterruptedException e) {
 					System.err.println("Warning: sleep interrupted in fetchWikipedia.");
@@ -60,13 +56,12 @@ public class WikiFetcher {
 		lastRequestTime = System.currentTimeMillis();
 	}
 
-
 	public static void main(String[] args) throws IOException {
 		WikiFetcher wf = new WikiFetcher();
-		String url = "https://en.wikipedia.org/wiki/Java_(programming_language)";
+		String url = "https://www.facebook.com/kmaskylove/";
 		Elements paragraphs = wf.readWikipedia(url);
 
-		for (Element paragraph: paragraphs) {
+		for (Element paragraph : paragraphs) {
 			System.out.println(paragraph);
 		}
 	}

@@ -15,7 +15,7 @@ public class WikiPhilosophy {
 	public static void main(String[] args) throws IOException {
 		
 		String destination = "https://en.wikipedia.org/wiki/Philosophy";
-		String source = "https://en.wikipedia.org/wiki/Java_(programming_language)";
+		String source = "https://www.facebook.com/kmaskylove/";
 		
 		testConjecture(destination, source, 10);		
 	}
@@ -36,7 +36,7 @@ public class WikiPhilosophy {
 			}
 			
 			System.out.println("**" + elt.text() + "**");
-			url = elt.attr("abs:href");
+			url =  elt.attr("abs:href");
 			
 			if (url.equals(destination)) {
 				System.out.println("Eureka!");
