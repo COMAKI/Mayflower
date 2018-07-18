@@ -23,4 +23,6 @@
 hs_err_pid*
 
 # Customize ignore
-
+.classpath
+.project
+.settings/*
