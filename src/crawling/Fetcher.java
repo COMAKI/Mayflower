@@ -11,32 +11,33 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class WikiFetcher {
+public class Fetcher {
 	private long lastRequestTime = -1;
 	private long minInterval = 1000;
 
-	public Elements fetchWikipedia(String url) throws IOException {
+	public Elements fetch(String url) throws IOException {
 		sleepIfNeeded();
 
 		Connection conn = Jsoup.connect(url);
 		Document doc = conn.get();
 		
-		//Element content = doc.getElementById("content_container");
-		Elements paras = doc.select("p");
+		Element content = doc.getElementById("content_container");
+		Elements paras = content.select("p");
+
 		return paras;
 	}
 
-	public Elements readWikipedia(String url) throws IOException {
+	public Elements read(String url) throws IOException {
 		URL realURL = new URL(url);
 
 		String slash = File.separator;
 		String filename = "resources" + slash + realURL.getHost() + realURL.getPath();
 
-		InputStream stream = WikiFetcher.class.getClassLoader().getResourceAsStream(filename);
+		InputStream stream = Fetcher.class.getClassLoader().getResourceAsStream(filename);
 		Document doc = Jsoup.parse(stream, "UTF-8", filename);
 
-		//Element content = doc.getElementById("content_container");
-		Elements paras = doc.select("p");
+		Element content = doc.getElementById("content_container");
+		Elements paras = content.select("p");
 		return paras;
 	}
 
@@ -57,9 +58,9 @@ public class WikiFetcher {
 	}
 
 	public static void main(String[] args) throws IOException {
-		WikiFetcher wf = new WikiFetcher();
+		Fetcher wf = new Fetcher();
 		String url = "https://www.facebook.com/kmaskylove/";
-		Elements paragraphs = wf.readWikipedia(url);
+		Elements paragraphs = wf.read(url);
 
 		for (Element paragraph : paragraphs) {
 			System.out.println(paragraph);

@@ -9,14 +9,14 @@ import java.util.Deque;
 import java.util.StringTokenizer;
 
 
-public class WikiParser {
+public class Parser {
 	
 	private Elements paragraphs;
 	
 	private Deque<String> parenthesisStack;
 	
 
-	public WikiParser(Elements paragraphs) {
+	public Parser(Elements paragraphs) {
 		this.paragraphs = paragraphs;
 		this.parenthesisStack = new ArrayDeque<String>();
 	}
@@ -35,7 +35,7 @@ public class WikiParser {
 	}
 
 	private Element findFirstLinkPara(Node root) {
-		Iterable<Node> nt = new WikiNodeIterable(root);
+		Iterable<Node> nt = new NodeIterable(root);
 
 		for (Node node: nt) {
 			if (node instanceof TextNode) {

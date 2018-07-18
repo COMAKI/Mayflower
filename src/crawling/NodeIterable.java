@@ -10,25 +10,25 @@ import java.util.NoSuchElementException;
 
 import org.jsoup.nodes.Node;
 
-public class WikiNodeIterable implements Iterable<Node> {
+public class NodeIterable implements Iterable<Node> {
 
 	private Node root;
 	
-	public WikiNodeIterable(Node root) {
+	public NodeIterable(Node root) {
 		this.root = root;
 	}
 
 
 	@Override
 	public Iterator<Node> iterator() {
-		return new WikiNodeIterator(root);
+		return new NodeIterator(root);
 	}
 	
-	public class WikiNodeIterator implements Iterator<Node> {
+	public class NodeIterator implements Iterator<Node> {
 
 		Deque<Node> stack;
 		
-		public WikiNodeIterator(Node node) {
+		public NodeIterator(Node node) {
 			stack = new ArrayDeque<Node>();
 			stack.push(root);
 		}

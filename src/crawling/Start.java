@@ -7,10 +7,10 @@ import java.util.List;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class WikiPhilosophy {
+public class Start {
 
     final static List<String> visited = new ArrayList<String>();
-    final static WikiFetcher wf = new WikiFetcher();
+    final static Fetcher wf = new Fetcher();
 
 	public static void main(String[] args) throws IOException {
 		
@@ -47,8 +47,8 @@ public class WikiPhilosophy {
 	
 	public static Element getFirstValidLink(String url) throws IOException {
 		print("Fetching %s...", url);
-		Elements paragraphs = wf.fetchWikipedia(url);
-		WikiParser wp = new WikiParser(paragraphs);
+		Elements paragraphs = wf.fetch(url);
+		Parser wp = new Parser(paragraphs);
 		Element elt = wp.findFirstLink();
 		return elt;
 	}
