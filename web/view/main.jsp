@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +14,8 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
 * {
@@ -91,13 +94,9 @@ header>#main_menu>li>a:hover {
 	background: black;
 }
 
-#center {
-	margin: 0 auto;
-	width: 780px;
-	main-height: 380px;
-	padding-top: 5px;
-	background: white;
-	text-align: center;
+section {
+	height: 100%;
+	width:100%;
 }
 
 @media ( max-width : 767px) {
@@ -207,7 +206,17 @@ header>#main_menu>li>a:hover {
 			</c:otherwise>
 		</c:choose>
 	</section>
-	<footer></footer>
+	<footer>
+
+		<div class="container-redborder container-a01">
+			<div id="map"></div>
+			<div class="container-ui-row container-redborder">
+				<button type="button" class="btn">Basic</button>
+				<button type="button" class="btn">Basic</button>
+				<button type="button" class="btn">Basic</button>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>
 

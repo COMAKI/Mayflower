@@ -2,25 +2,26 @@ package com.mw.vo;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class Facility {
+public class Spot {
+	/* NEED TO INPUT CORRECT VALUES AND METHODS */
 	private String id;
 	private String name;
 	private int price;
 	String imgname;
 	MultipartFile img;
 	
-	public Facility() {
+	public Spot() {
 		
 	}
 
-	public Facility(String id, String name, int price, String imgname) {
+	public Spot(String id, String name, int price, String imgname) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.imgname = imgname;
 	}
 
-	public Facility(String id, String name, int price, String imgname, MultipartFile img) {
+	public Spot(String id, String name, int price, String imgname, MultipartFile img) {
 		this.id = id;
 		this.name = name;
 		this.price = price;

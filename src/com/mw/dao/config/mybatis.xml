@@ -4,13 +4,13 @@ PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.hw.vo.User" alias="user"/>
-		<typeAlias type="com.hw.vo.Item" alias="item"/>
+		<typeAlias type="com.mw.vo.User" alias="user"/>
+		<typeAlias type="com.mw.vo.Item" alias="item"/>
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="com/hw/dao/config/usermapper.xml"/>
-		<mapper resource="com/hw/dao/config/itemmapper.xml"/>
+		<mapper resource="com/mw/dao/config/usermapper.xml"/>
+		<mapper resource="com/mw/dao/config/itemmapper.xml"/>
 	</mappers>
 </configuration>
 

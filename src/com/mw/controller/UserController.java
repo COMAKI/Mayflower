@@ -1,4 +1,4 @@
-package com.hw.controller;
+package com.mw.controller;
 
 import java.util.ArrayList;
 
@@ -6,13 +6,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hw.frame.Service;
-import com.hw.util.FileSave;
-import com.hw.vo.Item;
-import com.hw.vo.User;
+import com.mw.frame.Service;
+import com.mw.vo.User;
 
 @Controller
 public class UserController {
@@ -20,7 +17,7 @@ public class UserController {
 	@Resource(name="uservice")
 	Service<User, String> service;
 	
-	@RequestMapping("/userlist.hw")
+	@RequestMapping("/userlist.mw")
 	public ModelAndView userlist() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("main");

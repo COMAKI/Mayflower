@@ -1,12 +1,12 @@
-package com.hw.service;
+package com.mw.service;
 
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
 
-import com.hw.frame.Dao;
-import com.hw.frame.Service;
-import com.hw.vo.User;
+import com.mw.frame.Dao;
+import com.mw.frame.Service;
+import com.mw.vo.User;
 
 @org.springframework.stereotype.Service("uservice")
 public class UserService implements Service<User, String>{

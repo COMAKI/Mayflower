@@ -1,4 +1,4 @@
-package com.hw.util;
+package com.mw.util;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

@@ -23,9 +23,9 @@ public class Loggers {
 	// before
 	@Before("execution(* com.hw.controller..*Controller.*(..))")
 	public void logging(JoinPoint jp) {
-		work_log.debug(jp.getSignature().getName());
-		user_log.debug(jp.getSignature().getName());
-		data_log.debug(jp.getSignature().getName());
+//		work_log.debug(jp.getSignature().getName());
+//		user_log.debug(jp.getSignature().getName());
+//		data_log.debug(jp.getSignature().getName());
 		//work_log.debug(jp.getArgs()[0].toString());
 	}
 	// after
