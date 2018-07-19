@@ -39,5 +39,9 @@ public class CommentService implements Service<Comment,String> {
 	public ArrayList<Comment> get() throws Exception {
 		return dao.select();
 	}
+	
+	public ArrayList<Comment> getBySpot(String spotid) throws Exception {
+		return dao.selectBySpot(spotid);
+	}
 
 }
