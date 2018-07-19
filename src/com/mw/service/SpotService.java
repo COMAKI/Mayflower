@@ -8,7 +8,7 @@ import com.mw.frame.Dao;
 import com.mw.frame.Service;
 import com.mw.vo.Spot;
 
-@org.springframework.stereotype.Service("sservice")
+@org.springframework.stereotype.Service("iservice")
 public class SpotService implements Service<Spot, String>{
 
 	@Resource(name="sdao")
@@ -21,26 +21,21 @@ public class SpotService implements Service<Spot, String>{
 
 	@Override
 	public void modify(Spot t) throws Exception {
-		// TODO Auto-generated method stub
-		
+		dao.update(t);
 	}
 
 	@Override
 	public void remove(String v) throws Exception {
-		// TODO Auto-generated method stub
-		
+		dao.delete(v);
 	}
 
 	@Override
 	public Spot get(String v) throws Exception {
-		// TODO Auto-generated method stub
 		return  dao.select(v);
 	}
 
 	@Override
 	public ArrayList<Spot> get() throws Exception {
-		// TODO Auto-generated method stub
 		return  dao.select();
 	}
-
 }

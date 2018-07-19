@@ -22,19 +22,16 @@ public class SpotDao implements Dao<Spot, String>{
 
 	@Override
 	public void update(Spot t) throws Exception {
-		// TODO Auto-generated method stub
-		
+		mapper.update(t);
 	}
 
 	@Override
 	public void delete(String v) throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public Spot select(String v) throws Exception {
-		// TODO Auto-generated method stub
 		return mapper.select(v);
 	}
 
