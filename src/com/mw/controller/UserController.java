@@ -19,14 +19,14 @@ public class UserController {
 	@Resource(name="uservice")
 	Service<User, String> service;
 	
-	@RequestMapping("/login.hw")
+	@RequestMapping("/login.mw")
 	public ModelAndView login() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("main");
 		mv.addObject("centerpage", "login");
 		return mv; // login.jsp
 	}
-	@RequestMapping("/logout.hw")
+	@RequestMapping("/logout.mw")
 	public ModelAndView logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if(session != null) {
@@ -38,7 +38,7 @@ public class UserController {
 		mv.addObject("centerpage", "center");
 		return mv; // login.jsp
 	}
-	@RequestMapping("/register.hw")
+	@RequestMapping("/register.mw")
 	public ModelAndView register() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("main");
@@ -46,7 +46,7 @@ public class UserController {
 		return mv; // register.jsp
 	}
 	
-	@RequestMapping("/loginimpl.hw")
+	@RequestMapping("/loginimpl.mw")
 	public ModelAndView loginimpl(HttpServletRequest request) {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
