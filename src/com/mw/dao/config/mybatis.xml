@@ -15,9 +15,3 @@ PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
 		<mapper resource="com/mw/dao/config/commentmapper.xml"/>
 	</mappers>
 </configuration>
-
-
-
-
-
-
