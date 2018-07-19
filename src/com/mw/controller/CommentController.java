@@ -22,14 +22,14 @@ public class CommentController {
 	@Resource(name="cservice")
 	Service<Comment, String> service;
 	
-	@RequestMapping("/registercomment.hw")
+	@RequestMapping("/registercomment.mw")
 	public void regcomment(HttpServletRequest request, HttpServletResponse response)  {
 		double id = Double.parseDouble(request.getParameter("lng"));
 		
 	}
 	
 	
-	@RequestMapping("/getcomments.hw")
+	@RequestMapping("/getcomments.mw")
 	public void getcomments(HttpServletRequest request, HttpServletResponse response)  {
 		double id = Double.parseDouble(request.getParameter("lng"));
 		
@@ -61,7 +61,7 @@ public class CommentController {
 	    } 
 	}
 	
-	@RequestMapping("/updatecomments.hw")
+	@RequestMapping("/updatecomments.mw")
 	public void updatecomments(HttpServletRequest request, HttpServletResponse response)  {
 		double id = Double.parseDouble(request.getParameter("lng"));
 		
@@ -94,7 +94,7 @@ public class CommentController {
 	}
 	
 
-	@RequestMapping("/deletecomment.hw")
+	@RequestMapping("/deletecomment.mw")
 	public void delcomment(HttpServletRequest request)  {
 		String id = request.getParameter("lng");
 		

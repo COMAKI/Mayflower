@@ -24,7 +24,7 @@ import com.mw.vo.User;
 public class MainController {
 	
 	
-	@RequestMapping("/main.hw")
+	@RequestMapping("/main.mw")
 	public String main() {
 		return "main"; // main.jsp
 	}
