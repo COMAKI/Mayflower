@@ -38,13 +38,7 @@ public class UserController {
 		mv.addObject("centerpage", "center");
 		return mv; // login.jsp
 	}
-	@RequestMapping("/register.hw")
-	public ModelAndView register() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("main");
-		mv.addObject("centerpage", "register");
-		return mv; // register.jsp
-	}
+	
 	
 	@RequestMapping("/loginimpl.hw")
 	public ModelAndView loginimpl(HttpServletRequest request) {

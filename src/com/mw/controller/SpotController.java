@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -17,11 +16,10 @@ import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mw.frame.Service;
-import com.mw.util.FileSave;
+import com.mw.vo.Comment;
 import com.mw.vo.Spot;
 
 @Controller
@@ -29,6 +27,8 @@ public class SpotController {
 	
 	@Resource(name="iservice")
 	Service<Spot, String> service;
+	
+	
 	
 	@RequestMapping("/addspot.mw")
 	public ModelAndView addspot() {
@@ -108,5 +108,7 @@ public class SpotController {
 	        e.printStackTrace();
 	    } 
 	}
+	
+
 	
 }
