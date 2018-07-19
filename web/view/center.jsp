@@ -49,7 +49,7 @@
 			 
 			 $.ajax({
 				 type: "GET",
-				 url: "getjson.hw",
+				 url: "getjson.mw",
 				 success: function(result) {
 					 var output="<table><thead><tr><th>Name</th><th>Provider</th><th>URL</th></thead><tbody>";
 					 for (var i in result) {
@@ -99,7 +99,15 @@
 		 
 	});
 </script>
-
+<div class="container-redborder container-a01">
+			<div id="map"></div>
+			<div class="container-ui-row container-redborder">
+				<button type="button" class="btn">Basic</button>
+				<button type="button" class="btn">Basic</button>
+				<button type="button" class="btn">Basic</button>
+			</div>
+		</div>
 <script src="js/mymap.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+<!-- api key: key=AIzaSyDtIawTgEjsNSk0BE4mVjN3XNG_eb86lwI -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtIawTgEjsNSk0BE4mVjN3XNG_eb86lwI&callback=myMap"></script>
 

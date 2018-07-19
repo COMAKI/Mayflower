@@ -1,9 +1,4 @@
-/**
- * 
- */
-
 var map = null;
-
 
 var myMap=function() {
 	var myLatLng = {lat: -25.363, lng: 131.044};

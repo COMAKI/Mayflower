@@ -193,30 +193,15 @@ section {
 	</div>
 	<!-- Modal end -->
 
-
-
-
-	<section>
-		<c:choose>
+	<c:choose>
 			<c:when test="${center != null }">
 				<jsp:include page="${center }.jsp" />
 			</c:when>
 			<c:otherwise>
 				<jsp:include page="center.jsp" />
 			</c:otherwise>
-		</c:choose>
-	</section>
-	<footer>
+	</c:choose>
 
-		<div class="container-redborder container-a01">
-			<div id="map"></div>
-			<div class="container-ui-row container-redborder">
-				<button type="button" class="btn">Basic</button>
-				<button type="button" class="btn">Basic</button>
-				<button type="button" class="btn">Basic</button>
-			</div>
-		</div>
-	</footer>
 </body>
 </html>
 
