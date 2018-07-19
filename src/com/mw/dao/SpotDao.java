@@ -22,7 +22,7 @@ public class SpotDao implements Dao<Spot, String>{
 
 	@Override
 	public void update(Spot t) throws Exception {
-		mapper.update(obj);
+		mapper.update(t);
 	}
 
 	@Override
