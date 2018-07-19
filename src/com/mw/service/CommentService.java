@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.annotation.Resource;
 
+import com.mw.dao.CommentDao;
 import com.mw.frame.Dao;
 import com.mw.frame.Service;
 import com.mw.vo.Comment;
@@ -14,6 +15,8 @@ public class CommentService implements Service<Comment,String> {
 	@Resource(name="cdao")
 	Dao<Comment, String> dao;
 	
+	@Resource(name="cdao")
+	CommentDao cdao;
 	
 	@Override
 	public void register(Comment t) throws Exception {
@@ -41,7 +44,7 @@ public class CommentService implements Service<Comment,String> {
 	}
 	
 	public ArrayList<Comment> getBySpot(String spotid) throws Exception {
-		return dao.selectBySpot(spotid);
+		return cdao.selectBySpot(spotid);
 	}
 
 }
