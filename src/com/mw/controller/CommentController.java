@@ -22,6 +22,13 @@ public class CommentController {
 	@Resource(name="cservice")
 	Service<Comment, String> service;
 	
+	@RequestMapping("/registercomment.hw")
+	public void regcomment(HttpServletRequest request, HttpServletResponse response)  {
+		double id = Double.parseDouble(request.getParameter("lng"));
+		
+	}
+	
+	
 	@RequestMapping("/getcomments.hw")
 	public void getcomments(HttpServletRequest request, HttpServletResponse response)  {
 		double id = Double.parseDouble(request.getParameter("lng"));
@@ -86,30 +93,13 @@ public class CommentController {
 	    } 
 	}
 	
-	@RequestMapping("/registercomment.hw")
-	public void regcomment(HttpServletRequest request, HttpServletResponse response)  {
-		double id = Double.parseDouble(request.getParameter("lng"));
-		
-	}
-	
+
 	@RequestMapping("/deletecomment.hw")
 	public void delcomment(HttpServletRequest request)  {
-		double id = Double.parseDouble(request.getParameter("lng"));
+		String id = request.getParameter("lng");
 		
-		JSONArray ja = new JSONArray();
-	    
 		try {
-			List<Comment> comments = service.get();
-			
-			for(Comment comment : comments) {
-				JSONObject jo = new JSONObject();
-			    jo.put("name", "a_value");
-			    jo.put("lng", 235.1252);
-			    jo.put("lat", 235.1252);
-			    jo.put("img", "c_value");
-			    ja.add(jo);	
-			}
-		    
+			service.remove(id);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
