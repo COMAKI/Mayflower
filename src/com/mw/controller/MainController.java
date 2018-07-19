@@ -28,8 +28,4 @@ public class MainController {
 	public String main() {
 		return "main"; // main.jsp
 	}
-	
-	
-	
-	
 }
