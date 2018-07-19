@@ -90,32 +90,6 @@ public class CommentController {
 	public void regcomment(HttpServletRequest request, HttpServletResponse response)  {
 		double id = Double.parseDouble(request.getParameter("lng"));
 		
-		JSONArray ja = new JSONArray();
-	    
-		try {
-			List<Comment> comments = service.get();
-			
-			for(Comment comment : comments) {
-				JSONObject jo = new JSONObject();
-			    jo.put("name", "a_value");
-			    jo.put("lng", 235.1252);
-			    jo.put("lat", 235.1252);
-			    jo.put("img", "c_value");
-			    ja.add(jo);	
-			}
-		    
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-			    
-	    try {
-	    	response.setContentType("text/json; charset=EUC-KR");
-			PrintWriter writer = response.getWriter(); 
-			writer.print(ja);
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    } 
 	}
 	
 	@RequestMapping("/deletecomment.hw")

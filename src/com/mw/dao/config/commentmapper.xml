@@ -5,25 +5,21 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.mw.dao.mapper.CommentMapper">
 	
 	<select id="select" parameterType="String" resultMap="userResult">
-		SELECT * FROM TUSER WHERE ID=#{obj}
+		SELECT * FROM COMMENTS WHERE ID=#{id}
 	</select>
-	<select id="selectall" resultType="user">
-		SELECT * FROM TUSER
+	<select id="selectall" resultType="comment">
+		SELECT * FROM COMMENTS
 	</select>
-	<insert id="insert" parameterType="user">
-		INSERT INTO TUSER VALUES (#{id},#{pwd},#{name})
+	<insert id="insert" parameterType="comment">
+		INSERT INTO COMMENTS VALUES (#{id},#{content},#{rating})
 	</insert>
-	<update id="update" parameterType="user">
-		UPDATE TUSER SET PWD=#{pwd},NAME=#{name} WHERE ID=#{id}
+	<update id="update" parameterType="comment">
+		UPDATE COMMENTS SET content=#{content},rating=#{rating} WHERE ID=#{id}
 	</update>
 	<delete id="delete" parameterType="String">
-		DELETE FROM TUSER WHERE ID=#{obj}
+		DELETE FROM COMMENTS WHERE ID=#{id}
 	</delete>
 	
 </mapper>
-
-
-
-
 
 
