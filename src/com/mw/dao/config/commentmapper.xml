@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mw.dao.mapper.CommentMapper">
+	
+	<select id="select" parameterType="String" resultMap="userResult">
+		SELECT * FROM TUSER WHERE ID=#{obj}
+	</select>
+	<select id="selectall" resultType="user">
+		SELECT * FROM TUSER
+	</select>
+	<insert id="insert" parameterType="user">
+		INSERT INTO TUSER VALUES (#{id},#{pwd},#{name})
+	</insert>
+	<update id="update" parameterType="user">
+		UPDATE TUSER SET PWD=#{pwd},NAME=#{name} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="String">
+		DELETE FROM TUSER WHERE ID=#{obj}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
