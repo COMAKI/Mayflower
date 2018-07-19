@@ -10,6 +10,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectall" resultType="comment">
 		SELECT * FROM COMMENTS
 	</select>
+	
+	<select id="selectBySpot" parameterType="String" resultType="comment">
+		SELECT * FROM COMMENTS WHERE SPOT_ID=#{obj}
+	</select>
+	
 	<insert id="insert" parameterType="comment">
 		INSERT INTO COMMENTS VALUES (#{id},#{content},#{rating})
 	</insert>
@@ -19,6 +24,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="String">
 		DELETE FROM COMMENTS WHERE ID=#{id}
 	</delete>
+	
+	
 	
 </mapper>
 
