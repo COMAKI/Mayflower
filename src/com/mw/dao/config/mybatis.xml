@@ -5,12 +5,14 @@ PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.mw.vo.User" alias="user"/>
-		<typeAlias type="com.mw.vo.Item" alias="item"/>
+		<typeAlias type="com.mw.vo.Spot" alias="spot"/>
+		<typeAlias type="com.mw.vo.Comment" alias="comment"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="com/mw/dao/config/usermapper.xml"/>
-		<mapper resource="com/mw/dao/config/itemmapper.xml"/>
+		<mapper resource="com/mw/dao/config/spotmapper.xml"/>
+		<mapper resource="com/mw/dao/config/commentmapper.xml"/>
 	</mappers>
 </configuration>
 

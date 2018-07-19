@@ -11,4 +11,5 @@ public interface CommentMapper {
 	public void update(Comment obj);
 	public Comment select(String obj);
 	public ArrayList<Comment> selectall();
+	public ArrayList<Comment> selectBySpot(String obj);
 }

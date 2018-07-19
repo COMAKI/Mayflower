@@ -41,4 +41,8 @@ public class CommentDao implements Dao<Comment, String>{
 	public ArrayList<Comment> select() throws Exception {
 		return 	mapper.selectall();
 	}
+	
+	public ArrayList<Comment> selectBySpot(String spotid) throws Exception {
+		return mapper.selectBySpot(spotid);
+	}	
 }
