@@ -21,25 +21,21 @@ public class UserService implements Service<User, String>{
 
 	@Override
 	public void modify(User t) throws Exception {
-		// TODO Auto-generated method stub
-		
+		dao.update(t);
 	}
 
 	@Override
 	public void remove(String v) throws Exception {
-		// TODO Auto-generated method stub
-		
+		dao.delete(v);
 	}
 
 	@Override
 	public User get(String v) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.select(v);
 	}
 
 	@Override
 	public ArrayList<User> get() throws Exception {
-		// TODO Auto-generated method stub
 		return dao.select();
 	}
 

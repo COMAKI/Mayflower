@@ -2,40 +2,42 @@ package com.mw.service;
 
 import java.util.ArrayList;
 
+import javax.annotation.Resource;
+
+import com.mw.frame.Dao;
 import com.mw.frame.Service;
 import com.mw.vo.Comment;
 
 @org.springframework.stereotype.Service("cservice")
 public class CommentService implements Service<Comment,String> {
 
+	@Resource(name="cdao")
+	Dao<Comment, String> dao;
+	
+	
 	@Override
 	public void register(Comment t) throws Exception {
-		// TODO Auto-generated method stub
-		
+		dao.insert(t);
 	}
 
 	@Override
 	public void modify(Comment t) throws Exception {
-		// TODO Auto-generated method stub
-		
+		dao.update(t);
 	}
 
 	@Override
 	public void remove(String v) throws Exception {
-		// TODO Auto-generated method stub
-		
+		dao.delete(v);
 	}
 
 	@Override
 	public Comment get(String v) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.select(v);
 	}
 
 	@Override
 	public ArrayList<Comment> get() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.select();
 	}
 
 }
