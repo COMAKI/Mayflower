@@ -75,7 +75,7 @@ public class SpotController {
 
 	
 	
-	@RequestMapping("/getspots.hw")
+	@RequestMapping("/getspots.mw")
 	public void getspots(HttpServletRequest request, HttpServletResponse response)  {
 		double lng = Double.parseDouble(request.getParameter("lng"));
 		double lat = Double.parseDouble(request.getParameter("lat"));
