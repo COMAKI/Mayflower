@@ -6,10 +6,14 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,6 +44,7 @@ public class SpotController {
 		mv.addObject("centerpage", "weather");
 		return mv; // login.jsp
 	}
+	
 	@RequestMapping("/weatherimpl.mw")
 	@ResponseBody
 	public void weatherimpl(HttpServletResponse response) throws IOException {
@@ -66,4 +71,42 @@ public class SpotController {
 		br.close();
 		out.close();
 	}
+	
+
+	
+	
+	@RequestMapping("/getspots.hw")
+	public void getspots(HttpServletRequest request, HttpServletResponse response)  {
+		double lng = Double.parseDouble(request.getParameter("lng"));
+		double lat = Double.parseDouble(request.getParameter("lat"));
+		double zoom = Double.parseDouble(request.getParameter("zoom"));
+		
+		JSONArray ja = new JSONArray();
+	    
+		try {
+			List<Spot> spots = service.get();
+			
+			for(Spot spot : spots) {
+				JSONObject jo = new JSONObject();
+			    jo.put("name", "a_value");
+			    jo.put("lng", 235.1252);
+			    jo.put("lat", 235.1252);
+			    jo.put("img", "c_value");
+			    ja.add(jo);	
+			}
+		    
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+			    
+	    try {
+	    	response.setContentType("text/json; charset=EUC-KR");
+			PrintWriter writer = response.getWriter(); 
+			writer.print(ja);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    } 
+	}
+	
 }
