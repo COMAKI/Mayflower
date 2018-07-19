@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mw.dao.mapper.CommentMapper">
+	
+	<select id="select" parameterType="String" resultMap="userResult">
+		SELECT * FROM COMMENTS WHERE ID=#{id}
+	</select>
+	<select id="selectall" resultType="comment">
+		SELECT * FROM COMMENTS
+	</select>
+	
+	<select id="selectBySpot" parameterType="String" resultType="comment">
+		SELECT * FROM COMMENTS WHERE SPOT_ID=#{obj}
+	</select>
+	
+	<insert id="insert" parameterType="comment">
+		INSERT INTO COMMENTS VALUES (#{id},#{content},#{rating})
+	</insert>
+	<update id="update" parameterType="comment">
+		UPDATE COMMENTS SET content=#{content},rating=#{rating} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="String">
+		DELETE FROM COMMENTS WHERE ID=#{id}
+	</delete>
+	
+	
+	
+</mapper>
+
+

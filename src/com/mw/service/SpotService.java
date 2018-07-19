@@ -21,26 +21,21 @@ public class SpotService implements Service<Spot, String>{
 
 	@Override
 	public void modify(Spot t) throws Exception {
-		// TODO Auto-generated method stub
-		
+		dao.update(t);
 	}
 
 	@Override
 	public void remove(String v) throws Exception {
-		// TODO Auto-generated method stub
-		
+		dao.delete(v);
 	}
 
 	@Override
 	public Spot get(String v) throws Exception {
-		// TODO Auto-generated method stub
 		return  dao.select(v);
 	}
 
 	@Override
 	public ArrayList<Spot> get() throws Exception {
-		// TODO Auto-generated method stub
 		return  dao.select();
 	}
-
 }

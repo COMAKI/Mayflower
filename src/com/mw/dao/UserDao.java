@@ -22,19 +22,16 @@ public class UserDao implements Dao<User, String>{
 
 	@Override
 	public void update(User t) throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void delete(String v) throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public User select(String v) throws Exception {
-		// TODO Auto-generated method stub
 		return mapper.select(v);
 	}
 
