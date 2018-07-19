@@ -71,6 +71,7 @@
 					$(this).on("click",function(){
 						markers.forEach(function(elm,index){
 							elm.setMap(null);
+							markerCluster.clearMarkers();
 						});
 					});
 					
@@ -80,9 +81,9 @@
 
 
 				$(this).on("click",function(){
-					for(var i = 0;i < 100; i ++){
+					for(var i = 0;i < 1000; i ++){
 						const marker = new google.maps.Marker({
-			         		position: {lat: -25.363+(Math.random()*200), lng: 131.044+(Math.random()*200)},
+			         		position: {lat: pcenter.lat+(Math.random()*200), lng: pcenter.lng+(Math.random()*200)},
 			          		icon: icons.info.icon,
 			          		map: map,
 			          		title: 'Hello World!'
@@ -92,6 +93,7 @@
 		    		       map.setZoom(8);
 		    		       map.setCenter(marker.getPosition());
 		    		    });
+		    			markerCluster.addMarker(marker);
 					}
 				});
 			});
@@ -108,5 +110,7 @@
 			</div>
 		</div>
 <script src="js/mymap.js"></script>
+
 <!-- api key: key=AIzaSyDtIawTgEjsNSk0BE4mVjN3XNG_eb86lwI -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtIawTgEjsNSk0BE4mVjN3XNG_eb86lwI&callback=myMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtIawTgEjsNSk0BE4mVjN3XNG_eb86lwI&callback=myMap"></script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
