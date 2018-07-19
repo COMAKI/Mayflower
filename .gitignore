@@ -31,4 +31,4 @@ target/*
 web/WEB-INF/config/*
 
 # intellij ignore
-.idea
+.idea/*
