@@ -7,15 +7,23 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="select" parameterType="String" resultType="spot">
 		SELECT * FROM TSPOT WHERE ID=#{id}
 	</select>
+	
 	<select id="selectall" resultType="spot">
 		SELECT * FROM TSPOT
 	</select>
+	
+	<select id="selectBylnglat" parameterType="lnglat" resultType="spot">
+		SELECT * FROM COMMENTS WHERE (LNG BETWEEN #{startLng} AND #{endLng}) AND (LAT BETWEEN #{startLat} AND #{endLat})
+	</select>
+	
 	<insert id="insert" parameterType="spot">
 		INSERT INTO TSPOT VALUES (#{id},#{name},#{price},#{imgname})
 	</insert>
+	
 	<update id="update" parameterType="spot">
 		UPDATE TSPOT SET NAME=#{name},PRICE=#{price},IMGNAME=#{imgname} WHERE ID=#{id}
 	</update>
+	
 	<delete id="delete" parameterType="String">
 		DELETE FROM TSPOT WHERE ID=#{id}
 	</delete>
