@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mw.frame.Service;
 import com.mw.service.SpotService;
 import com.mw.vo.Comment;
+import com.mw.vo.Lnglat;
 import com.mw.vo.Spot;
 
 @Controller
@@ -42,21 +43,24 @@ public class SpotController {
 	
 	@RequestMapping("/getspots.mw")
 	public void getspots(HttpServletRequest request, HttpServletResponse response)  {
-		double lng = Double.parseDouble(request.getParameter("lng"));
-		double lat = Double.parseDouble(request.getParameter("lat"));
-		double zoom = Double.parseDouble(request.getParameter("zoom"));
+		double startLng = Double.parseDouble(request.getParameter("nelng"));
+		double startLat = Double.parseDouble(request.getParameter("nelat"));
+		double endLng = Double.parseDouble(request.getParameter("swlng"));
+		double endLat = Double.parseDouble(request.getParameter("swlat"));
+		
 		
 		JSONArray ja = new JSONArray();
 	    
 		try {
-			List<Spot> spots = service.get();
-			
+
+			List<Spot> spots = sservice.getByLnglat(new Lnglat(startLng,startLat,endLng,endLat));
+						
 			for(Spot spot : spots) {
 				JSONObject jo = new JSONObject();
 			    jo.put("name", "a_value");
 			    jo.put("lng", 235.1252);
 			    jo.put("lat", 235.1252);
-			    jo.put("img", "c_value");
+			    jo.put("category", "c_value");
 			    ja.add(jo);	
 			}
 		    
