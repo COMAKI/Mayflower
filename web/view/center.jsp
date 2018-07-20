@@ -46,6 +46,8 @@
 	}
 </style>
 <script>
+var infoBox = "";
+
 	$(document).ready(function () {
 		 
 		 $('#ajaxbtn').click(function () {
@@ -94,6 +96,19 @@
 			          		title: 'Hello World!'
 		    			});
 		    			markers.push(marker);
+		    			marker.addListener('mouseover', function(){
+		    				 
+		    			     infoBox.setContent(obj.title); //infobox오픈시 내용 셋팅
+		    			     infoBox.open(map, this); // infobox가 위치할 map과 위치 지정
+		    			     
+		    			    });
+		    			    
+		    			    marker.addListener('mouseout', function(){
+		    			 
+		    			     infoBox.close();// 닫기
+		    			     
+		    			    });
+		    			
 		    			marker.addListener('click', function() {
 		    		       map.setZoom(8);
 		    		       map.setCenter(marker.getPosition());
@@ -103,7 +118,21 @@
 				});
 			});
 		 
-		 
+		 infoBox = new InfoBox({   //객체 생성, 정보 지정
+			    content: "ewagagawgewgaweaw", //infobox 내용
+			    boxStyle:{
+			        border :"5px #000099 solid" ,
+			        borderRadius :"2px",
+			        background : "#FFFF99",
+			        textAlign: "left",
+			        fontSize : "9pt",
+			        color : "black",
+			        width : "180px",
+			        opacity : 1.0
+			    },
+			    closeBoxURL : "" // infobox에  x 버튼 삭제
+			 });
+			
 	});
 </script>
 <div class="container-redborder container-a01">
@@ -119,3 +148,4 @@
 <!-- api key: key=AIzaSyDtIawTgEjsNSk0BE4mVjN3XNG_eb86lwI -->
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtIawTgEjsNSk0BE4mVjN3XNG_eb86lwI&callback=myMap&libraries=places"></script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+<script type="text/javascript" src="js/infobox.js"></script>
