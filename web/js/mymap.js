@@ -815,7 +815,7 @@ var myMap=function() {
 
 	
 	map = new google.maps.Map(document.getElementById('map'), {
-	    zoom: 3,
+	    zoom: 8,
 	    center: {lat: pcenter.lat, lng: pcenter.lng},
 	    mapTypeControl: true,
  		mapTypeControlOptions: {
@@ -863,6 +863,9 @@ var myMap=function() {
 
   	var input = document.getElementById('searchbox0122');
   	var searchBox = new google.maps.places.SearchBox(input);
+  	
+    searchBox.addListener('places_changed', searchLocation);
+  	
   	
   	var title = "<div><table border='1'>";
   	 title += "<tr><td style='border:1px solid;'>aaaaaaaaaa</td></tr>";
@@ -955,16 +958,6 @@ function getNewPos(event) {
     	  dataType: 'json'
 	});
     isIdle=false;
-
-    /*var contentString = '<b>Rectangle moved.</b><br>' +
-        'New north-east corner: ' + ne.lat() + ', ' + ne.lng() + '<br>' +
-        'New south-west corner: ' + sw.lat() + ', ' + sw.lng();
-
-    // Set the info window's content and position.
-    infoWindow.setContent(contentString);
-    infoWindow.setPosition(ne);
-
-    infoWindow.open(map);*/
 }
 
 function initParameters(){
@@ -989,6 +982,46 @@ function initParameters(){
 	   	}
 	};
 };
+
+function searchLocation(event) {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    // Clear out the old markers.
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+      if (!place.geometry) {
+        console.log("Returned place contains no geometry");
+        return;
+      }
+
+      // Create a marker for each place.
+      markers.push(new google.maps.Marker({
+        map: map,
+        icon: icons.wc.icon,
+        title: place.name,
+        position: place.geometry.location
+      }));
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+};
+
 
 var locations = [
     {lat: -31.563910, lng: 147.154312},
