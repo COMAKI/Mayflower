@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tiles.request.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,11 +20,16 @@ public class UserController {
 	@Resource(name="uservice")
 	Service<User, String> service;
 	
-	@RequestMapping("/login.mw")
-	public ModelAndView login() {
+	@RequestMapping("/loginaction.mw")
+	public ModelAndView login(HttpServletRequest request) {
+		
+		String id = request.getParameter("loginid");
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("main");
 		mv.addObject("centerpage", "login");
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("loginid", id);
 		return mv; // login.jsp
 	}
 	@RequestMapping("/logout.mw")
