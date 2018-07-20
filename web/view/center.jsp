@@ -27,6 +27,11 @@
     	transform: translate(-50%, 0%);
 	}
 
+
+	.pac-container{
+		z-index: 1040;
+	}
+
 	.container-ui-row > button{
 		margin:20px;
 	}
@@ -40,10 +45,7 @@
 		width:100%;
 	}
 </style>
-<script type="text/javascript" src="/js/infoBox.js"></script>
 <script>
-var infoBox = "";
-
 	$(document).ready(function () {
 		 
 		 $('#ajaxbtn').click(function () {
@@ -101,21 +103,6 @@ var infoBox = "";
 				});
 			});
 		 
-		 infoBox = new InfoBox({   //객체 생성, 정보 지정
-			    content: contentString, //infobox 내용
-			    boxStyle:{
-			        border :"5px #000099 solid" ,
-			        borderRadius :"2px",
-			        background : "#FFFF99",
-			        textAlign: "left",
-			        fontSize : "9pt",
-			        color : "black",
-			        width : "180px",
-			        opacity : 1.0
-			    },
-			    closeBoxURL : "" // infobox에  x 버튼 삭제
-			 });
-		 
 		 
 	});
 </script>
@@ -130,5 +117,5 @@ var infoBox = "";
 <script src="js/mymap.js"></script>
 
 <!-- api key: key=AIzaSyDtIawTgEjsNSk0BE4mVjN3XNG_eb86lwI -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtIawTgEjsNSk0BE4mVjN3XNG_eb86lwI&callback=myMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtIawTgEjsNSk0BE4mVjN3XNG_eb86lwI&callback=myMap&libraries=places"></script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>

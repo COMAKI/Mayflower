@@ -32,10 +32,23 @@ public class CommentController {
 		
 	}
 	
+	@RequestMapping("/registercommentaction.mw")
+	public void regcommentaction(HttpServletRequest request, HttpServletResponse response)  {
+		Comment comment = new Comment();
+		try {
+			cservice.register(comment);
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 	@RequestMapping("/getcomments.mw")
 	public void getcomments(HttpServletRequest request, HttpServletResponse response)  {
-		double id = Double.parseDouble(request.getParameter("lng"));
+		String id = request.getParameter("lng");
 		
 		JSONArray ja = new JSONArray();
 	    
