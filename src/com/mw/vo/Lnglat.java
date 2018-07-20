@@ -2,51 +2,49 @@ package com.mw.vo;
 
 public class Lnglat {
 
-	private double startLng;
-	private double startLat;
-	private double endtLat;
-	private double endtLng;
+	private double startlng;
+	private double startlat;
+	private double endlat;
+	private double endlng;
 	public Lnglat() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Lnglat(double startLng, double startLat, double endtLat, double endtLng) {
 		super();
-		this.startLng = startLng;
-		this.startLat = startLat;
-		this.endtLat = endtLat;
-		this.endtLng = endtLng;
-	}
-	public double getStartLng() {
-		return startLng;
-	}
-	public void setStartLng(double startLng) {
-		this.startLng = startLng;
-	}
-	public double getStartLat() {
-		return startLat;
-	}
-	public void setStartLat(double startLat) {
-		this.startLat = startLat;
-	}
-	public double getEndtLat() {
-		return endtLat;
-	}
-	public void setEndtLat(double endtLat) {
-		this.endtLat = endtLat;
-	}
-	public double getEndtLng() {
-		return endtLng;
-	}
-	public void setEndtLng(double endtLng) {
-		this.endtLng = endtLng;
+		this.startlng = startLng;
+		this.startlat = startLat;
+		this.endlat = endtLat;
+		this.endlng = endtLng;
 	}
 	
-	@Override
-	public String toString() {
-		return "Lnglat [startLng=" + startLng + ", startLat=" + startLat + ", endtLat=" + endtLat + ", endtLng="
-				+ endtLng + "]";
+	
+	
+	public double getStartlng() {
+		return startlng;
 	}
+	public void setStartlng(double startLng) {
+		this.startlng = startLng;
+	}
+	public double getStartlat() {
+		return startlat;
+	}
+	public void setStartlat(double startLat) {
+		this.startlat = startLat;
+	}
+	public double getEndlat() {
+		return endlat;
+	}
+	public void setEndlat(double endLat) {
+		this.endlat = endLat;
+	}
+	public double getEndlng() {
+		return endlng;
+	}
+	public void setEndlng(double endLng) {
+		this.endlng = endLng;
+	}
+	
 	
 	
 	

@@ -27,10 +27,10 @@ import com.mw.vo.Spot;
 @Controller
 public class SpotController {
 	
-	@Resource(name="iservice")
+	@Resource(name="sservice")
 	Service<Spot, String> service;
 	
-	@Resource(name="iservice")
+	@Resource(name="sservice")
 	SpotService sservice;
 	
 	@RequestMapping("/addspot.mw")
@@ -43,24 +43,40 @@ public class SpotController {
 	
 	@RequestMapping("/getspots.mw")
 	public void getspots(HttpServletRequest request, HttpServletResponse response)  {
-		double startLng = Double.parseDouble(request.getParameter("nelng"));
-		double startLat = Double.parseDouble(request.getParameter("nelat"));
-		double endLng = Double.parseDouble(request.getParameter("swlng"));
-		double endLat = Double.parseDouble(request.getParameter("swlat"));
+		double startLng = Double.parseDouble(request.getParameter("nwlng"));
+		double startLat = Double.parseDouble(request.getParameter("nwlat"));
+		double endLng = Double.parseDouble(request.getParameter("selng"));
+		double endLat = Double.parseDouble(request.getParameter("selat"));
+		
+		if(startLng > endLng) {
+			double tmp = startLng;
+			startLng = endLng;
+			endLng = tmp;
+		}
+		
+		if(startLat > endLat) {
+			double tmp = startLat;
+			startLat = endLat;
+			endLat = tmp;
+		}
+		
+		System.out.println(startLng+" "+endLng+" "+startLat+" "+endLat);
 		
 		
 		JSONArray ja = new JSONArray();
 	    
 		try {
 
-			List<Spot> spots = sservice.getByLnglat(new Lnglat(startLng,startLat,endLng,endLat));
-						
+			List<Spot> spots = sservice.getByLnglat(new Lnglat(33,120,38,140));
+				
+			System.out.println("The size is : "+ spots.size());
+			
 			for(Spot spot : spots) {
 				JSONObject jo = new JSONObject();
-			    jo.put("name", "a_value");
-			    jo.put("lng", 235.1252);
-			    jo.put("lat", 235.1252);
-			    jo.put("category", "c_value");
+			    jo.put("id", spot.getId());
+			    jo.put("lng", spot.getLng());
+			    jo.put("lat", spot.getLat());
+			    jo.put("category", spot.getCategory());
 			    ja.add(jo);	
 			}
 		    
