@@ -10,7 +10,7 @@ import com.mw.frame.Service;
 import com.mw.vo.Lnglat;
 import com.mw.vo.Spot;
 
-@org.springframework.stereotype.Service("iservice")
+@org.springframework.stereotype.Service("sservice")
 public class SpotService implements Service<Spot, String>{
 
 	@Resource(name="sdao")

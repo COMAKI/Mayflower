@@ -5,28 +5,13 @@ import org.springframework.web.multipart.MultipartFile;
 public class Spot {
 	/* NEED TO INPUT CORRECT VALUES AND METHODS */
 	private String id;
-	private String name;
-	private int price;
-	String imgname;
-	MultipartFile img;
-	
-	public Spot() {
+	private double lng;
+	private double lat;
+	private String category;
 		
-	}
-
-	public Spot(String id, String name, int price, String imgname) {
-		this.id = id;
-		this.name = name;
-		this.price = price;
-		this.imgname = imgname;
-	}
-
-	public Spot(String id, String name, int price, String imgname, MultipartFile img) {
-		this.id = id;
-		this.name = name;
-		this.price = price;
-		this.imgname = imgname;
-		this.img = img;
+	@Override
+	public String toString() {
+		return "Spot [id=" + id + ", lng=" + lng + ", lat=" + lat + ", category=" + category + "]";
 	}
 
 	public String getId() {
@@ -37,44 +22,35 @@ public class Spot {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public double getLng() {
+		return lng;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLng(double lng) {
+		this.lng = lng;
 	}
 
-	public int getPrice() {
-		return price;
+	public double getLat() {
+		return lat;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setLat(double lat) {
+		this.lat = lat;
 	}
 
-	public String getImgname() {
-		return imgname;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setImgname(String imgname) {
-		this.imgname = imgname;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-	public MultipartFile getImg() {
-		return img;
+	public Spot() {
+		
 	}
 
-	public void setImg(MultipartFile img) {
-		this.img = img;
-	}
 
-	@Override
-	public String toString() {
-		return "Item [id=" + id + ", name=" + name + ", price=" + price + ", imgname=" + imgname + ", img=" + img + "]";
-	}
-	
-	
 	
 }
 

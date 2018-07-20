@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectBylnglat" parameterType="lnglat" resultType="spot">
-		SELECT * FROM COMMENTS WHERE (LNG BETWEEN #{startLng} AND #{endLng}) AND (LAT BETWEEN #{startLat} AND #{endLat})
+		SELECT * FROM TSPOT WHERE (LNG BETWEEN #{startlng} AND #{endlng} ) AND (LAT BETWEEN #{startlat} AND #{endlat} )
 	</select>
 	
 	<insert id="insert" parameterType="spot">
