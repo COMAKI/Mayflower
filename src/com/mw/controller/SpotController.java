@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mw.frame.Service;
+import com.mw.service.SpotService;
 import com.mw.vo.Comment;
 import com.mw.vo.Spot;
 
@@ -28,7 +29,8 @@ public class SpotController {
 	@Resource(name="iservice")
 	Service<Spot, String> service;
 	
-	
+	@Resource(name="iservice")
+	SpotService sservice;
 	
 	@RequestMapping("/addspot.mw")
 	public ModelAndView addspot() {
@@ -37,9 +39,6 @@ public class SpotController {
 		mv.addObject("centerpage", "spot/add");
 		return mv; // Spot/add.jsp
 	}
-	
-
-	
 	
 	@RequestMapping("/getspots.mw")
 	public void getspots(HttpServletRequest request, HttpServletResponse response)  {
@@ -73,6 +72,14 @@ public class SpotController {
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    } 
+	}
+	
+	@RequestMapping("/deletespot.mw")
+	public ModelAndView delspot() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("main");
+		mv.addObject("centerpage", "spot/add");
+		return mv; // Spot/add.jsp
 	}
 	
 

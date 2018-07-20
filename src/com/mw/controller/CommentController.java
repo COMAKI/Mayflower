@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mw.frame.Service;
+import com.mw.service.CommentService;
 import com.mw.vo.Comment;
 
 public class CommentController {
@@ -21,6 +22,9 @@ public class CommentController {
 
 	@Resource(name="cservice")
 	Service<Comment, String> service;
+	
+	@Resource(name="cservice")
+	CommentService cservice;
 	
 	@RequestMapping("/registercomment.mw")
 	public void regcomment(HttpServletRequest request, HttpServletResponse response)  {

@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import javax.annotation.Resource;
 
+import com.mw.dao.SpotDao;
 import com.mw.frame.Dao;
 import com.mw.frame.Service;
+import com.mw.vo.Lnglat;
 import com.mw.vo.Spot;
 
 @org.springframework.stereotype.Service("iservice")
@@ -13,6 +15,9 @@ public class SpotService implements Service<Spot, String>{
 
 	@Resource(name="sdao")
 	Dao<Spot,String> dao;
+
+	@Resource(name="sdao")
+	SpotDao sdao;
 	
 	@Override
 	public void register(Spot t) throws Exception {
@@ -37,5 +42,9 @@ public class SpotService implements Service<Spot, String>{
 	@Override
 	public ArrayList<Spot> get() throws Exception {
 		return  dao.select();
+	}
+	
+	public ArrayList<Spot> getByLnglat(Lnglat obj) throws Exception {
+		return  sdao.selectBylnglat(obj);
 	}
 }
