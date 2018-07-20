@@ -4,18 +4,18 @@ public class Lnglat {
 
 	private double startlng;
 	private double startlat;
-	private double endlat;
 	private double endlng;
+	private double endlat;
 	public Lnglat() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Lnglat(double startLng, double startLat, double endtLat, double endtLng) {
+	public Lnglat(double startLng, double startLat, double endLng, double endLat) {
 		super();
 		this.startlng = startLng;
 		this.startlat = startLat;
-		this.endlat = endtLat;
-		this.endlng = endtLng;
+		this.endlat = endLat;
+		this.endlng = endLng;
 	}
 	
 	

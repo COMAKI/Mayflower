@@ -59,15 +59,12 @@ public class SpotController {
 			startLat = endLat;
 			endLat = tmp;
 		}
-		
-		System.out.println(startLng+" "+endLng+" "+startLat+" "+endLat);
-		
-		
+				
 		JSONArray ja = new JSONArray();
 	    
 		try {
 
-			List<Spot> spots = sservice.getByLnglat(new Lnglat(33,120,38,140));
+			List<Spot> spots = sservice.getByLnglat(new Lnglat(startLng, startLat, endLng, endLat));
 				
 			System.out.println("The size is : "+ spots.size());
 			
