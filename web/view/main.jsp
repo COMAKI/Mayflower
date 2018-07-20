@@ -123,7 +123,7 @@ section {
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<form class="form-inline input-group mt-2 mt-md-0 ml-auto search-box">
-				<input class="form-control mr-sm-2 rounded" type="text"
+				<input id="searchbox0122" class="form-control mr-sm-2 rounded" type="text"
 					placeholder="Find the nearest washroom" aria-label="Search">
 				<button
 					class="btn btn-outline-success my-2 my-sm-0 float-sm-left input-group-append"
@@ -311,6 +311,5 @@ section {
 				<jsp:include page="center.jsp" />
 			</c:otherwise>
 	</c:choose>
-
 </body>
 </html>

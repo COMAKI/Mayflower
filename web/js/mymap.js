@@ -60,6 +60,11 @@ var myMap=function() {
       // Add a marker clusterer to manage the markers.
       markerCluster = new MarkerClusterer(map, markers,
       {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
+
+  	var input = document.getElementById('searchbox0122');
+  	var searchBox = new google.maps.places.SearchBox(input);
+
 };
 
 const pcenter = {
