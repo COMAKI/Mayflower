@@ -23,7 +23,6 @@ import com.mw.vo.User;
 @Controller
 public class MainController {
 	
-	
 	@RequestMapping("/main.mw")
 	public String main() {
 		return "main"; // main.jsp
