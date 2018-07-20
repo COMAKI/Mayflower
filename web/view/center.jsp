@@ -40,73 +40,12 @@
 		width:100%;
 	}
 </style>
-<script>
-	$(document).ready(function () {
-		 
-		 $('#ajaxbtn').click(function () {
-			 var displayResources = $('#display-resources');			 
-			 displayResources.text('Loading data from JSON source...');
-			 
-			 $.ajax({
-				 type: "GET",
-				 url: "getjson.mw",
-				 success: function(result) {
-					 var output="<table><thead><tr><th>Name</th><th>Provider</th><th>URL</th></thead><tbody>";
-					 for (var i in result) {
-				 		output+="<tr><td>" + result[i].a + "</td><td>" + result[i].b + "</td><td>" + result[i].c + "</td></tr>";
-				 	}
-				 	output+="</tbody></table>";
-				 	$('#ajaxdiv').html(output);
-				 	
-				 }
-			});
-		});
-
-		 var markers = [];
-		 
-		 $('.container-ui-row>button').each(function(index){
-				//console.log('im the button' + index);
-				//console.log($(this).html());
-				if(index == 2){
-					$(this).on("click",function(){
-						markers.forEach(function(elm,index){
-							elm.setMap(null);
-							markerCluster.clearMarkers();
-						});
-					});
-					
-					
-					return;
-				}
-
-
-				$(this).on("click",function(){
-					for(var i = 0;i < 1000; i ++){
-						const marker = new google.maps.Marker({
-			         		position: {lat: pcenter.lat+(Math.random()*200), lng: pcenter.lng+(Math.random()*200)},
-			          		icon: icons.info.icon,
-			          		map: map,
-			          		title: 'Hello World!'
-		    			});
-		    			markers.push(marker);
-		    			marker.addListener('click', function() {
-		    		       map.setZoom(8);
-		    		       map.setCenter(marker.getPosition());
-		    		    });
-		    			markerCluster.addMarker(marker);
-					}
-				});
-			});
-		 
-		 
-	});
-</script>
 <div class="container-redborder container-a01">
 			<div id="map"></div>
 			<div class="container-ui-row container-redborder">
+				<button type="button" class="btn">Ramdom()</button>
 				<button type="button" class="btn">Basic</button>
-				<button type="button" class="btn">Basic</button>
-				<button type="button" class="btn">Basic</button>
+				<button type="button" class="btn">Clear()</button>
 			</div>
 		</div>
 <script src="js/mymap.js"></script>
