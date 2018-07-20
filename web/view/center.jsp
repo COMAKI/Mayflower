@@ -27,6 +27,11 @@
     	transform: translate(-50%, 0%);
 	}
 
+
+	.pac-container{
+		z-index: 1040;
+	}
+
 	.container-ui-row > button{
 		margin:20px;
 	}
@@ -43,13 +48,14 @@
 <div class="container-redborder container-a01">
 			<div id="map"></div>
 			<div class="container-ui-row container-redborder">
-				<button type="button" class="btn">Ramdom()</button>
 				<button type="button" class="btn">Basic</button>
-				<button type="button" class="btn">Clear()</button>
+				<button type="button" class="btn">Basic</button>
+				<button type="button" class="btn">Basic</button>
 			</div>
 		</div>
 <script src="js/mymap.js"></script>
 
 <!-- api key: key=AIzaSyDtIawTgEjsNSk0BE4mVjN3XNG_eb86lwI -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtIawTgEjsNSk0BE4mVjN3XNG_eb86lwI&callback=myMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtIawTgEjsNSk0BE4mVjN3XNG_eb86lwI&callback=myMap&libraries=places"></script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+<script type="text/javascript" src="js/infobox.js"></script>
