@@ -864,10 +864,15 @@ var myMap=function() {
   	var input = document.getElementById('searchbox0122');
   	var searchBox = new google.maps.places.SearchBox(input);
   	
+  	var title = "<div><table border='1'>";
+  	 title += "<tr><td style='border:1px solid;'>aaaaaaaaaa</td></tr>";
+  	 title += "<tr><td style='border:1px solid;'>차량속도aaaaaaaaaakm/h</td></tr>";
+  	 title += "</table></div>";
+  	
   	infoBox = new InfoBox({   //객체 생성, 정보 지정
-  	    content: "absdgad", //infobox 내용
+  	    content: title, //infobox 내용
   	    boxStyle:{
-  	        border :"50px #000099 solid" ,
+  	        border :"5px #000099 solid" ,
   	        borderRadius :"2px",
   	        background : "#FFFF99",
   	        textAlign: "left",
@@ -921,9 +926,14 @@ function getNewPos(event) {
 	    		  });
 	    		  markers.push(marker);
 	    		  
+	    		  var title = "<div><table id = 'customers' border='1'>";
+	    		  	 title += "<tr><td style='border:1px solid;'>aaaaaaaaaa</td></tr>";
+	    		  	 title += "<tr><td style='border:1px solid;'>aaaaaaaaaakm/h</td></tr>";
+	    		  	 title += "</table></div>";
+	    		  
 	    		  marker.addListener('mouseover', function(){
 	    	 
-	    			  infoBox.setContent("awegwaegwaegwag"); //infobox오픈시 내용 셋팅
+	    			  infoBox.setContent(title); //infobox오픈시 내용 셋팅
 	    			  infoBox.open(map, this); // infobox가 위치할 map과 위치 지정
 	    	     });
 	    	    
