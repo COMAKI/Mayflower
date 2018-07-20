@@ -40,7 +40,10 @@
 		width:100%;
 	}
 </style>
+<script type="text/javascript" src="/js/infoBox.js"></script>
 <script>
+var infoBox = "";
+
 	$(document).ready(function () {
 		 
 		 $('#ajaxbtn').click(function () {
@@ -97,6 +100,21 @@
 					}
 				});
 			});
+		 
+		 infoBox = new InfoBox({   //객체 생성, 정보 지정
+			    content: contentString, //infobox 내용
+			    boxStyle:{
+			        border :"5px #000099 solid" ,
+			        borderRadius :"2px",
+			        background : "#FFFF99",
+			        textAlign: "left",
+			        fontSize : "9pt",
+			        color : "black",
+			        width : "180px",
+			        opacity : 1.0
+			    },
+			    closeBoxURL : "" // infobox에  x 버튼 삭제
+			 });
 		 
 		 
 	});
