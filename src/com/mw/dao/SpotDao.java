@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mw.dao.mapper.SpotMapper;
 import com.mw.frame.Dao;
+import com.mw.vo.Lnglat;
 import com.mw.vo.Spot;
 
 @Repository("sdao")
@@ -40,5 +41,7 @@ public class SpotDao implements Dao<Spot, String>{
 		return (ArrayList<Spot>) mapper.selectall();
 	}
 
-	
+	public ArrayList<Spot> selectBylnglat(Lnglat obj) throws Exception {
+		return (ArrayList<Spot>) mapper.selectBylnglat(obj);
+	}
 }

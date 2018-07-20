@@ -15,9 +15,17 @@ public class CrawlingStart {
 	public static void main(String[] args) throws IOException {
 		
 		String destination = "https://en.wikipedia.org/wiki/Philosophy";
-		String source = "https://www.facebook.com/4584asd415623/";
-
-		testConjecture(destination, source, 10);		
+		String source = null;
+		
+		ArrayList<String> sourceList = new ArrayList<>();
+		sourceList.add("https://www.facebook.com/4584asd415623/"); 			// 화장실유머
+		sourceList.add("https://www.facebook.com/whereiswc/?ref=br_rs");	// 화장실NGO
+		sourceList.add("https://www.facebook.com/yeoja2013/?ref=br_rs"); 	// 여자화장실
+		
+		for (String list : sourceList) {
+			source = list;
+			testConjecture(destination, source, 1);		
+		}
 	}
 
 	public static void testConjecture(String destination, String source, int limit) throws IOException {
