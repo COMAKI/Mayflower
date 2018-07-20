@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mw.dao.mapper.Settingmapper">
+
+	<select id="createSpot">
+	  <![CDATA[
+         CREATE TABLE SPOTS(
+		id                            		VARCHAR2(50)		 NULL ,
+		name                          		VARCHAR2(50)		 NULL ,
+		category_id                   		VARCHAR2(50)		 NULL ,
+		subcategory_id                		VARCHAR2(50)		 NULL ,
+		image_id                      		VARCHAR2(500)		 NULL ,
+		address1                      		VARCHAR2(50)		 NULL ,
+		address2                      		VARCHAR2(50)		 NULL ,
+		ophour                        		VARCHAR2(50)		 NULL ,
+		phone                         		VARCHAR2(50)		 NULL ,
+		lng                           		VARCHAR2(50)		 NULL ,
+		lat                           		VARCHAR2(50)		 NULL ,
+		regdate                       		VARCHAR2(50)		 NULL ,
+		lastdate                      		VARCHAR2(50)		 NULL ,
+		user_id                       		VARCHAR2(50)		 NULL ,
+		properties                    		VARCHAR2(4000)		 NULL ,
+		avg_rating                    		NUMBER(3,2)		 NULL 
+		);
+      ]]>
+	</select>
+</mapper>

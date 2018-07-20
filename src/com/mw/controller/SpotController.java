@@ -76,7 +76,7 @@ public class SpotController {
 			    jo.put("id", spot.getId());
 			    jo.put("lng", spot.getLng());
 			    jo.put("lat", spot.getLat());
-			    jo.put("category", spot.getCategory());
+			    jo.put("category", spot.getCategory_id());
 			    ja.add(jo);	
 			}
 		    
