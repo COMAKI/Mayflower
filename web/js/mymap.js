@@ -13,7 +13,7 @@ const pcenter = {
 
 var myMap=function() {
 	map = new google.maps.Map(document.getElementById('map'), {
-	    zoom: 3,
+	    zoom: 8,
 	    center: {lat: pcenter.lat, lng: pcenter.lng},
 	    mapTypeControl: true,
  		mapTypeControlOptions: {
