@@ -124,7 +124,7 @@ section {
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<form class="form-inline input-group mt-2 mt-md-0 ml-auto search-box">
 				<input class="form-control mr-sm-2 rounded" type="text"
-					placeholder="지역, 관공서  검색" aria-label="Search">
+					placeholder="Find the nearest washroom" aria-label="Search">
 				<button
 					class="btn btn-outline-success my-2 my-sm-0 float-sm-left input-group-append"
 					type="submit">Search</button>
@@ -134,7 +134,7 @@ section {
 					data-toggle="modal" data-target="#myModal">LOGIN <span
 						class="sr-only">(current)</span></a></li>
 				<li class="nav-item active"><a class="nav-link"
-					data-toggle="modal" data-target="#myModal">REGISTER <span
+					data-toggle="modal" data-target="#Modal">REGISTER <span
 						class="sr-only">(current)</span></a></li>
 			</ul>
 		</div>
@@ -156,20 +156,17 @@ section {
 					<form role="form">
 						<div class="form-group">
 							<label for="usrname"><span
-								class="glyphicon glyphicon-user"></span> Username</label> <input
-								type="text" class="form-control" id="usrname"
+								class="glyphicon glyphicon-user"></span> Email</label> <input
+								type="text" class="form-control" id="loginEmail"
 								placeholder="Enter email">
 						</div>
 						<div class="form-group">
 							<label for="psw"><span
 								class="glyphicon glyphicon-eye-open"></span> Password</label> <input
-								type="text" class="form-control" id="psw"
+								type="text" class="form-control" id="loginPsw"
 								placeholder="Enter password">
 						</div>
-						<div class="checkbox">
-							<label><input type="checkbox" value="" checked>Remember
-								me</label>
-						</div>
+						
 						<button type="submit" class="btn btn-success btn-block">
 							<span class="glyphicon glyphicon-off"></span> Login
 						</button>
@@ -191,8 +188,121 @@ section {
 			<!-- Modal content end -->
 		</div>
 	</div>
-	<!-- Modal end -->
+	
+	<div class="modal fade" id="Modal" role="dialog">
+		<div class="modal-dialog">
 
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 35px 50px;">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4>
+						<span class="glyphicon glyphicon-lock"></span> Register
+					</h4>
+				</div>
+				<div class="modal-body" style="padding: 40px 50px;">
+					<form role="form">
+						<div class="form-group">
+							<label for="usrname"><span
+								class="glyphicon glyphicon-user"></span> Email</label> <input
+								type="text" class="form-control" id="joinEmail"
+								placeholder="Enter email">
+						</div>
+						<div class="form-group">
+							<label for="usrname"><span
+								class="glyphicon glyphicon-user"></span> Phone</label> <input
+								type="text" class="form-control" id="joinPhone"
+								placeholder="Enter phone number">
+						</div>
+						<div class="form-group">
+							<label for="psw"><span
+								class="glyphicon glyphicon-eye-open"></span> Password</label> <input
+								type="text" class="form-control" id="joinPsw"
+								placeholder="Enter password">
+						</div>
+						<div class="form-group">
+							<label for="psw"><span
+								class="glyphicon glyphicon-eye-open"></span> Password Confirm</label> <input
+								type="text" class="form-control" id="joinPsw"
+								placeholder="Enter password">
+						</div>
+						<div class="checkbox">
+							<label><input type="checkbox" value="" checked>  I have read the private policy about this service.
+								</label>
+						</div>
+						<button type="submit" class="btn btn-success btn-block">
+							<span class="glyphicon glyphicon-off"></span> Register
+						</button>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<p>
+						To read  <a href="#" data-toggle="modal" data-target="#Policy" >Private Policy
+						<span class="sr-only">(current)</span></a>
+					</p>
+				</div>
+			</div>
+			<!-- Modal content end -->
+		</div>
+	</div>
+	
+	<div class="modal fade" id="Policy" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 35px 50px;">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4>
+						<span class="glyphicon glyphicon-lock"></span> Register
+					</h4>
+				</div>
+				<div class="modal-body" style="padding: 40px 50px;">
+					<form role="form">
+						<div class="form-group">
+							<label for="usrname"><span
+								class="glyphicon glyphicon-user"></span> Email</label> <input
+								type="text" class="form-control" id="joinEmail"
+								placeholder="Enter email">
+						</div>
+						<div class="form-group">
+							<label for="usrname"><span
+								class="glyphicon glyphicon-user"></span> Phone</label> <input
+								type="text" class="form-control" id="joinPhone"
+								placeholder="Enter phone number">
+						</div>
+						<div class="form-group">
+							<label for="psw"><span
+								class="glyphicon glyphicon-eye-open"></span> Password</label> <input
+								type="text" class="form-control" id="joinPsw"
+								placeholder="Enter password">
+						</div>
+						<div class="form-group">
+							<label for="psw"><span
+								class="glyphicon glyphicon-eye-open"></span> Password Confirm</label> <input
+								type="text" class="form-control" id="joinPsw"
+								placeholder="Enter password">
+						</div>
+						<div class="checkbox">
+							<label><input type="checkbox" value="" checked>  I have read the private policy about this service.
+								</label>
+						</div>
+						<button type="submit" class="btn btn-success btn-block">
+							<span class="glyphicon glyphicon-off"></span> Register
+						</button>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<p>
+						To read  <a href="policy.jsp">Private Policy</a>
+					</p>
+				</div>
+			</div>
+			<!-- Modal content end -->
+		</div>
+	</div>
+	<!-- Modal end -->
+	
 	<c:choose>
 			<c:when test="${center != null }">
 				<jsp:include page="${center }.jsp" />

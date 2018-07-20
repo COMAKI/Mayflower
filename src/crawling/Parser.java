@@ -67,10 +67,7 @@ public class Parser {
 		if (isInParens(elt)) {
 			return false;
 		}
-		if (startsWith(elt, "#")) {
-			return false;
-		}
-		if (startsWith(elt, "/wiki/Help:")) {
+		if (startsWith(elt, "/facebook/help/")) {
 			return false;
 		}
 		return true;

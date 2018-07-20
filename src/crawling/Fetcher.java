@@ -15,7 +15,8 @@ import org.jsoup.select.Elements;
 public class Fetcher {
 	private long lastRequestTime = -1;
 	private long minInterval = 1000;
-
+	private Elements preParas = null;
+	
 	public Elements fetch(String url) throws IOException {
 		sleepIfNeeded();
 
@@ -25,7 +26,13 @@ public class Fetcher {
 		Element content = doc.getElementById("pagelet_timeline_main_column");
 		
 		Elements paras = content.select("p");
-		return paras;
+		
+		if (paras != null) {
+			this.preParas = paras;
+			return paras;
+		} else {
+		return preParas; 
+		} 
 	}
 
 	public Elements read(String url) throws IOException {
@@ -59,7 +66,7 @@ public class Fetcher {
 
 	public static void main(String[] args) throws IOException {
 		Fetcher wf = new Fetcher();
-		String url = "https://en.wikipedia.org/wiki/Java_(programming_language)";
+		String url = "https://www.facebook.com/4584asd415623/";
 		Elements paragraphs = wf.read(url);
 
 		for (Element paragraph: paragraphs) {

@@ -14,7 +14,7 @@ public class CrawlingStart {
 
 	public static void main(String[] args) throws IOException {
 		
-		String destination = "https://en.wikipedia.org/wiki/Philosophy";
+		String destination = "http://m.kma.go.kr/m/index.jsp";
 		String source = null;
 		
 		ArrayList<String> sourceList = new ArrayList<>();
@@ -38,8 +38,8 @@ public class CrawlingStart {
 				visited.add(url);
 			}
 			Element elt = getFirstValidLink(url);
-			Elements content = getParagraphContent(url); 
 			
+			Elements content = getParagraphContent(url); 
 			System.out.println(content.text());
 			
 			if (elt == null) {
@@ -48,7 +48,7 @@ public class CrawlingStart {
 			}
 			
 			System.out.println("**" + elt.text() + "**");
-			//url = elt.attr("abs:href");
+			url = elt.attr("abs:href");
 			
 			if (url.equals(destination)) {
 				System.out.println("Eureka!");
