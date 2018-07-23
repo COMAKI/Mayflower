@@ -55,7 +55,8 @@
 		</div>
 		
 		
-<script src="js/premymap.js"></script>
+<script src="js/premymap_markercallbacks.js"></script>
+<script src="js/premymap_setinfobox.js"></script>
 <script src="js/mymap.js"></script>
 
 <!-- api key: key=AIzaSyDtIawTgEjsNSk0BE4mVjN3XNG_eb86lwI -->
