@@ -57,9 +57,9 @@ var myMap=function() {
 
     // Add Event Listener
     map.addListener('bounds_changed', getNewPos);
- /*   map.addListener('idle', ()=>{
-  	  isIdle=true;
-    });*/
+    map.addListener('idle', ()=>{
+  	    isIdle=true;
+    });
     map.addListener('dragend', ()=>{
     	isIdle=true;
     });
@@ -179,11 +179,12 @@ function initialize(){
 	 * Point location on google map
 	 */
 	$('#searchmap').click(function (e) {
-	    var address = $('searchbox0122').val();
+	    var address = $('#searchbox0122').val();
+	    console.log(address);
 	    geocoder.geocode({'address': address}, function (results, status) {
 	        if (status == google.maps.GeocoderStatus.OK) {
 	            map.setCenter(results[0].geometry.location);
-	            marker.setPosition(results[0].geometry.location);
+	            //marker.setPosition(results[0].geometry.location);
 	            /* $('.search_addr').val(results[0].formatted_address);
 	            $('.search_latitude').val(marker.getPosition().lat());
 	            $('.search_longitude').val(marker.getPosition().lng()); */
