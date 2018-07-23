@@ -1,0 +1,150 @@
+DROP TABLE COMMENTS CASCADE CONSTRAINTS;
+DROP TABLE SPOTS CASCADE CONSTRAINTS;
+DROP TABLE IMAGES CASCADE CONSTRAINTS;
+DROP TABLE SUBCATEGORIES CASCADE CONSTRAINTS;
+DROP TABLE CATEGORIES CASCADE CONSTRAINTS;
+DROP TABLE USERS CASCADE CONSTRAINTS;
+
+/**********************************/
+/* Table Name: USERS */
+/**********************************/
+CREATE TABLE USERS(
+		id                            		VARCHAR2(50)		 NULL ,
+		name                          		VARCHAR2(50)		 NULL ,
+		password                      		VARCHAR2(50)		 NULL ,
+		phone                         		VARCHAR2(50)		 NULL ,		
+		regdate                       		VARCHAR2(50)		 NULL ,
+		authority                     		VARCHAR2(10)		 NULL 
+);
+
+COMMENT ON TABLE USERS is 'USERS';
+COMMENT ON COLUMN USERS.id is 'id';
+COMMENT ON COLUMN USERS.name is 'name';
+COMMENT ON COLUMN USERS.password is 'password';
+COMMENT ON COLUMN USERS.phone is 'phone';
+COMMENT ON COLUMN USERS.regdate is 'regdate';
+COMMENT ON COLUMN USERS.authority is 'authority';
+
+
+/**********************************/
+/* Table Name: CATEGORIES */
+/**********************************/
+CREATE TABLE CATEGORIES(
+		id                            		VARCHAR2(50)		 NULL ,
+		name                          		VARCHAR2(200)		 NULL 
+);
+
+COMMENT ON TABLE CATEGORIES is 'CATEGORIES';
+COMMENT ON COLUMN CATEGORIES.id is 'id';
+COMMENT ON COLUMN CATEGORIES.name is 'name';
+
+
+/**********************************/
+/* Table Name: SUBCATEGORIES */
+/**********************************/
+CREATE TABLE SUBCATEGORIES(
+		id                            		VARCHAR2(50)		 NULL ,
+		category_id                   		VARCHAR2(50)		 NULL ,
+		name                          		VARCHAR2(200)		 NULL 
+);
+
+COMMENT ON TABLE SUBCATEGORIES is 'SUBCATEGORIES';
+COMMENT ON COLUMN SUBCATEGORIES.id is 'id';
+COMMENT ON COLUMN SUBCATEGORIES.category_id is 'category_id';
+COMMENT ON COLUMN SUBCATEGORIES.name is 'name';
+
+
+/**********************************/
+/* Table Name: IMAGES */
+/**********************************/
+CREATE TABLE IMAGES(
+		id                            		VARCHAR2(50)		 NULL ,
+		name                          		VARCHAR2(500)		 NULL ,
+		filepath                      		VARCHAR2(2000)		 NULL ,
+		user_id                       		VARCHAR2(50)		 NULL ,
+		regdate                       		VARCHAR2(50)		 NULL 
+);
+
+COMMENT ON TABLE IMAGES is 'IMAGES';
+COMMENT ON COLUMN IMAGES.id is 'id';
+COMMENT ON COLUMN IMAGES.name is 'name';
+COMMENT ON COLUMN IMAGES.path is 'path';
+COMMENT ON COLUMN IMAGES.user_id is 'user_id';
+COMMENT ON COLUMN IMAGES.regdate is 'regdate';
+
+
+/**********************************/
+/* Table Name: SPOTS */
+/**********************************/
+CREATE TABLE SPOTS(
+		id                            		VARCHAR2(50)		 NULL ,
+		name                          		VARCHAR2(50)		 NULL ,
+		category_id                   		VARCHAR2(50)		 NULL ,
+		subcategory_id                		VARCHAR2(50)		 NULL ,
+		image_id                      		VARCHAR2(500)		 NULL ,
+		address1                      		VARCHAR2(50)		 NULL ,
+		address2                      		VARCHAR2(50)		 NULL ,
+		ophour                        		VARCHAR2(50)		 NULL ,
+		phone                         		VARCHAR2(50)		 NULL ,
+		lng                           		VARCHAR2(50)		 NULL ,
+		lat                           		VARCHAR2(50)		 NULL ,
+		regdate                       		VARCHAR2(50)		 NULL ,
+		lastdate                      		VARCHAR2(50)		 NULL ,
+		user_id                       		VARCHAR2(50)		 NULL ,
+		properties                    		VARCHAR2(4000)		 NULL ,
+		avg_rating                    		NUMBER(3,2)		 NULL 
+);
+
+COMMENT ON TABLE SPOTS is 'SPOTS';
+COMMENT ON COLUMN SPOTS.id is 'id';
+COMMENT ON COLUMN SPOTS.name is 'name';
+COMMENT ON COLUMN SPOTS.category_id is 'category_id';
+COMMENT ON COLUMN SPOTS.subcategory_id is 'subcategory_id';
+COMMENT ON COLUMN SPOTS.image_id is 'image_id';
+COMMENT ON COLUMN SPOTS.address1 is 'address1';
+COMMENT ON COLUMN SPOTS.address2 is 'address2';
+COMMENT ON COLUMN SPOTS.ophour is 'ophour';
+COMMENT ON COLUMN SPOTS.phone is 'phone';
+COMMENT ON COLUMN SPOTS.lng is 'lng';
+COMMENT ON COLUMN SPOTS.lat is 'lat';
+COMMENT ON COLUMN SPOTS.regdate is 'regdate';
+COMMENT ON COLUMN SPOTS.lastdate is 'lastdate';
+COMMENT ON COLUMN SPOTS.user_id is 'user_id';
+COMMENT ON COLUMN SPOTS.properties is 'properties';
+COMMENT ON COLUMN SPOTS.avg_rating is 'avg_rating';
+
+
+/**********************************/
+/* Table Name: COMMENTS */
+/**********************************/
+CREATE TABLE COMMENTS(
+		id                            		VARCHAR2(50)		 NULL ,
+		user_id                       		VARCHAR2(50)		 NULL ,
+		spot_id                       		VARCHAR2(50)		 NULL ,
+		content                       		VARCHAR2(500)		 NULL ,
+		image_id                      		VARCHAR2(10)		 NULL ,
+		regdate                       		VARCHAR2(50)		 NULL ,
+		rating                        		NUMBER(3)		 NULL 
+);
+
+COMMENT ON TABLE COMMENTS is 'COMMENTS';
+COMMENT ON COLUMN COMMENTS.id is 'id';
+COMMENT ON COLUMN COMMENTS.user_id is 'user_id';
+COMMENT ON COLUMN COMMENTS.spot_id is 'spot_id';
+COMMENT ON COLUMN COMMENTS.content is 'content';
+COMMENT ON COLUMN COMMENTS.image_id is 'image_id';
+COMMENT ON COLUMN COMMENTS.regdate is 'regdate';
+COMMENT ON COLUMN COMMENTS.rating is 'rating';
+
+
+-- insert user admin
+insert into users values (
+'admin'
+,'admin'
+,'admin'
+,'010'
+,' ' 
+,'1'
+);
+commit;
+
