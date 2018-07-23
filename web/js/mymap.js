@@ -8,6 +8,7 @@ var nw, se = null;
 var InfoBox = null;
 var infoBox = null;
 var searchBox = null;
+var geocoder = null;
 
 const pcenter = {
 		lat: 36.3,
@@ -836,7 +837,7 @@ var myMap=function() {
 	  });
 	  
 	//Initialize Object[icons] for using google api  
-	initParameters();
+	initialize();
 	
     // Create an array of alphabetical characters used to label the markers.
     var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -866,9 +867,7 @@ var myMap=function() {
   	searchBox = new google.maps.places.SearchBox(input);
   	
     searchBox.addListener('places_changed', searchLocation);
-    document.getElementById('searchbtn0122').addEventListener('click', function() {
-        searchLocation;
-    });
+    geocoder = new google.maps.Geocoder();
   	
   	
   	var title = "<div><table border='1'>";
@@ -964,7 +963,7 @@ function getNewPos(event) {
     isIdle=false;
 }
 
-function initParameters(){
+function initialize(){
 	icons = {
 	   	parking: {
 	  		icon: iconBase + 'parking_lot_maps.png'
@@ -985,6 +984,24 @@ function initParameters(){
 			}
 	   	}
 	};
+	/*
+	 * Point location on google map
+	 */
+	$('#searchmap').click(function (e) {
+	    var address = $('searchbox0122').val();
+	    geocoder.geocode({'address': address}, function (results, status) {
+	        if (status == google.maps.GeocoderStatus.OK) {
+	            map.setCenter(results[0].geometry.location);
+	            marker.setPosition(results[0].geometry.location);
+	            /* $('.search_addr').val(results[0].formatted_address);
+	            $('.search_latitude').val(marker.getPosition().lat());
+	            $('.search_longitude').val(marker.getPosition().lng()); */
+	        } else {
+	            alert("Geocode was not successful for the following reason: " + status);
+	        }
+	    });
+	    e.preventDefault();
+	});
 };
 
 function searchLocation() {
