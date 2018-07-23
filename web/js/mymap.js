@@ -5,10 +5,14 @@ let isIdle=true;
 var iconBase = 'img/';
 var icons = {};
 var nw, se = null;
+
 var InfoBox = null;
 var infoBox = null;
+
 var searchBox = null;
 var geocoder = null;
+var searchMarker = null;
+
 
 const pcenter = {
 		lat: 36.3,
@@ -98,6 +102,7 @@ var myMap=function() {
 
 function getNewPos(event) {
 	if(!isIdle) return;
+	
    // map.panTo(map.getCenter());
     console.log(map.getCenter().lat(),map.getCenter().lng());
     //console.log(pcenter.lat, pcenter.lng);
@@ -185,10 +190,16 @@ function initialize(){
 	 */
 	$('#searchmap').click(function (e) {
 	    var address = $('#searchbox0122').val();
+	    searchMarker = (searchMarker)?searchMarker.setMap(null):null;
 	    console.log(address);
 	    geocoder.geocode({'address': address}, function (results, status) {
 	        if (status == google.maps.GeocoderStatus.OK) {
-	            map.setCenter(results[0].geometry.location);
+	        	searchLocation();
+	            map.panTo(results[0].geometry.location);
+	            searchMarker = new google.maps.Marker({
+	                map: map,
+	                position: results[0].geometry.location
+	            });
 	            //marker.setPosition(results[0].geometry.location);
 	            /* $('.search_addr').val(results[0].formatted_address);
 	            $('.search_latitude').val(marker.getPosition().lat());
