@@ -7,6 +7,7 @@ var icons = {};
 var nw, se = null;
 var InfoBox = null;
 var infoBox = null;
+var searchBox = null;
 
 const pcenter = {
 		lat: 36.3,
@@ -862,9 +863,12 @@ var myMap=function() {
     {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
   	var input = document.getElementById('searchbox0122');
-  	var searchBox = new google.maps.places.SearchBox(input);
+  	searchBox = new google.maps.places.SearchBox(input);
   	
     searchBox.addListener('places_changed', searchLocation);
+    document.getElementById('searchbtn0122').addEventListener('click', function() {
+        searchLocation;
+    });
   	
   	
   	var title = "<div><table border='1'>";
@@ -983,7 +987,8 @@ function initParameters(){
 	};
 };
 
-function searchLocation(event) {
+function searchLocation() {
+	console.log('Ready to search a location');
     var places = searchBox.getPlaces();
 
     if (places.length == 0) {

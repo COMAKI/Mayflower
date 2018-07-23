@@ -156,7 +156,7 @@ function login() {
 			<form class="form-inline input-group mt-2 mt-md-0 ml-auto search-box">
 				<input id="searchbox0122" class="form-control mr-sm-2 rounded" type="text"
 					placeholder="Find the nearest washroom" aria-label="Search">
-				<button
+				<button id="searchbtn0122" 
 					class="btn btn-outline-success my-2 my-sm-0 float-sm-left input-group-append"
 					type="submit">Search</button>
 			</form>
