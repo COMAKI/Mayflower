@@ -75,13 +75,8 @@ var myMap=function() {
     geocoder = new google.maps.Geocoder();
   	
   	
-  	var title = "<div><table border='1'>";
-  	 title += "<tr><td style='border:1px solid;'>aaaaaaaaaa</td></tr>";
-  	 title += "<tr><td style='border:1px solid;'>차량속도aaaaaaaaaakm/h</td></tr>";
-  	 title += "</table></div>";
-  	
   	infoBox = new InfoBox({   //객체 생성, 정보 지정
-  	    content: title, //infobox 내용
+  	    content: "", //infobox 내용
   	    boxStyle:{
   	        border :"5px #000099 solid" ,
   	        borderRadius :"2px",

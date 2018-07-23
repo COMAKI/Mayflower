@@ -415,7 +415,7 @@ function login() {
 	</div>
 	
 	<div class="modal fade" id="commentsModal" role="dialog">
-		<div class="modal-dialog">
+		<div class="modal-dialog" width=1000>
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header" style="padding: 35px 50px;">
