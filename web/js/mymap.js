@@ -11,7 +11,7 @@ var infoBox = null;
 
 var searchBox = null;
 var geocoder = null;
-var searchMarker = null;
+var searchMarkers = null;
 
 
 const pcenter = {
@@ -32,7 +32,8 @@ var myMap=function() {
  		},
 	    zoomControl: true,
  		zoomControlOptions: {
- 		    position: google.maps.ControlPosition.LEFT_CENTER
+ 		    position: google.maps.ControlPosition.LEFT_CENTER,
+ 		    minZoom: 3
  		},
  		scaleControl: true,
  		streetViewControl: true,
@@ -41,9 +42,13 @@ var myMap=function() {
  		},
  		fullscreenControl: true
 	  });
+	
+	var opt = { minZoom: 3};
+	map.setOptions(opt);
 	  
 	//Initialize Object[icons] for using google api
 	initialize();
+	
 	
     // Create an array of alphabetical characters used to label the markers.
     var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -58,7 +63,9 @@ var myMap=function() {
         label: labels[i % labels.length]
       });
     }); // end markers
-
+    //getNewPos();
+    
+    
     // Add Event Listener
     map.addListener('bounds_changed', getNewPos);
     map.addListener('idle', ()=>{
@@ -160,6 +167,7 @@ function getNewPos(event) {
 }
 
 function initialize(){
+	
 	icons = {
 	   	parking: {
 	  		icon: iconBase + 'parking_lot_maps.png'
@@ -185,16 +193,19 @@ function initialize(){
 	 */
 	$('#searchmap').click(function (e) {
 	    var address = $('#searchbox0122').val();
-	    searchMarker = (searchMarker)?searchMarker.setMap(null):null;
+	    // Clear out the old markers.
+	    clearSearchMarkers();
 	    console.log(address);
 	    geocoder.geocode({'address': address}, function (results, status) {
 	        if (status == google.maps.GeocoderStatus.OK) {
 	        	searchLocation();
 	            map.panTo(results[0].geometry.location);
-	            searchMarker = new google.maps.Marker({
-	                map: map,
-	                position: results[0].geometry.location
-	            });
+	            searchMarkers.push( 
+	            		new google.maps.Marker({
+	            			map: map,
+	            			position: results[0].geometry.location
+	            		})
+	            );
 	            //marker.setPosition(results[0].geometry.location);
 	            /* $('.search_addr').val(results[0].formatted_address);
 	            $('.search_latitude').val(marker.getPosition().lat());
@@ -209,17 +220,17 @@ function initialize(){
 
 function searchLocation() {
 	console.log('Ready to search a location');
+	console.log(searchBox.getPlaces());
     var places = searchBox.getPlaces();
 
-    if (places.length == 0) {
+    if (places == null) {
       return;
     }
-
+ 
     // Clear out the old markers.
-    markers.forEach(function(marker) {
-      marker.setMap(null);
-    });
-    markers = [];
+    clearSearchMarkers();
+
+    searchMarkers = [];
 
     // For each place, get the icon, name and location.
     var bounds = new google.maps.LatLngBounds();
@@ -230,9 +241,8 @@ function searchLocation() {
       }
 
       // Create a marker for each place.
-      markers.push(new google.maps.Marker({
+      searchMarkers.push(new google.maps.Marker({
         map: map,
-        icon: icons.wc.icon,
         title: place.name,
         position: place.geometry.location
       }));
@@ -247,6 +257,14 @@ function searchLocation() {
     map.fitBounds(bounds);
 };
 
+function clearSearchMarkers(){
+    // Clear out the old markers.
+    if(searchMarkers != null) {
+    	searchMarkers.forEach(function(marker) {
+    		marker.setMap(null);
+    	});
+    };
+}
 
 var locations = [
     {lat: -31.563910, lng: 147.154312},
