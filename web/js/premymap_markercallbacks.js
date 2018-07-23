@@ -1,6 +1,14 @@
 
-
-
+$(document).ready(function(){
+	$("#commentsRegModal .btn-btn1").on('click',function(){
+		  $("#commentsRegModal").modal('hide');
+		  $("#commentsModal").modal('show');		  
+	});
+	$("#commentsRegModal .btn-btn2").on('click',function(){
+		$("#commentsModal").modal('hide');
+		$("#commentsRegModal").modal();		  
+	});
+});
 
 var onCommentsLoaded = function(data){
 	console.log('some data returned from getcomments.mw');
@@ -18,11 +26,15 @@ var onCommentsLoaded = function(data){
 	  }
 	  
 	  content+= '<div class="modal-body modal-body-my" style="padding: 40px 50px;">';
-	  content+= '<button class="btn btn-success btn-block">';
-	  content+= '<span class="glyphicon glyphicon-off"></span> Confirm</button>';
+	  content+= '<button class="btn btn-success btn-block btn-btn1">';
+	  content+= '<span class="glyphicon glyphicon-off"></span> Add Comment</button>';
 	  content+= '</div>';  
 	  
 	  $("#commentsModal .modal-content").html(content);	
+	  $("#commentsModal .btn-btn1").on('click',function(){
+		  $("#commentsModal").modal('hide');
+		  $("#commentsRegModal").modal();		  
+	  });
 }
 
 
