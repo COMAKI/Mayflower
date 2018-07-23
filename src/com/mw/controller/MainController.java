@@ -29,6 +29,7 @@ public class MainController {
 	
 	@RequestMapping("/main.mw")
 	public String main() {
+		System.out.println("received a main.mw");
 		return "main"; // main.jsp
 	}
 	
