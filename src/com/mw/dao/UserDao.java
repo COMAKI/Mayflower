@@ -1,6 +1,7 @@
 package com.mw.dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,12 +23,12 @@ public class UserDao implements Dao<User, String>{
 
 	@Override
 	public void update(User t) throws Exception {
-		
+		mapper.update(t);
 	}
 
 	@Override
 	public void delete(String v) throws Exception {
-		
+		mapper.delete(v);
 	}
 
 	@Override

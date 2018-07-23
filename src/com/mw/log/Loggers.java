@@ -21,7 +21,7 @@ public class Loggers {
 	
 	
 	// before
-	@Before("execution(* com.hw.controller..*Controller.*(..))")
+	@Before("execution(* com.mw.controller..*Controller.*(..))")
 	public void logging(JoinPoint jp) {
 //		work_log.debug(jp.getSignature().getName());
 //		user_log.debug(jp.getSignature().getName());
@@ -30,7 +30,7 @@ public class Loggers {
 	}
 	// after
 //	@AfterReturning(
-//		pointcut="execution(* com.sds.component..*Service.*(..))"	
+//		pointcut="execution(* com.mw.controller..*Controller.*(..))"	
 //		,returning="obj"
 //	)
 	public void logger(JoinPoint jp,Object obj) {
@@ -38,13 +38,13 @@ public class Loggers {
 		System.out.println(jp.getArgs()[0].toString());
 		System.out.println("RESULT:"+obj.toString());
 	}
-	@Around("execution(* com.sds.component..*Service.*(..))")
+	@Around("execution(* com.mw.controller..*Controller.*(..))")
 	public Object aroundLogger(ProceedingJoinPoint pjp) throws Throwable {
 		System.out.println("함수 실행 전");
 		System.out.println(pjp.getSignature().getName());
-		System.out.println(pjp.getArgs()[0].toString());
+		//System.out.println(pjp.getArgs()[0].toString());
 		Object returnObj = pjp.proceed();
-		System.out.println(returnObj.toString());
+		if(returnObj!=null)	System.out.println(returnObj.toString());
 		System.out.println("함수 실행 후");
 		return returnObj;
 	}

@@ -1,14 +1,19 @@
 package com.mw.controller;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.tiles.request.Request;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mw.frame.Service;
@@ -63,7 +68,7 @@ public class UserController {
 		try {
 			 user = service.get(id);
 			 System.out.println(user);
-			 if(id.equals(user.getId()) && pwd.equals(user.getPwd())) {
+			 if(id.equals(user.getId()) && pwd.equals(user.getPassword())) {
 					mv.addObject("centerpage", "loginok");
 					HttpSession session = request.getSession();
 					session.setAttribute("loginid", id);
@@ -90,18 +95,33 @@ public class UserController {
 	}
 
 	@RequestMapping("/userregisteraction.mw")
-	public ModelAndView userregisteraction(User user) {
-		
-		ModelAndView mv = new ModelAndView();
-		
+	public void userregisteraction(HttpServletRequest request, HttpServletResponse response) {
+		String email = request.getParameter("email");
+		String name = request.getParameter("name");
+		String phone = request.getParameter("phone");
+		String pwd = request.getParameter("pwd");
+		String regdate = new Date().toString();
+		String authority = Integer.toString(2); // 1: 관리자, 2: 일반 사용자
+	
+		response.setContentType("text/json; charset=EUC-KR");
+		JSONArray ja = new JSONArray();
+		PrintWriter out = null;
+		User user = null; 
 		try {
+			out = response.getWriter();
+			user = new User(email, name, pwd, phone, regdate, authority);
 			service.register(user);
-			mv.setViewName("user/registerok");
+			
+			JSONObject jo = new JSONObject();
+		    jo.put("email", email);
+		    jo.put("name", name);
+		    jo.put("phone", phone);
+		    jo.put("regdate", regdate);
+		    ja.add(jo);
+		    out.println(ja);
 		} catch (Exception e) {
 			e.printStackTrace();
-			mv.setViewName("user/registerfail");
 		}
-		return mv; // user/list.jsp
 	}
 	
 	

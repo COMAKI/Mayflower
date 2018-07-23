@@ -153,8 +153,10 @@ section {
 </style>
 <script>
 
-	$('#user-register').on('submit',(e)=>{
+	$('#user-register').submit((e)=>{
+		console.log('user-register start');
 	    var email = $(this).find('[name=joinEmail]').val();   
+		var name = $(this).find('[name=joinName]').val();
 		var phone = $(this).find('[name=joinPhone]').val();
 		var pwd = $(this).find('[name=joinPsw]').val();
 		var repwd = $(this).find('[name=joinPswRe]').val();
@@ -164,11 +166,20 @@ section {
 			method: 'POST',
 			data: {
 				'email':email,
+				'name': name,
 				'phone':phone,
 				'pwd':pwd
 			},
 			success: (data)=>{
-				
+				var str = '';
+				str += '<h3><b>' + data.name +'</b>님, 가입하신 것을 환영합니다. </h3>';
+				str += '<h4>아래와 같은 내용으로 가입하셨습니다.</h4>';
+				str += '<h5>로그인 ID: '+data.email+'</h5>';
+				str += '<h5>휴대폰 번호: '+data.phone+'</h5>';
+				str += '<h5>가입 날짜: '+data.regdate+'</h5>';
+				$('#Modal #modal-body').html(
+					str
+				);
 			},
 			error: (err)=>{
 				alert(err);
@@ -294,13 +305,19 @@ section {
 				<div class="modal-body" style="padding: 40px 50px;">
 					<form role="form" id="user-register">
 						<div class="form-group">
-							<label for="usrname"><span
+							<label for="email"><span
 								class="glyphicon glyphicon-user"></span> Email</label> <input
 								type="email" class="form-control" name="joinEmail"
 								placeholder="Enter email">
 						</div>
 						<div class="form-group">
 							<label for="usrname"><span
+								class="glyphicon glyphicon-user"></span> Name</label> <input
+								type="text" class="form-control" name="joinName"
+								placeholder="Enter name">
+						</div>
+						<div class="form-group">
+							<label for="phone"><span
 								class="glyphicon glyphicon-user"></span> Phone</label> <input
 								type="text" class="form-control" name="joinPhone"
 								placeholder="Enter phone number">
@@ -497,7 +514,7 @@ section {
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body" style="padding: 40px 50px;">
-					<form role="form" id="loginform">
+					<form role="form" id="commentform">
 						<div class="form-group">
 							<label><span class="glyphicon glyphicon-eye-open"></span>Comment:</label>
 							<textarea class="form-control" rows="5" id="comment"></textarea>
