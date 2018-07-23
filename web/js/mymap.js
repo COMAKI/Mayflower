@@ -94,7 +94,6 @@ var myMap=function() {
 function getNewPos(event) {
 	if(!isIdle) return;
    // map.panTo(map.getCenter());
-    console.log(map.getCenter().lat(),map.getCenter().lng());
     //console.log(pcenter.lat, pcenter.lng);
     var ne = map.getBounds().getNorthEast();
     var sw = map.getBounds().getSouthWest();
@@ -114,14 +113,12 @@ function getNewPos(event) {
     		  selat: se.lat()
     	  },
     	  success: function(data){
-    		  console.log(data);
     		  if(markers.length!=0){
     			  markers.forEach(function(elm,index){
     				  elm.setMap(null);
     				  markerCluster.clearMarkers();
     			  });
 			  };
-			  console.log(data.length);
     		  for(var i = 0;i < data.length; i ++){
     			  const marker = new google.maps.Marker({
     				  position: {lat: data[i].lat, lng: data[i].lng},
