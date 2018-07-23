@@ -96,43 +96,47 @@ header>#main_menu>li>a:hover {
 
 section {
 	height: 100%;
-	width:100%;
+	width: 100%;
 }
 
 #customers {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
 }
 
 #customers td, #customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
+	border: 1px solid #ddd;
+	padding: 8px;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+#customers tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
 
-#customers tr:hover {background-color: #ddd;}
+#customers tr:hover {
+	background-color: #ddd;
+}
 
 #customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #4CAF50;
+	color: white;
 }
 
 .modal {
-  overflow-y:auto;
+	overflow-y: auto;
 }
 
-.modal-1000{
-	width : 80%;
-	max-width : none;
+.modal-1000 {
+	width: 80%;
+	max-width: none;
 }
 
-.modal-body-my{
-	border-top : 1px solid gray;
+.modal-body-my {
+	border-top: 1px solid gray;
 }
 
 @media ( max-width : 767px) {
@@ -149,12 +153,36 @@ section {
 </style>
 <script>
 
-function login() {
-	alert('Login Suceess. Welcome :)');
-	$("#loginform").attr("action", "loginaction.mw");	
-	$("#loginform").submit();	
-};
+	$('#user-register').on('submit',(e)=>{
+	    var email = $(this).find('[name=joinEmail]').val();   
+		var phone = $(this).find('[name=joinPhone]').val();
+		var pwd = $(this).find('[name=joinPsw]').val();
+		var repwd = $(this).find('[name=joinPswRe]').val();
+		if (pwd !== repwd) return;
+		$.ajax({
+			url: 'userregisteraction.mw',
+			method: 'POST',
+			data: {
+				'email':email,
+				'phone':phone,
+				'pwd':pwd
+			},
+			success: (data)=>{
+				
+			},
+			error: (err)=>{
+				alert(err);
+			},
+			dataType: 'json'
+	    });
+	    e.preventDefault(); // avoid to execute the actual submit of the form.
+	});
 
+	function login() {
+		alert('Login Suceess. Welcome :)');
+		$("#loginform").attr('action', 'loginaction.mw');
+		$("#loginform").submit();
+	};
 </script>
 </head>
 <body>
@@ -167,33 +195,35 @@ function login() {
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<form class="form-inline input-group mt-2 mt-md-0 ml-auto search-box">
-				<input id="searchbox0122" class="form-control mr-sm-2 rounded" type="text"
-					placeholder="Find the nearest washroom" aria-label="Search">
-				<button id="searchmap" 
+				<input id="searchbox0122" class="form-control mr-sm-2 rounded"
+					type="text" placeholder="Find the nearest washroom"
+					aria-label="Search">
+				<button id="searchmap"
 					class="btn btn-outline-success my-2 my-sm-0 float-sm-left input-group-append"
 					type="submit">Search</button>
 			</form>
-			
+
 			<c:choose>
 				<c:when test="${sessionScope.loginid == null }">
-			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link"
-					data-toggle="modal" data-target="#myModal">LOGIN <span
-						class="sr-only">(current)</span></a></li>
-				<li class="nav-item active"><a class="nav-link"
-					data-toggle="modal" data-target="#Modal">REGISTER <span
-						class="sr-only">(current)</span></a></li>
-			</ul>
-				</c:when>
-					<c:otherwise>
 					<ul class="navbar-nav">
-						<li class="nav-item active"><a href="#" class="nav-link"
-							data-toggle="modal" data-target="#myinfo"> ${sessionScope.loginid } <span
+						<li class="nav-item active"><a class="nav-link"
+							data-toggle="modal" data-target="#myModal">LOGIN <span
+								class="sr-only">(current)</span></a></li>
+						<li class="nav-item active"><a class="nav-link"
+							data-toggle="modal" data-target="#Modal">REGISTER <span
 								class="sr-only">(current)</span></a></li>
 					</ul>
-					</c:otherwise>
+				</c:when>
+				<c:otherwise>
+					<ul class="navbar-nav">
+						<li class="nav-item active"><a href="#" class="nav-link"
+							data-toggle="modal" data-target="#myinfo">
+								${sessionScope.loginid } <span class="sr-only">(current)</span>
+						</a></li>
+					</ul>
+				</c:otherwise>
 			</c:choose>
-			
+
 		</div>
 	</nav>
 
@@ -204,10 +234,10 @@ function login() {
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header" style="padding: 35px 50px;">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4>
 						<span class="glyphicon glyphicon-lock"></span> Login
 					</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body" style="padding: 40px 50px;">
 					<form role="form" id="loginform">
@@ -234,62 +264,62 @@ function login() {
 						<span class="glyphicon glyphicon-remove"></span> Cancel  
 					</button >--%>
 					<p>
-						Not a member?
-						<a href="#" data-toggle="modal" data-target="#Modal">Sign Up
-						<span class="sr-only">(current)</span></a>
+						Not a member? <a href="#" data-toggle="modal" data-target="#Modal">Sign
+							Up <span class="sr-only">(current)</span>
+						</a>
 					</p>
 					<p>
-						Forgot
-						<a href="#" data-toggle="modal" data-target="#myinfo">Password?
-						<span class="sr-only">(current)</span></a>
-						
+						Forgot <a href="#" data-toggle="modal" data-target="#myinfo">Password?
+							<span class="sr-only">(current)</span>
+						</a>
+
 					</p>
 				</div>
 			</div>
 			<!-- Modal content end -->
 		</div>
 	</div>
-	
+
 	<div class="modal fade" id="Modal" role="dialog">
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header" style="padding: 35px 50px;">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4>
 						<span class="glyphicon glyphicon-lock"></span> Register
 					</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body" style="padding: 40px 50px;">
-					<form role="form">
+					<form role="form" id="user-register">
 						<div class="form-group">
 							<label for="usrname"><span
 								class="glyphicon glyphicon-user"></span> Email</label> <input
-								type="email" class="form-control" id="joinEmail"
+								type="email" class="form-control" name="joinEmail"
 								placeholder="Enter email">
 						</div>
 						<div class="form-group">
 							<label for="usrname"><span
 								class="glyphicon glyphicon-user"></span> Phone</label> <input
-								type="text" class="form-control" id="joinPhone"
+								type="text" class="form-control" name="joinPhone"
 								placeholder="Enter phone number">
 						</div>
 						<div class="form-group">
 							<label for="psw"><span
 								class="glyphicon glyphicon-eye-open"></span> Password</label> <input
-								type="password" class="form-control" id="joinPsw"
+								type="password" class="form-control" name="joinPsw"
 								placeholder="Enter password">
 						</div>
 						<div class="form-group">
 							<label for="psw"><span
 								class="glyphicon glyphicon-eye-open"></span> Password Confirm</label> <input
-								type="password" class="form-control" id="joinPswRe"
+								type="password" class="form-control" name="joinPswRe"
 								placeholder="Enter password">
 						</div>
 						<div class="checkbox">
-							<label><input type="checkbox" value="" checked>  I have read the private policy about this service.
-								</label>
+							<label><input type="checkbox" value="" checked> I
+								have read the private policy about this service. </label>
 						</div>
 						<button type="submit" class="btn btn-success btn-block">
 							<span class="glyphicon glyphicon-off"></span> Register
@@ -298,15 +328,16 @@ function login() {
 				</div>
 				<div class="modal-footer">
 					<p>
-						To read  <a href="#" data-toggle="modal" data-target="#Policy" >Private Policy
-						<span class="sr-only">(current)</span></a>
+						To read <a href="#" data-toggle="modal" data-target="#Policy">Private
+							Policy <span class="sr-only">(current)</span>
+						</a>
 					</p>
 				</div>
 			</div>
 			<!-- Modal content end -->
 		</div>
 	</div>
-	
+
 	<div class="modal fade" id="Policy" role="dialog">
 		<div class="modal-dialog">
 
@@ -322,51 +353,72 @@ function login() {
 					<form role="form">
 						<div class="form-group">
 							<p style="text-align: center;">
-								<b>Privacy Notice</b><br>
-								<br>This privacy notice discloses the privacy practices for (website address). This privacy notice applies solely to information collected by this website. 
-								<br>It will notify you of the following:<br>
+								<b>Privacy Notice</b><br> <br>This privacy notice
+								discloses the privacy practices for (website address). This
+								privacy notice applies solely to information collected by this
+								website. <br>It will notify you of the following:<br>
 							</p>
-							
-							<p style="text-align: left;r">
-								<br>- What personally identifiable information is collected from you through the website, how it is used and with whom it may be shared.
-								<br>- What choices are available to you regarding the use of your data.
-								<br>- The security procedures in place to protect the misuse of your information.
-								<br>- How you can correct inaccuracies in the information.
+
+							<p style="text-align: left;">
+								<br>- What personally identifiable information is collected
+								from you through the website, how it is used and with whom it
+								may be shared. <br>- What choices are available to you
+								regarding the use of your data. <br>- The security
+								procedures in place to protect the misuse of your information. <br>-
+								How you can correct inaccuracies in the information.
 							</p>
 							<p style="text-align: center;">
-							<b>Information Collection, Use, and Sharing </b><br><br>
-							We are the sole owners of the information collected on this site. We only have access to/collect information that you voluntarily give us via email or other direct contact from you. We will not sell or rent this information to anyone.
-							<br><br>
-							We will use your information to respond to you, regarding the reason you contacted us. We will not share your information with any third party outside of our organization, other than as necessary to fulfill your request, e.g. to ship an order.
-							<br><br>
-							Unless you ask us not to, we may contact you via email in the future to tell you about specials, new products or services, or changes to this privacy policy.
+								<b>Information Collection, Use, and Sharing </b><br>
+								<br> We are the sole owners of the information collected on
+								this site. We only have access to/collect information that you
+								voluntarily give us via email or other direct contact from you.
+								We will not sell or rent this information to anyone. <br>
+								<br> We will use your information to respond to you,
+								regarding the reason you contacted us. We will not share your
+								information with any third party outside of our organization,
+								other than as necessary to fulfill your request, e.g. to ship an
+								order. <br>
+								<br> Unless you ask us not to, we may contact you via email
+								in the future to tell you about specials, new products or
+								services, or changes to this privacy policy.
 							</p>
-							
+
 							<p>
-							Your Access to and Control Over Information 
-							You may opt out of any future contacts from us at any time. You can do the following at any time by contacting us via the email address or phone number given on our website:
-							<br><br>
-							<b>- See what data we have about you, if any.</b><br>
-							<b>- Change/correct any data we have about you.</b><br>
-							<b>- Have us delete any data we have about you.</b><br>
-							<b>- Express any concern you have about our use of your data.</b><br>
+								Your Access to and Control Over Information You may opt out of
+								any future contacts from us at any time. You can do the
+								following at any time by contacting us via the email address or
+								phone number given on our website: <br>
+								<br> <b>- See what data we have about you, if any.</b><br>
+								<b>- Change/correct any data we have about you.</b><br> <b>-
+									Have us delete any data we have about you.</b><br> <b>-
+									Express any concern you have about our use of your data.</b><br>
 							</p>
-							
+
 							<p style="text-align: center;">
-							<b>Security</b><br>
-							<br>We take precautions to protect your information. When you submit sensitive information via the website, your information is protected both online and offline.
-							<br><br>
-							Wherever we collect sensitive information (such as credit card data), that information is encrypted and transmitted to us in a secure way. You can verify this by looking for a lock icon in the address bar and looking for "https" at the beginning of the address of the Web page.
-							<br><br>
-							While we use encryption to protect sensitive information transmitted online, we also protect your information offline. Only employees who need the information to perform a specific job (for example, billing or customer service) are granted access to personally identifiable information. The computers/servers in which we store personally identifiable information are kept in a secure environment.
+								<b>Security</b><br> <br>We take precautions to protect
+								your information. When you submit sensitive information via the
+								website, your information is protected both online and offline.
+								<br>
+								<br> Wherever we collect sensitive information (such as
+								credit card data), that information is encrypted and transmitted
+								to us in a secure way. You can verify this by looking for a lock
+								icon in the address bar and looking for "https" at the beginning
+								of the address of the Web page. <br>
+								<br> While we use encryption to protect sensitive
+								information transmitted online, we also protect your information
+								offline. Only employees who need the information to perform a
+								specific job (for example, billing or customer service) are
+								granted access to personally identifiable information. The
+								computers/servers in which we store personally identifiable
+								information are kept in a secure environment.
 							</p>
-							
+
 						</div>
 						<div class="checkbox">
-							<label><input type="checkbox" value="" checked> I have acknowledged all the terms and conditions.
-								</label>
+							<label><input type="checkbox" value="" checked> I
+								have acknowledged all the terms and conditions. </label>
 						</div>
-						 <button type="submit" class="btn btn-success btn-block">
+						<button type="submit" class="btn btn-success btn-block">
 							<span class="glyphicon glyphicon-off"></span> Confirm
 						</button>
 					</form>
@@ -381,42 +433,43 @@ function login() {
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header" style="padding: 35px 50px;">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4>
 						<span class="glyphicon glyphicon-lock"></span> My Info.
 					</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body" style="padding: 40px 50px;">
 					<form role="form">
 						<div class="form-group">
 							<label for="usrname"><span
-								class="glyphicon glyphicon-user"></span><b> ${sessionScope.loginid } </b></label>
+								class="glyphicon glyphicon-user"></span><b>
+									${sessionScope.loginid } </b></label>
 						</div>
 						<div class="form-group">
 							<label for="usrname"><span
 								class="glyphicon glyphicon-user"></span> Phone</label> <input
-								type="text" class="form-control" id="myPhone"
+								type="text" class="form-control" name="myPhone"
 								placeholder="Enter phone number">
 						</div>
 						<div class="form-group">
 							<label for="psw"><span
 								class="glyphicon glyphicon-eye-open"></span> Current Password</label> <input
-								type="password" class="form-control" id="myPsw"
+								type="password" class="form-control" name="myPsw"
 								placeholder="Enter password">
 						</div>
 						<div class="form-group">
 							<label for="psw"><span
 								class="glyphicon glyphicon-eye-open"></span> Change Password</label> <input
-								type="password" class="form-control" id="myChnPsw"
+								type="password" class="form-control" name="myChnPsw"
 								placeholder="Enter password">
 						</div>
 						<div class="form-group">
 							<label for="psw"><span
 								class="glyphicon glyphicon-eye-open"></span> Confirm Password</label> <input
-								type="password" class="form-control" id="myConPsw"
+								type="password" class="form-control" name="myConPsw"
 								placeholder="Enter password">
 						</div>
-			
+
 						<button type="submit" class="btn btn-success btn-block">
 							<span class="glyphicon glyphicon-off"></span> Update Info.
 						</button>
@@ -426,54 +479,56 @@ function login() {
 			<!-- Modal content end -->
 		</div>
 	</div>
-	
+
 	<div class="modal fade" id="commentsModal" role="dialog">
 		<div class="modal-dialog modal-1000">
 			<!-- Modal content-->
-			<div class="modal-content">
-			</div>
+			<div class="modal-content"></div>
 			<!-- Modal content end -->
 		</div>
 	</div>
-	
+
 	<div class="modal fade" id="commentsRegModal" role="dialog">
 		<div class="modal-dialog modal-1000">
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header" style="padding: 35px 50px;">
-					<h4> Register Comment </h4>
+					<h4>Register Comment</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body" style="padding: 40px 50px;">
 					<form role="form" id="loginform">
 						<div class="form-group">
-							<label><span class="glyphicon glyphicon-eye-open"></span>Comment:</label> 
+							<label><span class="glyphicon glyphicon-eye-open"></span>Comment:</label>
 							<textarea class="form-control" rows="5" id="comment"></textarea>
 						</div>
 						<div class="form-group">
-							<label><span class="glyphicon glyphicon-eye-open"></span> File:</label> 
-							<input id="input-b1" name="input-b1" type="file" class="file">
+							<label><span class="glyphicon glyphicon-eye-open"></span>
+								File:</label> <input id="input-b1" name="input-b1" type="file"
+								class="file">
 						</div>
-						<button type="button" class="btn btn-success btn-block btn-btn1"> Back to Comments </button>
-						<button type="button" class="btn btn-success btn-block btn-btn2"> Register Comment </button>
+						<button type="button" class="btn btn-success btn-block btn-btn1">
+							Back to Comments</button>
+						<button type="button" class="btn btn-success btn-block btn-btn2">
+							Register Comment</button>
 					</form>
 				</div>
 			</div>
-			
+
 			<!-- Modal content end -->
 		</div>
 	</div>
-	
-	
+
+
 	<!-- Modal end -->
-	
+
 	<c:choose>
-			<c:when test="${center != null }">
-				<jsp:include page="${center }.jsp" />
-			</c:when>
-			<c:otherwise>
-				<jsp:include page="center.jsp" />
-			</c:otherwise>
+		<c:when test="${center != null }">
+			<jsp:include page="${center }.jsp" />
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="center.jsp" />
+		</c:otherwise>
 	</c:choose>
 </body>
 </html>
