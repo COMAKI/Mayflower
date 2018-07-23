@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mw.frame.Service;
 import com.mw.service.CommentService;
 import com.mw.vo.Comment;
 
+@Controller
 public class CommentController {
 
 	
@@ -48,21 +50,43 @@ public class CommentController {
 	
 	@RequestMapping("/getcomments.mw")
 	public void getcomments(HttpServletRequest request, HttpServletResponse response)  {
-		String id = request.getParameter("lng");
+		String id = request.getParameter("spotid");
+		System.out.println("got spotid : " + id);
+		
+		
+		try {
+			Thread.sleep( 1000 );
+		} catch (InterruptedException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
 		
 		JSONArray ja = new JSONArray();
-	    
 		try {
-			List<Comment> comments = service.get();
-			
-			for(Comment comment : comments) {
+			/*for(Comment comment : comments) {
 				JSONObject jo = new JSONObject();
 			    jo.put("name", "a_value");
 			    jo.put("lng", 235.1252);
 			    jo.put("lat", 235.1252);
 			    jo.put("img", "c_value");
 			    ja.add(jo);	
-			}
+			}*/
+			
+			JSONObject jo = new JSONObject();
+		    jo.put("name", "a_value");
+		    jo.put("lng", 235.1252);
+		    jo.put("lat", 235.1252);
+		    jo.put("img", "c_value");
+		    ja.add(jo);	
+		    jo = new JSONObject();
+		    jo.put("name", "a_value");
+		    jo.put("lng", 235.1252);
+		    jo.put("lat", 235.1252);
+		    jo.put("img", "c_value");
+		    ja.add(jo);	
+		    
+		    
 		    
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
