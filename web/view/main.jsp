@@ -130,11 +130,6 @@ section {
 	overflow-y: auto;
 }
 
-.modal-1000 {
-	width: 80%;
-	max-width: none;
-}
-
 .modal-body-my {
 	border-top: 1px solid gray;
 }
@@ -496,15 +491,91 @@ section {
 			<!-- Modal content end -->
 		</div>
 	</div>
+	
+	<div class="modal fade" id="myinfo" role="dialog">
+		<div class="modal-dialog">
 
-	<div class="modal fade" id="commentsModal" role="dialog">
-		<div class="modal-dialog modal-1000">
 			<!-- Modal content-->
-			<div class="modal-content"></div>
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 35px 50px;">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4>
+						<span class="glyphicon glyphicon-lock"></span> My Info.
+					</h4>
+				</div>
+				<div class="modal-body" style="padding: 40px 50px;">
+					<form role="form">
+						<div class="form-group">
+							<label for="usrname"><span
+								class="glyphicon glyphicon-user"></span><b> ${sessionScope.loginid } </b></label>
+						</div>
+						<div class="form-group">
+							<label for="usrname"><span
+								class="glyphicon glyphicon-user"></span> Phone</label> <input
+								type="text" class="form-control" id="myPhone"
+								placeholder="Enter phone number">
+						</div>
+						<div class="form-group">
+							<label for="psw"><span
+								class="glyphicon glyphicon-eye-open"></span> Current Password</label> <input
+								type="password" class="form-control" id="myPsw"
+								placeholder="Enter password">
+						</div>
+						<div class="form-group">
+							<label for="psw"><span
+								class="glyphicon glyphicon-eye-open"></span> Change Password</label> <input
+								type="password" class="form-control" id="myChnPsw"
+								placeholder="Enter password">
+						</div>
+						<div class="form-group">
+							<label for="psw"><span
+								class="glyphicon glyphicon-eye-open"></span> Confirm Password</label> <input
+								type="password" class="form-control" id="myConPsw"
+								placeholder="Enter password">
+						</div>
+			
+						<button type="submit" class="btn btn-success btn-block">
+							<span class="glyphicon glyphicon-off"></span> Update Info.
+						</button>
+					</form>
+				</div>
+			</div>
 			<!-- Modal content end -->
 		</div>
 	</div>
 
+	<div class="modal fade" id="commentsModal" role="dialog">
+		<div class="modal-dialog" style="width:80%; max-width : none;">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 35px 50px;">
+					<h4><span class="glyphicon glyphicon-lock"></span>Spot01</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body" style="padding: 40px 50px;">
+					<div style="float:left; width:30%; height:600px; border:1px solid red;">
+					
+					
+					</div>
+					<div style="float:left; width:60%; margin-left:10%; height:600px;">
+						<div class="content-input-frame" style="height:90%; border:1px solid red; overflow:auto;">
+						
+						</div>
+						<div class="modal-body" style="padding: 20px 30px;">
+							<button class="btn btn-success btn-block btn-btn1">
+								<span class="glyphicon glyphicon-off"></span> Add Comment
+							</button>
+						</div>  
+							
+					</div>		
+					
+					
+				</div>
+			</div>
+			<!-- Modal content end -->
+		</div>
+	</div>
 	<div class="modal fade" id="commentsRegModal" role="dialog">
 		<div class="modal-dialog modal-1000">
 			<!-- Modal content-->
