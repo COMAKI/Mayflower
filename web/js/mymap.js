@@ -932,14 +932,10 @@ function getNewPos(event) {
 	    		  });
 	    		  markers.push(marker);
 	    		  
-	    		  var title = "<div><table id = 'customers' border='1'>";
-	    		  	 title += "<tr><td style='border:1px solid;'>aaaaaaaaaa</td></tr>";
-	    		  	 title += "<tr><td style='border:1px solid;'>aaaaaaaaaakm/h</td></tr>";
-	    		  	 title += "</table></div>";
+	    		  marker.information = data[i];
 	    		  
 	    		  marker.addListener('mouseover', function(){
-	    	 
-	    			  infoBox.setContent(title); //infobox오픈시 내용 셋팅
+	    			  infoBox.setContent(makeMarkerInfoBoxContent(marker.information)); //infobox오픈시 내용 셋팅
 	    			  infoBox.open(map, this); // infobox가 위치할 map과 위치 지정
 	    	     });
 	    	    
@@ -949,12 +945,7 @@ function getNewPos(event) {
 	    	     
 	    		  });
 	    	 
-	    		  marker.addListener('click', function() {
-	    			  map.setZoom(8);
-	    		      map.setCenter(marker.getPosition());
-	    		       
-	    		      //information
-	    		  });
+	    		  marker.addListener('click', markerClickCallbackFunction);
 	    		  markerCluster.addMarker(marker);
 			  };
     	  },
