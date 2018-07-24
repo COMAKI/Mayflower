@@ -40,9 +40,9 @@ public class SettingController {
 		if (target instanceof Spot) {
 			ArrayList<Spot> spots = dataLoad("json");
 			for (int i = 0; i < spots.size(); i++) {
-				mapper.insert(spots.get(i));	
+				mapper.insert(spots.get(i));
 			}
-			
+
 		}
 
 	}
@@ -59,7 +59,7 @@ public class SettingController {
 			urlBuilder.append("&" + URLEncoder.encode("s_page", "UTF-8") + "="
 					+ URLEncoder.encode("1", "UTF-8")); /* 페이지 번호 */
 			urlBuilder.append("&" + URLEncoder.encode("s_list", "UTF-8") + "="
-					+ URLEncoder.encode("100", "UTF-8")); /* 페이지 크기 */
+					+ URLEncoder.encode("25000", "UTF-8")); /* 페이지 크기 */
 			urlBuilder.append("&" + URLEncoder.encode("type", "UTF-8") + "="
 					+ URLEncoder.encode(type, "UTF-8")); /* XML/JSON 여부 */
 			URL url = new URL(urlBuilder.toString());
@@ -138,11 +138,10 @@ public class SettingController {
 		spot.setAddress1(getJSONObjectValue(value.get("소재지도로명주소"), defaultValue));
 		spot.setAddress2(getJSONObjectValue(value.get("소재지지번주소"), defaultValue));
 		spot.setPhone(getJSONObjectValue(value.get("전화번호"), defaultValue));
-		
+
 		spot.setLat(Double.parseDouble(lat.toString()));
 		spot.setLng(Double.parseDouble(lng.toString()));
 		spot.setRegdate(new Date().toString());
-
 
 		// TODO : all data insert and check null
 		spot.setImage_id(defaultValue);
@@ -151,8 +150,7 @@ public class SettingController {
 		spot.setProperties(defaultValue);
 		// TODO get login user id
 		spot.setUser_id("admin");
-		
-		
+
 		System.out.println(spot.toString());
 
 		return spot;
