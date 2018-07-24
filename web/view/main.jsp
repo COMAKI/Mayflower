@@ -49,51 +49,6 @@ footer {
 	background: black;
 }
 
-header>#top_menu {
-	position: absolute;
-	top: 0;
-	right: 0;
-	list-style: none
-}
-
-header>#top_menu>li {
-	float: left;
-}
-
-header>#top_menu>li>a {
-	margin: 2px;
-	font-size: 110%;
-	font-weight: bold;
-}
-
-header>#top_menu>li>a:hover {
-	color: white;
-	background: black;
-}
-
-header>#main_menu {
-	position: absolute;
-	left: 80px;
-	bottom: 0;
-	list-style: none
-}
-
-header>#main_menu>li {
-	float: left;
-	padding-right: 5px;
-}
-
-header>#main_menu>li>a {
-	font-size: 150%;
-	font-weight: bold;
-	padding: 0 10px;
-}
-
-header>#main_menu>li>a:hover {
-	color: white;
-	background: black;
-}
-
 section {
 	height: 100%;
 	width: 100%;
@@ -180,13 +135,20 @@ section {
 </style>
 <script>
 
+$(document).ready(()=>{
+	const innerHtmlRegister = $('#Register .modal-body').html();
+	$('.nav-link[data-target=#Register]').on({
+		click: function(){
+			$('#Register .modal-body').html(innerHtmlRegister);			
+		}
+	});
 	$('#user-register').submit((e)=>{
 		console.log('user-register start');
-	    var email = $(this).find('[name=joinEmail]').val();   
-		var name = $(this).find('[name=joinName]').val();
-		var phone = $(this).find('[name=joinPhone]').val();
-		var pwd = $(this).find('[name=joinPsw]').val();
-		var repwd = $(this).find('[name=joinPswRe]').val();
+	    var email = $('input[name=joinEmail]').val();   
+		var name = $('input[name=joinName]').val();
+		var phone = $('input[name=joinPhone]').val();
+		var pwd = $('input[name=joinPsw]').val();
+		var repwd = $('input[name=joinPswRe]').val();
 		if (pwd !== repwd) return;
 		$.ajax({
 			url: 'userregisteraction.mw',
@@ -198,13 +160,14 @@ section {
 				'pwd':pwd
 			},
 			success: (data)=>{
+				console.log(data);
 				var str = '';
-				str += '<h3><b>' + data.name +'</b>님, 가입하신 것을 환영합니다. </h3>';
+				str += '<h3><b>' + data[0].name +'</b>님, 가입하신 것을 환영합니다. </h3>';
 				str += '<h4>아래와 같은 내용으로 가입하셨습니다.</h4>';
-				str += '<h5>로그인 ID: '+data.email+'</h5>';
-				str += '<h5>휴대폰 번호: '+data.phone+'</h5>';
-				str += '<h5>가입 날짜: '+data.regdate+'</h5>';
-				$('#Modal #modal-body').html(
+				str += '<h5>로그인 ID: '+data[0].email+'</h5>';
+				str += '<h5>휴대폰 번호: '+data[0].phone+'</h5>';
+				str += '<h5>가입 날짜: '+data[0].regdate+'</h5>';
+				$('#Register .modal-body').html(
 					str
 				);
 			},
@@ -221,6 +184,7 @@ section {
 		$("#loginform").attr('action', 'loginaction.mw');
 		$("#loginform").submit();
 	};
+});
 </script>
 </head>
 <body>
@@ -241,32 +205,30 @@ section {
 					type="submit">Search</button>
 			</form>
 
+			<ul class="navbar-nav">
 			<c:choose>
-				<c:when test="${sessionScope.loginid == null }">
-					<ul class="navbar-nav">
+				<c:when test="${loginid == null }">
 						<li class="nav-item active"><a class="nav-link"
-							data-toggle="modal" data-target="#myModal">LOGIN <span
+							data-toggle="modal" data-target="#Login">LOGIN <span
 								class="sr-only">(current)</span></a></li>
 						<li class="nav-item active"><a class="nav-link"
-							data-toggle="modal" data-target="#Modal">REGISTER <span
+							data-toggle="modal" data-target="#Register">REGISTER <span
 								class="sr-only">(current)</span></a></li>
-					</ul>
 				</c:when>
 				<c:otherwise>
-					<ul class="navbar-nav">
 						<li class="nav-item active"><a href="#" class="nav-link"
-							data-toggle="modal" data-target="#myinfo">
-								${sessionScope.loginid } <span class="sr-only">(current)</span>
-						</a></li>
-					</ul>
+							data-toggle="modal" data-target="#MyInfo">
+								${loginid } <span class="sr-only">(current)</span>
+						</a>님</li>
 				</c:otherwise>
 			</c:choose>
+			</ul>
 
 		</div>
 	</nav>
 
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
+	<!-- Login start -->
+	<div class="modal fade" id="Login" role="dialog">
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
@@ -288,10 +250,10 @@ section {
 						<div class="form-group">
 							<label for="psw"><span
 								class="glyphicon glyphicon-eye-open"></span> Password</label> <input
-								type="password" class="form-control" id="loginPsw"
+								type="password" name="loginpwd" class="form-control" id="loginPsw"
 								placeholder="Enter password">
 						</div>
-						<button class="btn btn-success btn-block" onclick="login();">
+						<button class="btn btn-success btn-block">
 							<span class="glyphicon glyphicon-off"></span> Login
 						</button>
 					</form>
@@ -302,7 +264,7 @@ section {
 						<span class="glyphicon glyphicon-remove"></span> Cancel  
 					</button >--%>
 					<p>
-						Not a member? <a href="#" data-toggle="modal" data-target="#Modal">Sign
+						Not a member? <a href="#" data-toggle="modal" data-target="#Register">Sign
 							Up <span class="sr-only">(current)</span>
 						</a>
 					</p>
@@ -317,8 +279,9 @@ section {
 			<!-- Modal content end -->
 		</div>
 	</div>
-
-	<div class="modal fade" id="Modal" role="dialog">
+	<!-- Login end -->
+	<!-- Register start -->
+	<div class="modal fade" id="Register" role="dialog">
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
@@ -379,19 +342,20 @@ section {
 				</div>
 			</div>
 			<!-- Modal content end -->
-		</div>
-	</div>
+		</div>	</div>
+	<!-- Register end -->
 
+	<!-- Policy content start -->
 	<div class="modal fade" id="Policy" role="dialog">
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header" style="padding: 35px 50px;">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4>
 						<span class="glyphicon glyphicon-lock"></span>Private Policy
 					</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body" style="padding: 40px 50px;">
 					<form role="form">
@@ -471,7 +435,9 @@ section {
 			<!-- Modal content end -->
 		</div>
 	</div>
-	<div class="modal fade" id="myinfo" role="dialog">
+	<!-- Policy content end -->
+	<!-- MyInfo content start -->
+	<div class="modal fade" id="MyInfo" role="dialog">
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
@@ -523,7 +489,6 @@ section {
 			<!-- Modal content end -->
 		</div>
 	</div>
-	
 	<div class="modal fade" id="myinfo" role="dialog">
 		<div class="modal-dialog">
 
@@ -578,7 +543,6 @@ section {
 
 	<div class="modal fade" id="commentsModal" style="padding:0;" role="dialog">
 		<div class="modal-dialog modal-box-my" style="max-width : none;">
-
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header" style="padding: 35px 50px;">
@@ -608,6 +572,8 @@ section {
 			<!-- Modal content end -->
 		</div>
 	</div>
+	<!-- commentsModal content end -->
+	<!-- commentsRegModal content start -->
 	<div class="modal fade" id="commentsRegModal" role="dialog">
 		<div class="modal-dialog modal-1000">
 			<!-- Modal content-->
@@ -638,9 +604,7 @@ section {
 			<!-- Modal content end -->
 		</div>
 	</div>
-
-
-	<!-- Modal end -->
+	<!-- commentsRegModal content end -->
 
 	<c:choose>
 		<c:when test="${center != null }">
