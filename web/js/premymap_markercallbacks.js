@@ -20,7 +20,7 @@ var onCommentsLoaded = function(data){
 
 var onCommentsRegistered = function(data){
 	if(data.status == 'success'){
-		
+		console.log('comment register success');
 		$("#commentsRegModal").modal('hide');
 		$("#commentsModal").modal('show');
 	    $("#commentsModal .content-input-frame").html('comments being loaded');
@@ -37,6 +37,7 @@ var onCommentsRegistered = function(data){
 	    	  dataType: 'json'
 		 });
 	}else{
+		console.log('comment register fail');
 		
 		
 		
@@ -48,9 +49,16 @@ var onCommentsRegistered = function(data){
 
 $(document).ready(function(){
 	$("#commentsModal .btn-btn1").on('click',function(){
-		  $("#commentsModal").modal('hide');
-		  $("#commentsRegModal").modal();		  
-		});
+		if(session.id != undefined){
+			$("#commentsModal").modal('hide');
+			$("#commentsRegModal").modal();		  			
+		}else{
+			$("#commentsModal").modal('hide');
+			state.activitybeforelogin = 'addcomment';
+			$("#Login").modal();			
+		}
+		 
+	});
 	
 	$("#commentsRegModal .btn-btn1").on('click',function(){
 		  $("#commentsRegModal").modal('hide');
@@ -58,15 +66,15 @@ $(document).ready(function(){
 	});
 	$("#commentsRegModal .btn-btn2").on('click',function(){
 		 
-		var content = $("#commentsRegModal input-text").html();
+		var contents = $("#commentsRegModal .input-textarea").val();
+		console.log('the content of comments to be sent'+contents);
 		
 		$.ajax({
 	    	  type: 'GET',
 	    	  url: 'registercomment.mw',
 	    	  data: {
 	    		  rating: 9,
-	    		  content: content,
-	    		  
+	    		  content: contents
 	    	  },
 	    	  success: onCommentsRegistered,
 	    	  dataType: 'json'

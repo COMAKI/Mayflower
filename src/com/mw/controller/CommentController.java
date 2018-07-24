@@ -33,23 +33,33 @@ public class CommentController {
 	@RequestMapping("/registercomment.mw")
 	public void regcommentaction(HttpServletRequest request, HttpServletResponse response)  {
 		
+		JSONObject jo = new JSONObject();
+	    
+	        
 		try {
 			Comment comment = new Comment();
 			comment.setContent(request.getParameter("content"));
 			comment.setContent(request.getParameter("rating"));
 			HttpSession session = request.getSession();
-			//comment.setUser_id(session.getAttribute("loginid").toString());
-			System.out.println("registering comment with content : " + request.getParameter("content"));
-			
-			
+			comment.setUser_id(session.getAttribute("loginid").toString());
+			System.out.println("registering comment with content : " + request.getParameter("rating"));
 			
 			service.register(comment);
 			
-			
+			jo.put("status", "success");
+		    
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			jo.put("status", "fail");
 			e.printStackTrace();
 		}
+	
+	    try {
+	    	response.setContentType("text/json; charset=EUC-KR");
+			PrintWriter writer = response.getWriter(); 
+			writer.print(jo);
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} 
 	}
 	
 	

@@ -12,10 +12,14 @@
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
 <script src="//code.jquery.com/jquery.min.js"></script>
+<script src="js/state.js"></script>
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 <style>
 * {
@@ -54,93 +58,11 @@ section {
 	width: 100%;
 }
 
-#customers {
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	border-collapse: collapse;
-	width: 100%;
-}
-
-#customers td, #customers th {
-	border: 1px solid #ddd;
-	padding: 8px;
-}
-
-#customers tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-#customers tr:hover {
-	background-color: #ddd;
-}
-
-#customers th {
-	padding-top: 12px;
-	padding-bottom: 12px;
-	text-align: left;
-	background-color: #4CAF50;
-	color: white;
-}
-
-.modal {
-	overflow-y: auto;
-}
-
-.modal-body-my {
-	border-top: 1px solid gray;
-}
-
-
-@media ( max-width : 767px) {
-	.search-box {
-		max-width: 100%;
-	}
-	.modal-box-my{
-		width:100%;
-	}
-	.modal-column-my{
-		width:100%;
-		margin:0;
-	}
-	.modal-column-my-a{
-		height:300px;
-		margin-bottom:30px;
-	} 	
-	.modal-column-my-b{
-		height:500px;
-	} 	
-}
-
-@media ( min-width : 768px) {
-	.search-box {
-		max-width: 500px !important;
-	}
-	.modal-box-my{
-		width:80%;
-	}
-	.modal-column-my{
-		width:100%;
-	}
-	.modal-column-my-a{
-		width:30%;
-		height:600px;
-		margin:0;
-	}
-	.modal-column-my-b{
-		width:60%;
-		margin-left:10%;
-		height:600px;
-	} 	 	
-	
-}
 </style>
+<link rel="stylesheet" type="text/css" href="css/mystyle.css">
 <script>
 
 $(document).ready(()=>{
-	/* let innerHtmlRegister = $('#Register .modal-body').html();
-	$('.nav-link[data-target=#Register]').click(()=>{
-		console.log('nav-link');
-		$('#Register .modal-body').html(innerHtmlRegister);			
-	});  */
 	$('#user-register').submit((e)=>{
 		console.log('user-register start');
 	    var email = $('input[name=joinEmail]').val();   
@@ -159,6 +81,9 @@ $(document).ready(()=>{
 				'pwd':pwd
 			},
 			success: (data)=>{
+				$("#Register").modal('hide');
+				$("#RegisterWelcome").modal('show');
+				
 				console.log(data);
 				var str = '';
 				str += '<h3><b>' + data[0].name +'</b>님, 가입하신 것을 환영합니다. </h3>';
@@ -166,7 +91,7 @@ $(document).ready(()=>{
 				str += '<h5>로그인 ID: '+data[0].email+'</h5>';
 				str += '<h5>휴대폰 번호: '+data[0].phone+'</h5>';
 				str += '<h5>가입 날짜: '+data[0].regdate+'</h5>';
-				$('#Register .modal-body').html(
+				$('#RegisterWelcome .modal-body').html(
 					str
 				);
 			},
@@ -239,6 +164,10 @@ $(document).ready(()=>{
 						<li class="nav-item active"><a href="logout.mw" class="nav-link">
 								LOGOUT <span class="sr-only">(current)</span>
 						</a></li> 
+						<script>
+							state.id = '${loginid}';
+							console.log(state.id);
+						</script>
 				</c:otherwise>
 			</c:choose>
 			</ul>
@@ -249,9 +178,9 @@ $(document).ready(()=>{
 	<!-- Login start -->
 	<jsp:include page="modal_login.jsp" />
 	<jsp:include page="modal_reguser.jsp" />
+	<jsp:include page="modal_reguserwelcome.jsp" />
 	<jsp:include page="modal_policy.jsp" />
 	<jsp:include page="modal_myinfo.jsp" />
-	<jsp:include page="modal_login.jsp" />
 	<jsp:include page="modal_comments.jsp" />
 	<jsp:include page="modal_regcomment.jsp" />
 	

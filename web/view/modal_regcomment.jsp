@@ -13,7 +13,7 @@
 					<form role="form" id="commentform">
 						<div class="form-group">
 							<label><span class="glyphicon glyphicon-eye-open"></span>Comment:</label>
-							<textarea class="form-control" rows="5" id="comment"></textarea>
+							<textarea class="form-control input-textarea" rows="5" id="comment"></textarea>
 						</div>
 						<div class="form-group">
 							<label><span class="glyphicon glyphicon-eye-open"></span>
