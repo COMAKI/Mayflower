@@ -8,10 +8,9 @@
 
 		.star-rating{
 			position: relative;
-			width: 200px;
-			height: 40px;
+			height: 10px;
 		}
-
+		
 		.star-rating *{
 			margin : 0;
 			padding: 0;
@@ -31,6 +30,7 @@
 			width: 45%;
 			height: 100%;
 		}
+		
 		.star-rating>div>i{
 			position: absolute;
 		}
@@ -39,12 +39,10 @@
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('.star-rating>div>i').css('font-size',$('.star-rating').height());
-			var ratio = $('.star-rating>div>i').width()/$('.star-rating>div>i').height();
-			ratio = 1.125;
-			console.log(ratio);
-			var width0 = $('.star-rating').width();
-			$('.star-rating').width(width0*ratio);
+			var height = $('.star-rating').height();
+			$('.star-rating>div>i').css('font-size',height);
+			var ratio = 1.125;
+			$('.star-rating').width(height*5*ratio);
 
 			$('.star-rating>div>.id0a').css('opacity',0);
 			$('.star-rating>div>.id0b').css('opacity',0);
