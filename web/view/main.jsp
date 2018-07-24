@@ -136,12 +136,11 @@ section {
 <script>
 
 $(document).ready(()=>{
-	const innerHtmlRegister = $('#Register .modal-body').html();
-	$('.nav-link[data-target=#Register]').on({
-		click: function(){
-			$('#Register .modal-body').html(innerHtmlRegister);			
-		}
-	});
+	/* let innerHtmlRegister = $('#Register .modal-body').html();
+	$('.nav-link[data-target=#Register]').click(()=>{
+		console.log('nav-link');
+		$('#Register .modal-body').html(innerHtmlRegister);			
+	});  */
 	$('#user-register').submit((e)=>{
 		console.log('user-register start');
 	    var email = $('input[name=joinEmail]').val();   
