@@ -41,8 +41,8 @@ public class CommentController {
 			comment.setContent(request.getParameter("content"));
 			comment.setContent(request.getParameter("rating"));
 			HttpSession session = request.getSession();
-			//comment.setUser_id(session.getAttribute("loginid").toString());
-			System.out.println("registering comment with content : " + request.getParameter("content"));
+			comment.setUser_id(session.getAttribute("loginid").toString());
+			System.out.println("registering comment with content : " + request.getParameter("rating"));
 			
 			service.register(comment);
 			

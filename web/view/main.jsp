@@ -12,6 +12,7 @@
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
 <script src="//code.jquery.com/jquery.min.js"></script>
+<script src="js/state.js"></script>
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
@@ -53,17 +54,11 @@ section {
 	width: 100%;
 }
 
-
 </style>
 <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 <script>
 
 $(document).ready(()=>{
-	/* let innerHtmlRegister = $('#Register .modal-body').html();
-	$('.nav-link[data-target=#Register]').click(()=>{
-		console.log('nav-link');
-		$('#Register .modal-body').html(innerHtmlRegister);			
-	});  */
 	$('#user-register').submit((e)=>{
 		console.log('user-register start');
 	    var email = $('input[name=joinEmail]').val();   
@@ -165,6 +160,10 @@ $(document).ready(()=>{
 						<li class="nav-item active"><a href="logout.mw" class="nav-link">
 								LOGOUT <span class="sr-only">(current)</span>
 						</a></li> 
+						<script>
+							state.id = '${loginid}';
+							console.log(state.id);
+						</script>
 				</c:otherwise>
 			</c:choose>
 			</ul>
