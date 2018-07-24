@@ -17,7 +17,27 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert" parameterType="spot">
-		INSERT INTO TSPOT VALUES (#{id},#{name},#{price},#{imgname})
+	 <![CDATA[
+				INSERT INTO SPOTS VALUES (
+					TO_CHAR(spot_id_seq.nextval)
+					 ,#{name}    
+					 ,#{category_id}    
+					 ,#{subcategory_id}    
+					 ,#{image_id}    
+					 ,#{address1}    
+					 ,#{address2}    
+					 ,#{ophour}    
+					 ,#{phone}    
+					 ,#{lng}    
+					 ,#{lat}    
+					 ,TO_CHAR(getdate()) --#{	regdate       }
+					 ,TO_CHAR(getdate()) --#{	lastdate       }
+					 ,#{user_id}    
+					 ,#{properties}    
+					 ,#{avg_rating}    
+				)
+
+      ]]>
 	</insert>
 	
 	<update id="update" parameterType="spot">
