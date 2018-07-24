@@ -86,6 +86,9 @@ $(document).ready(()=>{
 				'pwd':pwd
 			},
 			success: (data)=>{
+				$("#Register").modal('hide');
+				$("#RegisterWelcome").modal('show');
+				
 				console.log(data);
 				var str = '';
 				str += '<h3><b>' + data[0].name +'</b>님, 가입하신 것을 환영합니다. </h3>';
@@ -93,7 +96,7 @@ $(document).ready(()=>{
 				str += '<h5>로그인 ID: '+data[0].email+'</h5>';
 				str += '<h5>휴대폰 번호: '+data[0].phone+'</h5>';
 				str += '<h5>가입 날짜: '+data[0].regdate+'</h5>';
-				$('#Register .modal-body').html(
+				$('#RegisterWelcome .modal-body').html(
 					str
 				);
 			},
@@ -176,9 +179,9 @@ $(document).ready(()=>{
 	<!-- Login start -->
 	<jsp:include page="modal_login.jsp" />
 	<jsp:include page="modal_reguser.jsp" />
+	<jsp:include page="modal_reguserwelcome.jsp" />
 	<jsp:include page="modal_policy.jsp" />
 	<jsp:include page="modal_myinfo.jsp" />
-	<jsp:include page="modal_login.jsp" />
 	<jsp:include page="modal_comments.jsp" />
 	<jsp:include page="modal_regcomment.jsp" />
 	
