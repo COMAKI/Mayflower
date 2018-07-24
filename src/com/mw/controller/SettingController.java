@@ -122,7 +122,6 @@ public class SettingController {
 	private Spot mappingSpotData(JSONObject value) {
 		Spot spot = new Spot();
 
-		// TODO : all data check null
 		// String[] columns = {"화장실명", "category", "구분", "소재지도로명주소", "소재지지번주소",
 		// "개방시간", "전화번호"};
 		String defaultValue = "추후 업데이트..";
@@ -139,10 +138,21 @@ public class SettingController {
 		spot.setAddress1(getJSONObjectValue(value.get("소재지도로명주소"), defaultValue));
 		spot.setAddress2(getJSONObjectValue(value.get("소재지지번주소"), defaultValue));
 		spot.setPhone(getJSONObjectValue(value.get("전화번호"), defaultValue));
+		
 		spot.setLat(Double.parseDouble(lat.toString()));
 		spot.setLng(Double.parseDouble(lng.toString()));
 		spot.setRegdate(new Date().toString());
 
+
+		// TODO : all data insert and check null
+		spot.setImage_id(defaultValue);
+		spot.setAvg_rating("0.0");
+		spot.setOphour(getJSONObjectValue(value.get("개방시간"), defaultValue));
+		spot.setProperties(defaultValue);
+		// TODO get login user id
+		spot.setUser_id("admin");
+		
+		
 		System.out.println(spot.toString());
 
 		return spot;
