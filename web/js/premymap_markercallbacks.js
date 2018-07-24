@@ -7,6 +7,8 @@ var comments = [];
 var onCommentsLoaded = function(data){
 	console.log('some data returned from getcomments.mw');
 	
+	$("#commentsModal .input-span").html(state.currentspotname);
+	
 	
 	var randomint = 1+Math.floor(Math.random() * 4);
 	var imgpath = 'img/bathrooms/bathroom'+randomint+'.jpg';
@@ -87,8 +89,7 @@ var onCommentsRegistered = function(data){
 	    	  type: 'GET',
 	    	  url: 'getcomments.mw',
 	    	  data: {
-	    		  spotid: 'spot01',
-	    		  lastid:'d'
+	    		  spotid: state.currentspotid
 	    	  },
 	    	  success: onCommentsLoaded,
 	    	  dataType: 'json'
@@ -141,11 +142,14 @@ var markerClickCallbackFunction = function() {
       
       var information = this.information;
       
+      state.currentspotname = information.name;
+      state.currentspotid = information.id;
+      
       $.ajax({
     	  type: 'GET',
     	  url: 'getcomments.mw',
     	  data: {
-    		  spotid: 'spot01'
+    		  spotid: state.currentspotid
     	  },
     	  success: onCommentsLoaded,
     	  dataType: 'json'

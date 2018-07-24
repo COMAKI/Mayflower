@@ -28,7 +28,7 @@
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header" style="padding: 35px 50px;">
-					<h4><span class="glyphicon glyphicon-lock"></span>Spot01</h4>
+					<h4><span class="glyphicon glyphicon-lock"></span><span class="input-span">Spot01</span></h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body" style="padding: 40px 50px;">
