@@ -1,1 +1,4 @@
-var state = {};
+var state = {
+		currentspotname : ''
+		
+};
