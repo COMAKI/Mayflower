@@ -49,7 +49,7 @@ var onCommentsRegistered = function(data){
 
 $(document).ready(function(){
 	$("#commentsModal .btn-btn1").on('click',function(){
-		if(session.id != undefined){
+		if(state.id != undefined){
 			$("#commentsModal").modal('hide');
 			$("#commentsRegModal").modal();		  			
 		}else{
