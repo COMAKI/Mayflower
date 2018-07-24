@@ -20,7 +20,7 @@ public class CommentService implements Service<Comment,String> {
 	
 	@Override
 	public void register(Comment t) throws Exception {
-		//dao.insert(t);
+		cdao.insert(t);
 		System.out.println("register success");
 	}
 
@@ -45,37 +45,7 @@ public class CommentService implements Service<Comment,String> {
 	}
 	
 	public ArrayList<Comment> getBySpot(String spotid) throws Exception {
-		//return cdao.selectBySpot(spotid);
-		ArrayList<Comment> list = new ArrayList<>();
-		list.add(new Comment( //s id, s user_id, s spot_id, s content, s image_id, s regdate, dbl rating
-					"123",
-					"user01",
-					"spot01",
-					"i like it",
-					"image01",
-					"20011010",
-					9
-				));
-		list.add(new Comment( //s id, s user_id, s spot_id, s content, s image_id, s regdate, dbl rating
-				"1232",
-				"user02",
-				"spot01",
-				"i don't care",
-				"image01",
-				"20011010",
-				7
-				));
-		list.add(new Comment( //s id, s user_id, s spot_id, s content, s image_id, s regdate, dbl rating
-				"1243",
-				"user03",
-				"spot01",
-				"i hate it",
-				"image01",
-				"20011010",
-				5
-				));
-		
-		return list;
+		return cdao.selectBySpot(spotid);
 	}
 
 }
