@@ -60,7 +60,7 @@ COMMENT ON COLUMN SUBCATEGORIES.name is 'name';
 CREATE TABLE IMAGES(
 		id                            		VARCHAR2(50)		 NULL ,
 		name                          		VARCHAR2(500)		 NULL ,
-		filepath                      		VARCHAR2(2000)		 NULL ,
+		filepath                      		VARCHAR2(3000)		 NULL ,
 		user_id                       		VARCHAR2(50)		 NULL ,
 		regdate                       		VARCHAR2(50)		 NULL 
 );
@@ -78,13 +78,13 @@ COMMENT ON COLUMN IMAGES.regdate is 'regdate';
 /**********************************/
 CREATE TABLE SPOTS(
 		id                            		VARCHAR2(50)		 NULL ,
-		name                          		VARCHAR2(50)		 NULL ,
+		name                          		VARCHAR2(500)		 NULL ,
 		category_id                   		VARCHAR2(50)		 NULL ,
 		subcategory_id                		VARCHAR2(50)		 NULL ,
 		image_id                      		VARCHAR2(500)		 NULL ,
 		address1                      		VARCHAR2(500)		 NULL ,
 		address2                      		VARCHAR2(500)		 NULL ,
-		ophour                        		VARCHAR2(50)		 NULL ,
+		ophour                        		VARCHAR2(500)		 NULL ,
 		phone                         		VARCHAR2(50)		 NULL ,
 		lng                           		VARCHAR2(50)		 NULL ,
 		lat                           		VARCHAR2(50)		 NULL ,
@@ -137,14 +137,22 @@ COMMENT ON COLUMN COMMENTS.regdate is 'regdate';
 COMMENT ON COLUMN COMMENTS.rating is 'rating';
 
 
--- insert user admin
-insert into users values (
-'admin'
+
+Insert into USERS (ID,NAME,PASSWORD,PHONE,REGDATE,AUTHORITY) 
+values (
+'admin@maki.com'
 ,'admin'
 ,'admin'
 ,'010'
-,' ' 
+,' '
 ,'1'
 );
-commit;
+
+
+-- truncate table spots;
+
+drop sequence spot_id_seq ;
+create sequence spot_id_seq start with 1 increment BY 1;
+
+
 

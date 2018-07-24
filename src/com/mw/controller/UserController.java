@@ -44,6 +44,7 @@ public class UserController {
 			 if(email.equals(user.getId()) && pwd.equals(user.getPassword())) {
 					HttpSession session = request.getSession();
 					session.setAttribute("loginid", email);
+					session.setAttribute("groupid", user.getAuthority());
 					jo.put("status", "pass");
 			 } else {
 				 jo.put("status", "fail");

@@ -15,8 +15,10 @@
 <script src="js/state.js"></script>
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+
 <style>
 * {
 	margin: 0;
@@ -142,32 +144,7 @@ $(document).ready(()=>{
 					type="submit">Search</button>
 			</form>
 
-			<ul class="navbar-nav">
-			<c:choose>
-				<c:when test="${loginid == null }">
-						<li class="nav-item active"><a class="nav-link"
-							data-toggle="modal" data-target="#Login">LOGIN <span
-								class="sr-only">(current)</span></a></li>
-						<li class="nav-item active"><a class="nav-link"
-							data-toggle="modal" data-target="#Register">REGISTER <span
-								class="sr-only">(current)</span></a></li>
-				</c:when>
-				<c:otherwise>
-						<li class="nav-item active"><a href="#" class="nav-link"
-							data-toggle="modal" data-target="#MyInfo">
-								${loginid } <span class="sr-only">(current)</span>
-						</a></li> 
-						<li class="nav-item active"><a href="logout.mw" class="nav-link">
-								LOGOUT <span class="sr-only">(current)</span>
-						</a></li> 
-						<script>
-							state.id = '${loginid}';
-							console.log(state.id);
-						</script>
-				</c:otherwise>
-			</c:choose>
-			</ul>
-
+			<jsp:include page="navbar_state.jsp" />
 		</div>
 	</nav>
 
