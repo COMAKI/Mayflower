@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -28,37 +29,21 @@ public class CommentController {
 	@Resource(name="cservice")
 	CommentService cservice;
 	
-	@RequestMapping("/registercomment.mw")
-	public void regcomment(HttpServletRequest request, HttpServletResponse response)  {
-		String id = request.getParameter("lng");
-		Comment comment = new Comment();
-		
-		try {
-			service.register(comment);
-				
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		JSONObject jo = new JSONObject();
-		jo.put("status", "success");
-		
-		try {
-	    	response.setContentType("text/json; charset=EUC-KR");
-			PrintWriter writer = response.getWriter(); 
-			writer.print(jo);
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    } 
-		
-	}
 	
-	@RequestMapping("/registercommentaction.mw")
+	@RequestMapping("/registercomment.mw")
 	public void regcommentaction(HttpServletRequest request, HttpServletResponse response)  {
-		Comment comment = new Comment();
+		
 		try {
-			cservice.register(comment);
+			Comment comment = new Comment();
+			comment.setContent(request.getParameter("content"));
+			comment.setContent(request.getParameter("rating"));
+			HttpSession session = request.getSession();
+			//comment.setUser_id(session.getAttribute("loginid").toString());
+			System.out.println("registering comment with content : " + request.getParameter("content"));
+			
+			
+			
+			service.register(comment);
 			
 			
 		} catch (Exception e) {
@@ -70,8 +55,8 @@ public class CommentController {
 	
 	@RequestMapping("/getcomments.mw")
 	public void getcomments(HttpServletRequest request, HttpServletResponse response)  {
-		String id = request.getParameter("spotid");
-		System.out.println("got spotid : " + id);
+		String spotid = request.getParameter("spotid");
+		System.out.println("got spotid : " + spotid);
 		
 		
 		try {
@@ -84,29 +69,17 @@ public class CommentController {
 		
 		JSONArray ja = new JSONArray();
 		try {
-			/*for(Comment comment : comments) {
-				JSONObject jo = new JSONObject();
-			    jo.put("name", "a_value");
-			    jo.put("lng", 235.1252);
-			    jo.put("lat", 235.1252);
-			    jo.put("img", "c_value");
-			    ja.add(jo);	
-			}*/
+			List<Comment> comments = cservice.getBySpot(spotid);
 			
-			JSONObject jo = new JSONObject();
-			jo.put("userid", "id01");
-		    jo.put("content", "i liked this place");
-		    ja.add(jo);	
-		    jo = new JSONObject();
-		    jo.put("userid", "id±è¸»ÀÚ");
-		    jo.put("content", "this place is not very nice");
-		    ja.add(jo);	
-		    jo = new JSONObject();
-		    jo.put("userid", "id±èµÎÇÑ");
-		    jo.put("content", "a_value");
-		    ja.add(jo);	
-		    
-		    
+			for(Comment comment : comments) {
+				JSONObject jo = new JSONObject();
+			    jo.put("userid", comment.getUser_id());
+			    jo.put("content", comment.getContent());
+			    jo.put("rating", comment.getRating());
+			    ja.add(jo);	
+			}
+			
+			    
 		    
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block

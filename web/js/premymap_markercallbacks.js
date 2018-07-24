@@ -57,12 +57,16 @@ $(document).ready(function(){
 		  $("#commentsModal").modal('show');		  
 	});
 	$("#commentsRegModal .btn-btn2").on('click',function(){
-		 $.ajax({
+		 
+		var content = $("#commentsRegModal input-text").html();
+		
+		$.ajax({
 	    	  type: 'GET',
 	    	  url: 'registercomment.mw',
 	    	  data: {
-	    		  spotid: 'spot01',
-	    		  lastid:'0'
+	    		  rating: 9,
+	    		  content: content,
+	    		  
 	    	  },
 	    	  success: onCommentsRegistered,
 	    	  dataType: 'json'
