@@ -17,18 +17,58 @@ var onCommentsLoaded = function(data){
 	
 	$("#commentsModal .content-input-frame.id0a").html(content);	
 	
+	var rating = 6.7;
+	
 	content = '';
 	
+	var ratingsaved = rating;
+	var numstar = 0;
+	while(numstar<5){
+		if(rating>=2){
+			rating -= 2;
+			content+='<span class="fas fa-star"></span>';
+		}else if(rating >0){
+			rating = 0;
+			content+='<span class="fas fa-star-half-alt"></span>';			
+		}else{			
+			content+='<span class="far fa-star"></span>';
+		}
+		numstar++;
+	}
+	
+	content+='<span> &nbsp'+ratingsaved+'/10.0</span>';
+	
+	content+='<br>';
+	
 	content+= '<h6>some info about bathroom</h6>';
+	
 	
 	$("#commentsModal .content-input-frame.id0b").html(content);	
 	
 	content = '';
 	
 	data.forEach(function(elm,index){
-		content+= '<div class="modal-body modal-body-my" style="padding: 40px 50px;">';
+		content+= '<div class="modal-body modal-body-my" style="padding: 20px 25px;">';
 		content+= '<h3>'+elm.userid+'</h3>';
 		content+= '<h5>'+elm.content+'</h5>';
+		
+		var rating = elm.rating;
+		var ratingsaved = rating;
+		var numstar = 0;
+		while(numstar<5){
+			if(rating>=2){
+				rating -= 2;
+				content+='<span class="fas fa-star"></span>';
+			}else if(rating >0){
+				rating = 0;
+				content+='<span class="fas fa-star-half-alt"></span>';			
+			}else{			
+				content+='<span class="far fa-star"></span>';
+			}
+			numstar++;
+		}
+		
+		
 		content+= '</div>';
 	});
 	  

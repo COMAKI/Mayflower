@@ -54,7 +54,7 @@ public class CommentService implements Service<Comment,String> {
 					"i like it",
 					"image01",
 					"20011010",
-					9
+					7
 				));
 		list.add(new Comment( //s id, s user_id, s spot_id, s content, s image_id, s regdate, dbl rating
 				"1232",
