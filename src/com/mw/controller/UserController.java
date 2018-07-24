@@ -82,6 +82,7 @@ public class UserController {
 			 if(email.equals(user.getId())) {
 				 	user.setPassword(pwd);
 				 	user.setPhone(phone);
+				 	service.modify(user);
 				    jo.put("email", user.getId());
 				    jo.put("name", user.getName());
 				    jo.put("phone", user.getPhone());
