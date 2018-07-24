@@ -134,16 +134,48 @@ section {
 	border-top: 1px solid gray;
 }
 
+
 @media ( max-width : 767px) {
 	.search-box {
 		max-width: 100%;
 	}
+	.modal-box-my{
+		width:100%;
+	}
+	.modal-column-my{
+		width:100%;
+		margin:0;
+	}
+	.modal-column-my-a{
+		height:300px;
+		margin-bottom:30px;
+	} 	
+	.modal-column-my-b{
+		height:500px;
+	} 	
 }
 
 @media ( min-width : 768px) {
 	.search-box {
 		max-width: 500px !important;
 	}
+	.modal-box-my{
+		width:80%;
+	}
+	.modal-column-my{
+		width:100%;
+	}
+	.modal-column-my-a{
+		width:30%;
+		height:600px;
+		margin:0;
+	}
+	.modal-column-my-b{
+		width:60%;
+		margin-left:10%;
+		height:600px;
+	} 	 	
+	
 }
 </style>
 <script>
@@ -544,8 +576,8 @@ section {
 		</div>
 	</div>
 
-	<div class="modal fade" id="commentsModal" role="dialog">
-		<div class="modal-dialog" style="width:80%; max-width : none;">
+	<div class="modal fade" id="commentsModal" style="padding:0;" role="dialog">
+		<div class="modal-dialog modal-box-my" style="max-width : none;">
 
 			<!-- Modal content-->
 			<div class="modal-content">
@@ -554,12 +586,12 @@ section {
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body" style="padding: 40px 50px;">
-					<div style="float:left; width:30%; height:600px; border:1px solid red;">
+					<div class="modal-column-my modal-column-my-a" style="float:left; border:1px solid red;">
 					
 					
 					</div>
-					<div style="float:left; width:60%; margin-left:10%; height:600px;">
-						<div class="content-input-frame" style="height:90%; border:1px solid red; overflow:auto;">
+					<div class="modal-column-my modal-column-my-b" style="float:left; ">
+						<div class="content-input-frame content-frame-scrollable" style="height:90%; border:1px solid red; overflow:auto;">
 						
 						</div>
 						<div class="modal-body" style="padding: 20px 30px;">
