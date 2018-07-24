@@ -136,7 +136,7 @@ function getNewPos(event) {
     				  position: {lat: data[i].lat, lng: data[i].lng},
 		          	  icon: icons.wc.icon,
 		          	  map: map,
-		          	  title: data[i].id,
+		          	  title: data[i].name,
 		          	  label: data[i].category
 	    		  });
 	    		  markers.push(marker);

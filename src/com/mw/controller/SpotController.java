@@ -74,6 +74,7 @@ public class SpotController {
 			for(Spot spot : spots) {
 				JSONObject jo = new JSONObject();
 			    jo.put("id", spot.getId());
+			    jo.put("name", spot.getName());
 			    jo.put("lng", spot.getLng());
 			    jo.put("lat", spot.getLat());
 			    jo.put("category", spot.getCategory_id());
