@@ -29,12 +29,27 @@ public class UserController {
 	public ModelAndView login(HttpServletRequest request) {
 		
 		String id = request.getParameter("loginid");
+		String pwd = request.getParameter("loginpwd");
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("main");
 		mv.addObject("centerpage", "login");
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("loginid", id);
+		User user = null;
+		try {
+			 user = service.get(id);
+			 System.out.println(user);
+			 if(id.equals(user.getId()) && pwd.equals(user.getPassword())) {
+					mv.addObject("centerpage", "loginok");
+					HttpSession session = request.getSession();
+					session.setAttribute("loginid", id);
+			} else {
+					mv.addObject("centerpage", "loginfail");
+			}	 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			mv.addObject("centerpage", "loginfail");
+		}
 		return mv; // login.jsp
 	}
 	@RequestMapping("/logout.mw")
@@ -107,6 +122,7 @@ public class UserController {
 		JSONArray ja = new JSONArray();
 		PrintWriter out = null;
 		User user = null; 
+		System.out.printf("%s %s %s %s\n",email,name,phone, pwd);
 		try {
 			out = response.getWriter();
 			user = new User(email, name, pwd, phone, regdate, authority);
@@ -118,7 +134,7 @@ public class UserController {
 		    jo.put("phone", phone);
 		    jo.put("regdate", regdate);
 		    ja.add(jo);
-		    out.println(ja);
+		    out.print(ja);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
