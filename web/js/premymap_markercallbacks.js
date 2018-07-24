@@ -20,7 +20,7 @@ var onCommentsLoaded = function(data){
 
 var onCommentsRegistered = function(data){
 	if(data.status == 'success'){
-		
+		console.log('comment register success');
 		$("#commentsRegModal").modal('hide');
 		$("#commentsModal").modal('show');
 	    $("#commentsModal .content-input-frame").html('comments being loaded');
@@ -37,6 +37,7 @@ var onCommentsRegistered = function(data){
 	    	  dataType: 'json'
 		 });
 	}else{
+		console.log('comment register fail');
 		
 		
 		
@@ -58,15 +59,14 @@ $(document).ready(function(){
 	});
 	$("#commentsRegModal .btn-btn2").on('click',function(){
 		 
-		var content = $("#commentsRegModal input-text").html();
+		var contents = $("#commentsRegModal input-textarea").val();
 		
 		$.ajax({
 	    	  type: 'GET',
 	    	  url: 'registercomment.mw',
 	    	  data: {
 	    		  rating: 9,
-	    		  content: content,
-	    		  
+	    		  content: contents
 	    	  },
 	    	  success: onCommentsRegistered,
 	    	  dataType: 'json'
