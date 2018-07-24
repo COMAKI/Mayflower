@@ -5,7 +5,8 @@
 <style>
 .whois-nav{
 	text-align: center;
-	padding: 0 auto !important;
+	padding-top: 0px !important;
+    padding-bottom: 0px !important;
 }
 .whois{
 	margin: 0 auto;
@@ -26,7 +27,8 @@
 				<c:otherwise>
 						<c:choose>
 							<c:when test="${groupid == 1}">
-								<li class="nav-item"><a class="nav-link whois-nav" href="#">
+								<li class="nav-item"><a class="nav-link whois-nav" href="#"
+								style="color:#F79256;">
 									<i class="fas fa-user"></i>
 									<div class="whois">
 										ADMIN
@@ -34,7 +36,8 @@
 								</a></li>
 							</c:when>
 							<c:otherwise>
-								<li class="nav-item"><a class="nav-link whois-nav" href="#">
+								<li class="nav-item"><a class="nav-link whois-nav" href="#"
+								style="color:#7DCFB6;">
 									<i class="fas fa-user"></i>
 									<div class="whois">
 										USER
