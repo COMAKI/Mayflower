@@ -49,7 +49,7 @@ var onCommentsRegistered = function(data){
 
 $(document).ready(function(){
 	$("#commentsModal .btn-btn1").on('click',function(){
-		if(session.id != undefined){
+		if(state.id != undefined){
 			$("#commentsModal").modal('hide');
 			$("#commentsRegModal").modal();		  			
 		}else{
@@ -60,26 +60,7 @@ $(document).ready(function(){
 		 
 	});
 	
-	$("#commentsRegModal .btn-btn1").on('click',function(){
-		  $("#commentsRegModal").modal('hide');
-		  $("#commentsModal").modal('show');		  
-	});
-	$("#commentsRegModal .btn-btn2").on('click',function(){
-		 
-		var contents = $("#commentsRegModal .input-textarea").val();
-		console.log('the content of comments to be sent'+contents);
-		
-		$.ajax({
-	    	  type: 'GET',
-	    	  url: 'registercomment.mw',
-	    	  data: {
-	    		  rating: 9,
-	    		  content: contents
-	    	  },
-	    	  success: onCommentsRegistered,
-	    	  dataType: 'json'
-		 });
-	});
+	
 	
 	$('.content-frame-scrollable').scroll(function(){
 			var vh = $(this).height();	
@@ -97,7 +78,7 @@ $(document).ready(function(){
 
 
 var markerClickCallbackFunction = function() {
-	  map.setZoom(8);
+	  map.setZoom(18);
       map.setCenter(this.getPosition());
       //information
       
