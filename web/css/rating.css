@@ -17,11 +17,9 @@ fieldset {
   font-size: 1.25em;
   font-family: FontAwesome;
   display: inline-block;
-  content: "\f005";
 }
 
 .rating > .half:before { 
-  content: "\f089";
   position: absolute;
 }
 
