@@ -41,12 +41,21 @@ public class CommentController {
 			comment.setContent(request.getParameter("content"));
 			comment.setContent(request.getParameter("rating"));
 			HttpSession session = request.getSession();
-			comment.setUser_id(session.getAttribute("loginid").toString());
-			System.out.println("registering comment with content : " + request.getParameter("rating"));
+			Object loginid = session.getAttribute("loginid");
+			if(loginid!=null) {
+				String loginidstr = loginid.toString();
+				comment.setUser_id(loginidstr);
+				
+				
+				System.out.println("registering comment with loginid : " + loginidstr);
+				System.out.println("registering comment with rating : " + request.getParameter("rating"));
+				System.out.println("registering comment with content : " + request.getParameter("content"));			
 			
-			service.register(comment);
-			
-			jo.put("status", "success");
+				service.register(comment);			
+				jo.put("status", "success");
+			}else {
+				throw new Exception();
+			}
 		    
 		} catch (Exception e) {
 			jo.put("status", "fail");
