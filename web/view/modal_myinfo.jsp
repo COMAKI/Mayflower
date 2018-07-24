@@ -13,7 +13,7 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body" style="padding: 40px 50px;">
-					<form role="form">
+					<form role="form" id="user-modify">
 						<div class="form-group">
 							<label for="usrname"><span
 								class="glyphicon glyphicon-user"></span><b>

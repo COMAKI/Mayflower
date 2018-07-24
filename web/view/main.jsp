@@ -15,8 +15,10 @@
 <script src="js/state.js"></script>
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+
 <style>
 * {
 	margin: 0;
@@ -80,6 +82,7 @@ $(document).ready(()=>{
 				$("#Register").modal('hide');
 				$("#RegisterWelcome").modal('show');
 				
+				$('input[name=myPhone]').attr('placeholder',data[0].phone);
 				console.log(data);
 				var str = '';
 				str += '<h3><b>' + data[0].name +'</b>님, 가입하신 것을 환영합니다. </h3>';
@@ -110,15 +113,77 @@ $(document).ready(()=>{
 				'pwd':pwd
 			},
 			success: (data)=>{
-	            $("#Login").modal('hide');
-	            location.href="main.mw";
+				if (data[0].status === 'fail') {
+					$('#Login').find('button:eq(-1)').css({
+						"background-color": "#FE5F55",
+						"border-color": "red"
+					});
+					setTimeout(function() {
+						$('#Login').find('button:eq(-1)').css({
+							"background-color": "#28a745",
+							"border-color": "#1e7e34"
+						});
+					}, 500);
+				}
+				else if (data[0].status === 'pass') {
+		            $("#Login").modal('hide');
+		            location.href="main.mw";
+				}
 			},
 			error: (err)=>{
 				console.log(err);
-				alert('error');
 			},
 			dataType:'json'							
 		});
+		e.preventDefault(); // avoid to execute the actual submit of the form.
+	});
+	$('#user-modify').submit((e)=>{
+		console.log('user-modify start');
+		var email = state.id;
+		var phone = $('input[name=myPhone]').val();
+		var pwd = $('input[name=myChnPwd]').val();
+		var conpwd = $('input[name=myConPwd]').val();
+		if (pwd !== conpwd || pwd === ''){
+			$('#MyInfo').find('button:eq(-1)').css({
+				"background-color": "#FE5F55",
+				"border-color": "red"
+			});
+			setTimeout(function() {
+				$('#MyInfo').find('button:eq(-1)').css({
+					"background-color": "#28a745",
+					"border-color": "#1e7e34"
+				});
+			}, 500);
+		}
+		else {
+			$.ajax({
+				url: 'usermodify.mw',
+				method: 'POST',
+				data:{
+					'email':email,
+					'phone':phone,
+					'pwd':pwd
+				},
+				success: (data)=>{
+	       	    	$('#MyInfo').modal('hide');
+	       	    	$('#RegisterWelcome').modal('show');
+	            	var str = '';
+					str += '<h3><b>' + data[0].name +'</b>님,</h3>';
+					str += '<h4>아래와 같은 내용으로 변경하셨습니다.</h4>';
+					str += '<h5>로그인 ID: '+data[0].email+'</h5>';
+					str += '<h5>휴대폰 번호: '+data[0].phone+'</h5>';
+					str += '<h5>가입 날짜: '+data[0].regdate+'</h5>';
+	            	$('#RegisterWelcome .modal-body').html(
+							str
+					);
+				},
+				error: (err)=>{
+					console.log(err);
+					//alert('error');
+				},
+				dataType:'json'							
+			});
+		}
 		e.preventDefault(); // avoid to execute the actual submit of the form.
 	});
 });

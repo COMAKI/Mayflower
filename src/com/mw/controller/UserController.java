@@ -63,6 +63,43 @@ public class UserController {
 			e.printStackTrace();
 		}
 	}
+	@RequestMapping("/usermodify.mw")
+	@ResponseBody
+	public void usermodify(HttpServletRequest request, HttpServletResponse response) {
+		
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String pwd = request.getParameter("pwd");
+
+		response.setContentType("text/json; charset=EUC-KR");
+		
+		JSONArray ja = new JSONArray();
+		JSONObject jo = new JSONObject();
+		User user = null;
+		try {
+			 user = service.get(email);
+			 System.out.println(user);
+			 if(email.equals(user.getId())) {
+				 	user.setPassword(pwd);
+				 	user.setPhone(phone);
+				    jo.put("email", user.getId());
+				    jo.put("name", user.getName());
+				    jo.put("phone", user.getPhone());
+				    jo.put("regdate", user.getRegdate());
+			 }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ja.add(jo);
+			PrintWriter out = response.getWriter();
+			out.println(ja);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	@RequestMapping("/logout.mw")
 	public ModelAndView logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();

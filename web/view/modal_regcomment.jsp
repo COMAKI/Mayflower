@@ -13,20 +13,28 @@ $(document).ready(function(){
 		var contents = $("#commentsRegModal .input-textarea").val();
 		console.log('the content of comments to be sent'+contents);
 		
-		$.ajax({
-	    	  type: 'GET',
-	    	  url: 'registercomment.mw',
-	    	  data: {
-	    		  rating: $('#commentsRegModal .rating input[type=radio]:checked').val(),
-	    		  content: contents
-	    	  },
-	    	  success: onCommentsRegistered,
-	    	  dataType: 'json'
-		 });
+		var rating = $('#commentsRegModal .rating input[type=radio]:checked').val()
+		
+		if(rating){
+			$.ajax({
+		    	  type: 'GET',
+		    	  url: 'registercomment.mw',
+		    	  data: {
+		    		  rating: rating,
+		    		  content: contents
+		    	  },
+		    	  success: onCommentsRegistered,
+		    	  dataType: 'json'
+			 });			
+		}else{
+			alert('rating À» ÀÔ·ÂÇÏ¼¼¿ä');
+		}
+		
+		var rating = $('#commentsRegModal .rating input[type=radio]:checked').prop( "checked", false);
+		
 	});
 	
 });
-
 </script>
 
 <div class="modal fade" id="commentsRegModal" role="dialog">
