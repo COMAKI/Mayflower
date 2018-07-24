@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<title></title>
+	<style type="text/css">
+
+		.star-rating{
+			position: relative;
+			width: 200px;
+			height: 40px;
+		}
+
+		.star-rating *{
+			margin : 0;
+			padding: 0;
+		}
+
+		.star-rating>div{
+			position: relative;
+			float: left;
+			width: 20%;
+			height: 100%;
+		}
+
+
+		.star-rating>div>.val-div{
+			position: relative;
+			float: left;
+			width: 45%;
+			height: 100%;
+		}
+		.star-rating>div>i{
+			position: absolute;
+		}
+
+
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.star-rating>div>i').css('font-size',$('.star-rating').height());
+			var ratio = $('.star-rating>div>i').width()/$('.star-rating>div>i').height();
+			ratio = 1.125;
+			console.log(ratio);
+			var width0 = $('.star-rating').width();
+			$('.star-rating').width(width0*ratio);
+
+			$('.star-rating>div>.id0a').css('opacity',0);
+			$('.star-rating>div>.id0b').css('opacity',0);
+			$('.star-rating>div>.id0a').css('color','orange');
+			$('.star-rating>div>.id0b').css('color','yellow');
+			$('.star-rating>div>.id0c').css('color','gray');
+
+			var star_rating_callback = function(event){
+				var val = parseInt($(this).children('input').val());	
+				var aorb = (event.type == "click") ? 'a':'b';
+
+				for(var i = 1 ; i <= 5 ; i++){
+					if(i*2<=val){
+						$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star').css('opacity',1);
+						$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star-half').css('opacity',1);
+					}else if((i-1)*2<val){
+						$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star').css('opacity',0);
+						$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star-half').css('opacity',1);
+					}else{
+						$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star').css('opacity',0);
+						$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star-half').css('opacity',0);
+					}
+				}	
+			};
+
+			$('.star-rating>div>.val-div').on("mouseover",star_rating_callback);
+			$('.star-rating>div>.val-div').on("click",star_rating_callback);
+			$('.star-rating').on("mouseleave",function(){$('.star-rating>div>.id0b').css('opacity',0);});
+		});
+
+
+	</script>
+</head>
+<body>
+
+	<div class="star-rating">
+		<div>
+			<i class="id0c fas fa-star"></i>
+			<i class="id0a fas fa-star"></i>
+			<i class="id0a fas fa-star-half"></i>
+			<i class="id0b fas fa-star"></i>
+			<i class="id0b fas fa-star-half"></i>
+			<div class="val-div"><input type="hidden" value="1"/></div>		
+			<div class="val-div"><input type="hidden" value="2"/></div>
+		</div>
+		<div>
+			<i class="id0c fas fa-star"></i>
+			<i class="id0a fas fa-star"></i>
+			<i class="id0a fas fa-star-half"></i>
+			<i class="id0b fas fa-star"></i>
+			<i class="id0b fas fa-star-half"></i>
+			<div class="val-div"><input type="hidden" value="3"/></div>		
+			<div class="val-div"><input type="hidden" value="4"/></div>
+		</div>
+		<div>
+			<i class="id0c fas fa-star"></i>
+			<i class="id0a fas fa-star"></i>
+			<i class="id0a fas fa-star-half"></i>
+			<i class="id0b fas fa-star"></i>
+			<i class="id0b fas fa-star-half"></i>
+			<div class="val-div"><input type="hidden" value="5"/></div>		
+			<div class="val-div"><input type="hidden" value="6"/></div>
+		</div>
+		<div>
+			<i class="id0c fas fa-star"></i>
+			<i class="id0a fas fa-star"></i>
+			<i class="id0a fas fa-star-half"></i>
+			<i class="id0b fas fa-star"></i>
+			<i class="id0b fas fa-star-half"></i>
+			<div class="val-div"><input type="hidden" value="7"/></div>		
+			<div class="val-div"><input type="hidden" value="8"/></div>
+		</div>
+		<div>
+			<i class="id0c fas fa-star"></i>
+			<i class="id0a fas fa-star"></i>
+			<i class="id0a fas fa-star-half"></i>
+			<i class="id0b fas fa-star"></i>
+			<i class="id0b fas fa-star-half"></i>
+			<div class="val-div"><input type="hidden" value="9"/></div>		
+			<div class="val-div"><input type="hidden" value="10"/></div>
+		</div>
+		
+
+	</div>
+
+
+</body>
+</html>
