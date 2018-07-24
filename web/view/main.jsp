@@ -17,6 +17,9 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 <style>
 * {
 	margin: 0;
@@ -54,85 +57,9 @@ section {
 	width: 100%;
 }
 
-#customers {
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	border-collapse: collapse;
-	width: 100%;
-}
 
-#customers td, #customers th {
-	border: 1px solid #ddd;
-	padding: 8px;
-}
-
-#customers tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-#customers tr:hover {
-	background-color: #ddd;
-}
-
-#customers th {
-	padding-top: 12px;
-	padding-bottom: 12px;
-	text-align: left;
-	background-color: #4CAF50;
-	color: white;
-}
-
-.modal {
-	overflow-y: auto;
-}
-
-.modal-body-my {
-	border-top: 1px solid gray;
-}
-
-
-@media ( max-width : 767px) {
-	.search-box {
-		max-width: 100%;
-	}
-	.modal-box-my{
-		width:100%;
-	}
-	.modal-column-my{
-		width:100%;
-		margin:0;
-	}
-	.modal-column-my-a{
-		height:300px;
-		margin-bottom:30px;
-	} 	
-	.modal-column-my-b{
-		height:500px;
-	} 	
-}
-
-@media ( min-width : 768px) {
-	.search-box {
-		max-width: 500px !important;
-	}
-	.modal-box-my{
-		width:80%;
-	}
-	.modal-column-my{
-		width:100%;
-	}
-	.modal-column-my-a{
-		width:30%;
-		height:600px;
-		margin:0;
-	}
-	.modal-column-my-b{
-		width:60%;
-		margin-left:10%;
-		height:600px;
-	} 	 	
-	
-}
 </style>
+<link rel="stylesheet" type="text/css" href="css/mystyle.css">
 <script>
 
 $(document).ready(()=>{
