@@ -1,59 +1,85 @@
 
-$(document).ready(function(){
-	$("#commentsRegModal .btn-btn1").on('click',function(){
-		  $("#commentsRegModal").modal('hide');
-		  $("#commentsModal").modal('show');		  
+
+
+var comments = [];
+
+
+var onCommentsLoaded = function(data){
+	console.log('some data returned from getcomments.mw');
+	var content = '';
+	
+	data.forEach(function(elm,index){
+		content+= '<div class="modal-body modal-body-my" style="padding: 40px 50px;">';
+		content+= '<h3>'+elm.userid+'</h3>';
+		content+= '<h5>'+elm.content+'</h5>';
+		content+= '</div>';
 	});
-	$("#commentsRegModal .btn-btn2").on('click',function(){
+	  
+	$("#commentsModal .content-input-frame").html(content);	
+}
+
+var onCommentsRegistered = function(data){
+	if(data.status == 'success'){
+		
 		$("#commentsRegModal").modal('hide');
 		$("#commentsModal").modal('show');
 	    $("#commentsModal .content-input-frame").html('comments being loaded');
+		
 		
 		 $.ajax({
 	    	  type: 'GET',
 	    	  url: 'getcomments.mw',
 	    	  data: {
-	    		  spotid: 'spot01'
+	    		  spotid: 'spot01',
+	    		  lastid:'d'
 	    	  },
 	    	  success: onCommentsLoaded,
 	    	  dataType: 'json'
 		 });
+	}else{
+		
+		
+		
+	}
+	
+}
+
+
+
+$(document).ready(function(){
+	$("#commentsModal .btn-btn1").on('click',function(){
+		  $("#commentsModal").modal('hide');
+		  $("#commentsRegModal").modal();		  
+		});
+	
+	$("#commentsRegModal .btn-btn1").on('click',function(){
+		  $("#commentsRegModal").modal('hide');
+		  $("#commentsModal").modal('show');		  
+	});
+	$("#commentsRegModal .btn-btn2").on('click',function(){
+		 $.ajax({
+	    	  type: 'GET',
+	    	  url: 'registercomment.mw',
+	    	  data: {
+	    		  spotid: 'spot01',
+	    		  lastid:'0'
+	    	  },
+	    	  success: onCommentsRegistered,
+	    	  dataType: 'json'
+		 });
 	});
 	
-	$('.modal').scroll(function(){
-			var docH = $(document).height();	
-			var scrollH = $(window).height()+$(window).scrollTop();
+	$('.content-frame-scrollable').scroll(function(){
+			var vh = $(this).height();	
+			var sh = $(this).prop('scrollHeight');
+			var st = $(this).scrollTop();
 			
-			
-			console.log('modal height: '+ $(this).height());
-			console.log('window height : '+ $(window).height());
-			console.log('modal scrolltop: '+ $(this).scrollTop());
-			console.log('modal scrollheight: '+ $(this).prop('scrollHeight'));
-			
-			
+			if((st+vh)>(sh-50)){
+				//
+			}	
 	});
 	
 });
-
-var onCommentsLoaded = function(data){
-	console.log('some data returned from getcomments.mw');
-	
-	
-	var content = '';
-    
-	  for(var i = 0 ; i < 10 ; i++){
-		content+= '<div class="modal-body modal-body-my" style="padding: 40px 50px;">';
-		content+= '<h3>a content</h3>';
-		content+= '</div>';  
-	  }	
-	  
-	  $("#commentsModal .content-input-frame").html(content);	
-	  $("#commentsModal .btn-btn1").on('click',function(){
-		  $("#commentsModal").modal('hide');
-		  $("#commentsRegModal").modal();		  
-	  });
-
-}
 
 
 
@@ -76,8 +102,7 @@ var markerClickCallbackFunction = function() {
 	});
       				     
       $("#commentsModal .content-input-frame").html('comments being loaded');
-      $("#commentsModal").modal()
-      
+      $("#commentsModal").modal();
 };
 
 
