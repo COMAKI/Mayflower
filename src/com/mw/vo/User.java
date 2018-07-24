@@ -8,6 +8,8 @@ public class User {
 	private String regdate;
 	private String authority;
 
+	public User() {}
+	
 	public User(String id, String name, String password, String phone, String regdate, String authority) {
 		this.id = id;
 		this.name = name;

@@ -1,5 +1,6 @@
 package com.mw.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,31 +27,40 @@ public class UserController {
 	Service<User, String> service;
 	
 	@RequestMapping("/loginaction.mw")
-	public ModelAndView login(HttpServletRequest request) {
+	@ResponseBody
+	public void login(HttpServletRequest request, HttpServletResponse response) {
 		
-		String id = request.getParameter("loginid");
-		String pwd = request.getParameter("loginpwd");
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("main");
-		mv.addObject("centerpage", "login");
+		String email = request.getParameter("email");
+		String pwd = request.getParameter("pwd");
+
+		response.setContentType("text/json; charset=EUC-KR");
 		
+		JSONArray ja = new JSONArray();
+		JSONObject jo = new JSONObject();
 		User user = null;
 		try {
-			 user = service.get(id);
+			 user = service.get(email);
 			 System.out.println(user);
-			 if(id.equals(user.getId()) && pwd.equals(user.getPassword())) {
-					mv.addObject("centerpage", "loginok");
+			 if(email.equals(user.getId()) && pwd.equals(user.getPassword())) {
 					HttpSession session = request.getSession();
-					session.setAttribute("loginid", id);
-			} else {
-					mv.addObject("centerpage", "loginfail");
-			}	 
+					session.setAttribute("loginid", email);
+					jo.put("status", "pass");
+			 } else {
+				 jo.put("status", "fail");
+			 }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			mv.addObject("centerpage", "loginfail");
+			jo.put("status", "fail");
 		}
-		return mv; // login.jsp
+		try {
+			ja.add(jo);
+			PrintWriter out = response.getWriter();
+			out.println(ja);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	@RequestMapping("/logout.mw")
 	public ModelAndView logout(HttpServletRequest request) {

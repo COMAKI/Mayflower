@@ -147,8 +147,8 @@ $(document).ready(()=>{
 	    var email = $('input[name=joinEmail]').val();   
 		var name = $('input[name=joinName]').val();
 		var phone = $('input[name=joinPhone]').val();
-		var pwd = $('input[name=joinPsw]').val();
-		var repwd = $('input[name=joinPswRe]').val();
+		var pwd = $('input[name=joinPwd]').val();
+		var repwd = $('input[name=joinPwdRe]').val();
 		if (pwd !== repwd) return;
 		$.ajax({
 			url: 'userregisteraction.mw',
@@ -178,12 +178,29 @@ $(document).ready(()=>{
 	    });
 	    e.preventDefault(); // avoid to execute the actual submit of the form.
 	});
-
-	function login() {
-		alert('Login Suceess. Welcome :)');
-		$("#loginform").attr('action', 'loginaction.mw');
-		$("#loginform").submit();
-	};
+	$('#user-login').submit((e)=>{
+		console.log('user-login start');
+		var email = $('#loginEmail').val();
+		var pwd = $('#loginPwd').val();
+		$.ajax({
+			url: 'loginaction.mw',
+			method: 'POST',
+			data:{
+				'email':email,
+				'pwd':pwd
+			},
+			success: (data)=>{
+	            $("#Login").modal('hide');
+	            location.href="main.mw";
+			},
+			error: (err)=>{
+				console.log(err);
+				alert('error');
+			},
+			dataType:'json'							
+		});
+		e.preventDefault(); // avoid to execute the actual submit of the form.
+	});
 });
 </script>
 </head>
@@ -219,7 +236,10 @@ $(document).ready(()=>{
 						<li class="nav-item active"><a href="#" class="nav-link"
 							data-toggle="modal" data-target="#MyInfo">
 								${loginid } <span class="sr-only">(current)</span>
-						</a>ดิ</li>
+						</a></li> 
+						<li class="nav-item active"><a href="logout.mw" class="nav-link">
+								LOGOUT <span class="sr-only">(current)</span>
+						</a></li> 
 				</c:otherwise>
 			</c:choose>
 			</ul>
@@ -240,7 +260,7 @@ $(document).ready(()=>{
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body" style="padding: 40px 50px;">
-					<form role="form" id="loginform">
+					<form role="form" id="user-login">
 						<div class="form-group">
 							<label for="usrname"><span
 								class="glyphicon glyphicon-user"></span> Email</label> <input
@@ -250,10 +270,10 @@ $(document).ready(()=>{
 						<div class="form-group">
 							<label for="psw"><span
 								class="glyphicon glyphicon-eye-open"></span> Password</label> <input
-								type="password" name="loginpwd" class="form-control" id="loginPsw"
+								type="password" name="loginpwd" class="form-control" id="loginPwd"
 								placeholder="Enter password">
 						</div>
-						<button class="btn btn-success btn-block">
+						<button type="submit" class="btn btn-success btn-block">
 							<span class="glyphicon glyphicon-off"></span> Login
 						</button>
 					</form>
@@ -313,15 +333,15 @@ $(document).ready(()=>{
 								placeholder="Enter phone number">
 						</div>
 						<div class="form-group">
-							<label for="psw"><span
+							<label for="pwd"><span
 								class="glyphicon glyphicon-eye-open"></span> Password</label> <input
-								type="password" class="form-control" name="joinPsw"
+								type="password" class="form-control" name="joinPwd"
 								placeholder="Enter password">
 						</div>
 						<div class="form-group">
-							<label for="psw"><span
+							<label for="pwd"><span
 								class="glyphicon glyphicon-eye-open"></span> Password Confirm</label> <input
-								type="password" class="form-control" name="joinPswRe"
+								type="password" class="form-control" name="joinPwdRe"
 								placeholder="Enter password">
 						</div>
 						<div class="checkbox">
