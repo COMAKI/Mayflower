@@ -26,21 +26,15 @@
 								placeholder="Enter phone number">
 						</div>
 						<div class="form-group">
-							<label for="psw"><span
-								class="glyphicon glyphicon-eye-open"></span> Current Password</label> <input
-								type="password" class="form-control" name="myPsw"
-								placeholder="Enter password">
-						</div>
-						<div class="form-group">
-							<label for="psw"><span
+							<label for="pwd"><span
 								class="glyphicon glyphicon-eye-open"></span> Change Password</label> <input
-								type="password" class="form-control" name="myChnPsw"
+								type="password" class="form-control" name="myChnPwd"
 								placeholder="Enter password">
 						</div>
 						<div class="form-group">
-							<label for="psw"><span
+							<label for="pwd"><span
 								class="glyphicon glyphicon-eye-open"></span> Confirm Password</label> <input
-								type="password" class="form-control" name="myConPsw"
+								type="password" class="form-control" name="myConPwd"
 								placeholder="Enter password">
 						</div>
 
