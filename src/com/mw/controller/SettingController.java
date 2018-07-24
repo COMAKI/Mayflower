@@ -39,9 +39,9 @@ public class SettingController {
 		// TODO Call target API
 		if (target instanceof Spot) {
 			ArrayList<Spot> spots = dataLoad("json");
-			for (int i = 0; i < spots.size(); i++) {
-				mapper.insert(spots.get(i));
-			}
+			// for (int i = 0; i < spots.size(); i++) {
+			// mapper.insert(spots.get(i));
+			// }
 
 		}
 
@@ -52,6 +52,7 @@ public class SettingController {
 		ArrayList<Spot> result = new ArrayList<>();
 
 		String key = "UtE%2B%2BpVIVK2RQksQsXFcWWWHEqj7TZDaE46kR3l9fY64c%2BMx7n13gZSOJp%2BpeXBvIKDj1nt7nZuQLRUFqrU1ZQ%3D%3D";
+		String maxCount = "2000";
 		try {
 			StringBuilder urlBuilder = new StringBuilder("http://api.data.go.kr/openapi/pblic-toilet-std"); /* URL */
 			urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "="
@@ -59,7 +60,7 @@ public class SettingController {
 			urlBuilder.append("&" + URLEncoder.encode("s_page", "UTF-8") + "="
 					+ URLEncoder.encode("1", "UTF-8")); /* 페이지 번호 */
 			urlBuilder.append("&" + URLEncoder.encode("s_list", "UTF-8") + "="
-					+ URLEncoder.encode("25000", "UTF-8")); /* 페이지 크기 */
+					+ URLEncoder.encode(maxCount, "UTF-8")); /* 페이지 크기 */
 			urlBuilder.append("&" + URLEncoder.encode("type", "UTF-8") + "="
 					+ URLEncoder.encode(type, "UTF-8")); /* XML/JSON 여부 */
 			URL url = new URL(urlBuilder.toString());
@@ -101,9 +102,18 @@ public class SettingController {
 			}
 
 			// input data
-			for (int i = 0; i < data.size(); i++) {
+			int cnt = 0;
+			for (int idx = 0; idx < data.size(); idx++) {
 				// data type mapping
-				result.add(mappingSpotData((JSONObject) data.get(i)));
+				Spot value = mappingSpotData((JSONObject) data.get(idx), idx);
+				if (value == null)
+					continue;
+				// TODO : test code erase
+				// result.add(mappingSpotData((JSONObject) data.get(i)));
+				mapper.insert(value);
+
+				if (idx % 100 == 0)
+					Thread.sleep(2000);
 			}
 
 			// end
@@ -119,7 +129,7 @@ public class SettingController {
 		return result;
 	}
 
-	private Spot mappingSpotData(JSONObject value) {
+	private Spot mappingSpotData(JSONObject value, int id) {
 		Spot spot = new Spot();
 
 		// String[] columns = {"화장실명", "category", "구분", "소재지도로명주소", "소재지지번주소",
@@ -132,6 +142,7 @@ public class SettingController {
 		if (lat == null || lng == null)
 			return null;
 
+		spot.setId(String.valueOf(id));
 		spot.setName(value.get("화장실명").toString());
 		spot.setCategory_id("화장실");
 		spot.setSubcategory_id(getJSONObjectValue(value.get("구분").toString(), defaultValue));
@@ -150,8 +161,6 @@ public class SettingController {
 		spot.setProperties(defaultValue);
 		// TODO get login user id
 		spot.setUser_id("admin");
-
-		System.out.println(spot.toString());
 
 		return spot;
 	}
