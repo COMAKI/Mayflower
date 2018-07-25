@@ -18,13 +18,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="comment">
 	<![CDATA[
 				INSERT INTO COMMENTS VALUES (
-					--#{id}
 					comment_id_seq.nextval
 					,#{user_id}
 					,#{spot_id}
 					,#{content}
 					,#{image_id}
-					,#{regdate}
+					,TO_CHAR(sysdate)
 					,#{rating}
 				)
 	]]>		

@@ -58,7 +58,8 @@ public class CommentController {
 				comment.setUser_id(loginidstr);
 				comment.setSpot_id(request.getParameter("spotid"));
 				
-				
+				// TODO : insert Image data 
+				comment.setImage_id("1");
 				System.out.println("registering comment with loginid : " + loginidstr);
 				System.out.println("registering comment with rating : " + request.getParameter("rating"));
 				System.out.println("registering comment with content : " + request.getParameter("content"));			
