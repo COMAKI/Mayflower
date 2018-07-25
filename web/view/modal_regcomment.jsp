@@ -33,6 +33,8 @@
 
 </style>
 <script>
+document.charset="euc-kr";
+
 $(document).ready(function(){
 	var height = $('.star-rating').height();
 	$('.star-rating>div>i').css('font-size',height);

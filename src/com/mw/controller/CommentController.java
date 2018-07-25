@@ -64,8 +64,7 @@ public class CommentController {
 				Iterator<String> itr = request.getFileNames(); 
 				if(itr.hasNext()) {
 					MultipartFile mpf = request.getFile(itr.next()); 		
-
-					comment
+					System.out.println("comment has file : " + mpf.getOriginalFilename());			
 				
 				}
 				
