@@ -19,7 +19,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="spot">
 	 <![CDATA[
 				INSERT INTO SPOTS VALUES (
-					TO_CHAR(spot_id_seq.nextval)					
+					-- TO_CHAR(spot_id_seq.nextval)
+					#{id}					
 					 ,#{name}    
 					 ,#{category_id}    
 					 ,#{subcategory_id}    

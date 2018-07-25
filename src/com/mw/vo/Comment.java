@@ -14,7 +14,7 @@ public class Comment {
 	}
 
 	public Comment(String id, String user_id, String spot_id, String content, String image_id, String regdate,
-			double rating) {
+	               double rating) {
 		this.id = id;
 		this.user_id = user_id;
 		this.spot_id = spot_id;

@@ -13,6 +13,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.mw.frame.Service;
 import com.mw.service.CommentService;
@@ -31,10 +33,12 @@ public class CommentController {
 	
 	
 	@RequestMapping("/registercomment.mw")
-	public void regcommentaction(HttpServletRequest request, HttpServletResponse response)  {
+	public void regcommentaction(MultipartHttpServletRequest request, HttpServletResponse response)  {
 		
 		JSONObject jo = new JSONObject();
 	    
+		MultipartFile report = request.getFile("img");
+		System.out.println(report.getOriginalFilename());
 	        
 		try {
 			Comment comment = new Comment();

@@ -12,11 +12,22 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectBySpot" parameterType="String" resultType="comment">
-		SELECT * FROM COMMENTS WHERE SPOT_ID=#{obj}
+		SELECT * FROM COMMENTS
 	</select>
 	
 	<insert id="insert" parameterType="comment">
-		INSERT INTO COMMENTS VALUES (#{id},#{content},#{rating})
+	<![CDATA[
+				INSERT INTO COMMENTS VALUES (
+					--#{id}
+					comment_id_seq.nextval
+					,#{user_id}
+					,#{spot_id}
+					,#{content}
+					,#{image_id}
+					,#{regdate}
+					,#{rating}
+				)
+	]]>		
 	</insert>
 	<update id="update" parameterType="comment">
 		UPDATE COMMENTS SET content=#{content},rating=#{rating} WHERE ID=#{id}
