@@ -91,7 +91,8 @@ $(document).ready(function(){
 		    	  url: 'registercomment.mw',
 		    	  data: {
 		    		  rating: rating,
-		    		  content: contents
+		    		  content: contents,
+		    		  spotid: state.currentspotid
 		    	  },
 		    	  success: onCommentsRegistered,
 		    	  dataType: 'json'
