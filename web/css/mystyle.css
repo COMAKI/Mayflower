@@ -32,9 +32,6 @@
 	overflow-y: auto;
 }
 
-.modal-body-my {
-	border-top: 1px solid gray;
-}
 
 .fa-star, fa-star, .fa-star-half-alt {
     color: orange;
