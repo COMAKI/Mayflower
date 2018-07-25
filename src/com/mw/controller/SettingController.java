@@ -32,9 +32,12 @@ public class SettingController {
 	@Autowired
 	SpotMapper mapper;
 	int cnt = 0;
+	int world_cnt = 0;
 	
 	@RequestMapping("/requestAPI.mw")
 	public void requestAPI(HttpServletRequest request, HttpServletResponse response) {
+		if(cnt!=0)	world_cnt += cnt;
+		else		world_cnt += 100;
 		cnt = 0;
 		response.setContentType("text/json; charset=EUC-KR");
 		JSONObject jo = new JSONObject();
@@ -74,7 +77,7 @@ public class SettingController {
 		ArrayList<Spot> result = new ArrayList<>();
 
 		String key = "UtE%2B%2BpVIVK2RQksQsXFcWWWHEqj7TZDaE46kR3l9fY64c%2BMx7n13gZSOJp%2BpeXBvIKDj1nt7nZuQLRUFqrU1ZQ%3D%3D";
-		String maxCount = "2000";
+		String maxCount = world_cnt+"2000";
 		try {
 			StringBuilder urlBuilder = new StringBuilder("http://api.data.go.kr/openapi/pblic-toilet-std"); /* URL */
 			urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "="
@@ -126,14 +129,14 @@ public class SettingController {
 
 			// input data
 			
-			for (int idx = 0; idx < data.size(); idx++) {
+			for (int idx = world_cnt; idx < data.size(); idx++) {
 				// data type mapping
 				Spot value = mappingSpotData((JSONObject) data.get(idx), idx);
 				if (value == null)
 					continue;
 				if(mapper.select(value.getId())!=null) {
 					continue;
-				};
+				}
 				// TODO : test code erase
 				// result.add(mappingSpotData((JSONObject) data.get(i)));
 				cnt++;
