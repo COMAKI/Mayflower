@@ -131,6 +131,9 @@ public class SettingController {
 				Spot value = mappingSpotData((JSONObject) data.get(idx), idx);
 				if (value == null)
 					continue;
+				if(mapper.select(value.getId())!=null) {
+					continue;
+				};
 				// TODO : test code erase
 				// result.add(mappingSpotData((JSONObject) data.get(i)));
 				cnt++;
