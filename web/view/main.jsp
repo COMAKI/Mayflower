@@ -89,6 +89,7 @@ section {
 	<jsp:include page="modal_myinfo.jsp" />
 	<jsp:include page="modal_comments.jsp" />
 	<jsp:include page="modal_regcomment.jsp" />
+	<jsp:include page="modal_status.jsp" />
 	
 	<!-- Map center -->
 	<jsp:include page="center.jsp" />
