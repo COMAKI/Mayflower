@@ -31,9 +31,11 @@ public class SettingController {
 
 	@Autowired
 	SpotMapper mapper;
-
-	@RequestMapping("/requestAPI")
+	int cnt = 0;
+	
+	@RequestMapping("/requestAPI.mw")
 	public void requestAPI(HttpServletRequest request, HttpServletResponse response) {
+		cnt = 0;
 		response.setContentType("text/json; charset=EUC-KR");
 		JSONObject jo = new JSONObject();
 		// checkData exist
@@ -42,6 +44,7 @@ public class SettingController {
 			configData(new Spot());
 			System.out.println("success");
 			jo.put("status", "pass");
+			jo.put("count", cnt);
 		} else {
 			jo.put("status", "fail");
 		}
@@ -89,8 +92,8 @@ public class SettingController {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-type", "application/json");
 
-			BufferedReader rd;
-			JSONArray data;
+			BufferedReader rd = null;
+			JSONArray data = null;
 
 			if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
 
@@ -104,24 +107,25 @@ public class SettingController {
 				Iterator<JSONArray> iterator = data.iterator();
 				ArrayList<Spot> list = new ArrayList<>();
 
-			} else {
-				//// TODO default data input
-				rd = new BufferedReader(new InputStreamReader(new FileInputStream("data1.json"), "UTF8"));
-
-				JSONObject jsonObject = (JSONObject) new JSONParser().parse(rd);
-
-				// property setting
-				String columnName = "fields";
-				String rowName = "records";
-
-				// loop array
-				JSONArray columns = (JSONArray) jsonObject.get(columnName);
-				data = (JSONArray) jsonObject.get(rowName);
-				Iterator<JSONObject> iterator = data.iterator();
-			}
+			} 
+//			else {
+//				//// TODO default data input
+//				rd = new BufferedReader(new InputStreamReader(new FileInputStream("data1.json"), "UTF8"));
+//
+//				JSONObject jsonObject = (JSONObject) new JSONParser().parse(rd);
+//
+//				// property setting
+//				String columnName = "fields";
+//				String rowName = "records";
+//
+//				// loop array
+//				JSONArray columns = (JSONArray) jsonObject.get(columnName);
+//				data = (JSONArray) jsonObject.get(rowName);
+//				Iterator<JSONObject> iterator = data.iterator();
+//			}
 
 			// input data
-			int cnt = 0;
+			
 			for (int idx = 0; idx < data.size(); idx++) {
 				// data type mapping
 				Spot value = mappingSpotData((JSONObject) data.get(idx), idx);
@@ -129,8 +133,8 @@ public class SettingController {
 					continue;
 				// TODO : test code erase
 				// result.add(mappingSpotData((JSONObject) data.get(i)));
+				cnt++;
 				mapper.insert(value);
-
 				if (idx % 100 == 0)
 					Thread.sleep(2000);
 			}
@@ -139,10 +143,9 @@ public class SettingController {
 			rd.close();
 			conn.disconnect();
 
-		} catch (Exception e)
-
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println(cnt);
 		}
 
 		return result;

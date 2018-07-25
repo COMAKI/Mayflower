@@ -50,7 +50,7 @@
 			<c:choose>
 				<c:when test="${groupid == 1}">
 				<div class="container-ui-row">
-					<button type="button" class="btn">Basic</button>
+					<button type="button" class="btn">requestAPI</button>
 					<button type="button" class="btn">Basic</button>
 					<button type="button" class="btn">Basic</button>
 				</div>
