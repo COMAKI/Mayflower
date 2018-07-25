@@ -43,12 +43,13 @@ public class CommentController {
 		try {
 			Comment comment = new Comment();
 			comment.setContent(request.getParameter("content"));
-			comment.setContent(request.getParameter("rating"));
+			comment.setRating(Double.parseDouble((request.getParameter("rating"))));
 			HttpSession session = request.getSession();
 			Object loginid = session.getAttribute("loginid");
 			if(loginid!=null) {
 				String loginidstr = loginid.toString();
 				comment.setUser_id(loginidstr);
+				comment.setSpot_id(request.getParameter("spotid"));
 				
 				
 				System.out.println("registering comment with loginid : " + loginidstr);
