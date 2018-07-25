@@ -2,7 +2,9 @@ package com.mw.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -36,11 +38,16 @@ public class CommentController {
 	public void regcommentaction(MultipartHttpServletRequest request, HttpServletResponse response)  {
 		
 		JSONObject jo = new JSONObject();
-	    
-		MultipartFile report = request.getFile("img");
-		System.out.println(report.getOriginalFilename());
-	        
+    
 		try {
+			
+			Iterator<String> itr = request.getFileNames(); 
+			if(itr.hasNext()) {
+				MultipartFile mpf = request.getFile(itr.next()); 		
+			}else {
+				throw new Exception("cant get file name");
+			}
+			
 			Comment comment = new Comment();
 			comment.setContent(request.getParameter("content"));
 			comment.setContent(request.getParameter("rating"));
