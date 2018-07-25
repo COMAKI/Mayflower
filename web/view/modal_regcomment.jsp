@@ -85,17 +85,20 @@ $(document).ready(function(){
 		
 		var rating = $('#commentsRegModal .star-rating>input[type=hidden]').val()
 		
+		var form = new FormData(document.getElementById('commentform'));
+		form.append('content',contents);
+		form.append('rating',rating);
+		form.append('spotid',state.currentspotid);
+		
 		if(rating>0){
 			$.ajax({
-		    	  type: 'GET',
+		    	  type: 'POST',
 		    	  url: 'registercomment.mw',
-		    	  data: {
-		    		  rating: rating,
-		    		  content: contents,
-		    		  spotid: state.currentspotid
-		    	  },
-		    	  success: onCommentsRegistered,
-		    	  dataType: 'json'
+		    	  data: form, 
+		    	  dataType: 'text', 
+		    	  processData: false, 
+		    	  contentType: false, 
+		    	  success: onCommentsRegistered
 			 });			
 		}else{
 			alert('ratin');
@@ -120,7 +123,7 @@ $(document).ready(function(){
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body" style="padding: 40px 50px;">
-					<form role="form" id="commentform">
+					<form role="form" id="commentform" enctype="multipart/form-data">
 						<div class="form-group">
 							<label><span class="glyphicon glyphicon-eye-open"></span>Comment:</label>
 							<textarea class="form-control input-textarea" rows="5" id="comment"></textarea>
@@ -128,62 +131,62 @@ $(document).ready(function(){
 						<div class="form-group" style="position:relative; height:40px;">
 							<label style="position:relative; float:left; line-height:40px; margin-right:5px;"><span class="glyphicon glyphicon-eye-open"></span>Rating:</label> 
 							<div class="star-rating" style="margin-left:10px; display:inline-block;">
-		<div>
-			<i class="id0c fas fa-star"></i>
-			<i class="id0a fas fa-star"></i>
-			<i class="id0a fas fa-star-half"></i>
-			<i class="id0b fas fa-star"></i>
-			<i class="id0b fas fa-star-half"></i>
-			<div class="val-div"><input type="hidden" value="1"/></div>		
-			<div class="val-div"><input type="hidden" value="2"/></div>
-		</div>
-		<div>
-			<i class="id0c fas fa-star"></i>
-			<i class="id0a fas fa-star"></i>
-			<i class="id0a fas fa-star-half"></i>
-			<i class="id0b fas fa-star"></i>
-			<i class="id0b fas fa-star-half"></i>
-			<div class="val-div"><input type="hidden" value="3"/></div>		
-			<div class="val-div"><input type="hidden" value="4"/></div>
-		</div>
-		<div>
-			<i class="id0c fas fa-star"></i>
-			<i class="id0a fas fa-star"></i>
-			<i class="id0a fas fa-star-half"></i>
-			<i class="id0b fas fa-star"></i>
-			<i class="id0b fas fa-star-half"></i>
-			<div class="val-div"><input type="hidden" value="5"/></div>		
-			<div class="val-div"><input type="hidden" value="6"/></div>
-		</div>
-		<div>
-			<i class="id0c fas fa-star"></i>
-			<i class="id0a fas fa-star"></i>
-			<i class="id0a fas fa-star-half"></i>
-			<i class="id0b fas fa-star"></i>
-			<i class="id0b fas fa-star-half"></i>
-			<div class="val-div"><input type="hidden" value="7"/></div>		
-			<div class="val-div"><input type="hidden" value="8"/></div>
-		</div>
-		<div>
-			<i class="id0c fas fa-star"></i>
-			<i class="id0a fas fa-star"></i>
-			<i class="id0a fas fa-star-half"></i>
-			<i class="id0b fas fa-star"></i>
-			<i class="id0b fas fa-star-half"></i>
-			<div class="val-div"><input type="hidden" value="9"/></div>		
-			<div class="val-div"><input type="hidden" value="10"/></div>
-		</div>
-		
-		<input type="hidden" value="0"/>
-
-	</div>
+								<div>
+									<i class="id0c fas fa-star"></i>
+									<i class="id0a fas fa-star"></i>
+									<i class="id0a fas fa-star-half"></i>
+									<i class="id0b fas fa-star"></i>
+									<i class="id0b fas fa-star-half"></i>
+									<div class="val-div"><input type="hidden" value="1"/></div>		
+									<div class="val-div"><input type="hidden" value="2"/></div>
+								</div>
+								<div>
+									<i class="id0c fas fa-star"></i>
+									<i class="id0a fas fa-star"></i>
+									<i class="id0a fas fa-star-half"></i>
+									<i class="id0b fas fa-star"></i>
+									<i class="id0b fas fa-star-half"></i>
+									<div class="val-div"><input type="hidden" value="3"/></div>		
+									<div class="val-div"><input type="hidden" value="4"/></div>
+								</div>
+								<div>
+									<i class="id0c fas fa-star"></i>
+									<i class="id0a fas fa-star"></i>
+									<i class="id0a fas fa-star-half"></i>
+									<i class="id0b fas fa-star"></i>
+									<i class="id0b fas fa-star-half"></i>
+									<div class="val-div"><input type="hidden" value="5"/></div>		
+									<div class="val-div"><input type="hidden" value="6"/></div>
+								</div>
+								<div>
+									<i class="id0c fas fa-star"></i>
+									<i class="id0a fas fa-star"></i>
+									<i class="id0a fas fa-star-half"></i>
+									<i class="id0b fas fa-star"></i>
+									<i class="id0b fas fa-star-half"></i>
+									<div class="val-div"><input type="hidden" value="7"/></div>		
+									<div class="val-div"><input type="hidden" value="8"/></div>
+								</div>
+								<div>
+									<i class="id0c fas fa-star"></i>
+									<i class="id0a fas fa-star"></i>
+									<i class="id0a fas fa-star-half"></i>
+									<i class="id0b fas fa-star"></i>
+									<i class="id0b fas fa-star-half"></i>
+									<div class="val-div"><input type="hidden" value="9"/></div>		
+									<div class="val-div"><input type="hidden" value="10"/></div>
+								</div>
+								
+								<input type="hidden" value="0"/>
+						
+							</div>
 
 							<span style="line-height:40px;"> &nbsp </span>
 							<span class="rating-msg" style="line-height:40px;"></span>
 						</div>
 						<div class="form-group">
 							<label><span class="glyphicon glyphicon-eye-open"></span>File:</label> 
-							<input id="input-b1" name="input-b1" type="file" class="file">
+							<input id="input-b1" name="img" type="file" class="file">
 						</div>
 						
 						<button type="button" class="btn btn-success btn-block btn-btn1">
