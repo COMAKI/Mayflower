@@ -19,7 +19,13 @@ var onCommentsLoaded = function(data){
 	
 	$("#commentsModal .content-input-frame.id0a").html(content);	
 	
-	var rating = 6.7;
+	var rating = 0;
+	var count = 0;
+	data.forEach(function(elm,index){
+		rating += elm.rating;
+		count++;
+	});
+	rating = Math.round(rating / count * 100) / 100;
 	
 	content = '';
 	
