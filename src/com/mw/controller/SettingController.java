@@ -2,13 +2,19 @@ package com.mw.controller;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -26,13 +32,26 @@ public class SettingController {
 	@Autowired
 	SpotMapper mapper;
 
-	@RequestMapping("/callAPI")
-	public String callAPI() {
+	@RequestMapping("/requestAPI")
+	public void requestAPI(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/json; charset=EUC-KR");
+		JSONObject jo = new JSONObject();
 		// checkData exist
-		configData(new Spot());
-
-		System.out.println("success");
-		return "main"; // main.jsp
+		HttpSession session = request.getSession();
+		if(session.getAttribute("groupid").toString().equals("1")) {
+			configData(new Spot());
+			System.out.println("success");
+			jo.put("status", "pass");
+		} else {
+			jo.put("status", "fail");
+		}
+		try {
+			PrintWriter out = response.getWriter();
+			out.println(jo);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void configData(Object target) {

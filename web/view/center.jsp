@@ -62,6 +62,7 @@
 <script src="js/premymap_markercallbacks.js"></script>
 <script src="js/premymap_setinfobox.js"></script>
 <script src="js/mymap.js"></script>
+<script src="js/user.js" charset='utf-8'></script>
 
 <!-- api key: key=AIzaSyDtIawTgEjsNSk0BE4mVjN3XNG_eb86lwI -->
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
