@@ -84,6 +84,7 @@ var onCommentsLoaded = function(data){
 }
 
 var onCommentsRegistered = function(data){
+	data = JSON.parse(data);
 	if(data.status == 'success'){
 		console.log('comment register success');
 		$("#commentsRegModal").modal('hide');
