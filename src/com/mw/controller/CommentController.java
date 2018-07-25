@@ -41,12 +41,6 @@ public class CommentController {
     
 		try {
 			
-			Iterator<String> itr = request.getFileNames(); 
-			if(itr.hasNext()) {
-				MultipartFile mpf = request.getFile(itr.next()); 		
-			}else {
-				throw new Exception("cant get file name");
-			}
 			
 			Comment comment = new Comment();
 			comment.setContent(request.getParameter("content"));
@@ -63,6 +57,18 @@ public class CommentController {
 				System.out.println("registering comment with content : " + request.getParameter("content"));			
 			
 				service.register(comment);			
+			
+				
+				Iterator<String> itr = request.getFileNames(); 
+				if(itr.hasNext()) {
+					MultipartFile mpf = request.getFile(itr.next()); 		
+
+					comment
+				
+				}
+				
+			
+			
 				jo.put("status", "success");
 			}else {
 				throw new Exception();
