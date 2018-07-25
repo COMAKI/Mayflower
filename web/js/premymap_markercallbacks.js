@@ -38,7 +38,7 @@ var onCommentsLoaded = function(data){
 		numstar++;
 	}
 	
-	content+='<span> &nbsp'+ratingsaved+'/10.0</span>';
+	content+='<span><br class="responsive-br"> &nbsp'+ratingsaved+'/10.0</span>';
 	
 	content+='<br>';
 	

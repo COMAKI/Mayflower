@@ -9,15 +9,35 @@
 }
 
 @media ( max-width : 767px) {
-	#commentsModal .content-input-frame.id0a, #commentsModal .content-input-frame.id0b{
-		width:50%;
+	#commentsModal .content-input-frame.id0a{
+		width:45%;
 	}
+	
+	#commentsModal .content-input-frame.id0b{
+		width:50%;
+		margin-top:0px;
+		margin-left:5%;
+	}
+	
+	
+	.responsive-br{
+		display:none;
+	}
+	
 }
 
 @media ( min-width : 768px) {
 	#commentsModal .content-input-frame.id0a, #commentsModal .content-input-frame.id0b{
 		width:100%;
 	}
+	#commentsModal .content-input-frame.id0b{
+		margin-left:0px;
+		margin-top:20px;
+	}
+	.responsive-br{
+		display:block;
+	}
+	
 }
 
 
@@ -32,11 +52,11 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body" style="padding: 40px 50px;">
-					<div class="modal-column-my modal-column-my-a" style="float:left; border:1px solid red;">
-						<div class="content-input-frame id0a" style="padding: 20px 30px;">
+					<div class="modal-column-my modal-column-my-a" style="padding: 20px 30px; float:left; border:1px solid red;">
+						<div class="content-input-frame id0a">
 							
 						</div>  
-						<div class="content-input-frame id0b" style="padding: 20px 30px;">
+						<div class="content-input-frame id0b">
 							
 						</div>  
 					

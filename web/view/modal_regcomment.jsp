@@ -1,7 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<link rel="stylesheet" type="text/css" href="css/rating.css">
+<style type="text/css">
+	.star-rating{
+		position: relative;
+		height: 15px;
+	}
+	
+	.star-rating *{
+		margin : 0;
+		padding: 0;
+	}
+
+	.star-rating>div{
+		position: relative;
+		float: left;
+		width: 20%;
+		height: 100%;
+	}
+
+
+	.star-rating>div>.val-div{
+		position: relative;
+		float: left;
+		width: 45%;
+		height: 100%;
+	}
+	
+	.star-rating>div>i{
+		position: absolute;
+	}
+
+
+</style>
 <script>
+$(document).ready(function(){
+	var height = $('.star-rating').height();
+	$('.star-rating>div>i').css('font-size',height);
+	var ratio = 1.125;
+	$('.star-rating').width(height*5*ratio);
+
+	$('.star-rating>div>.id0a').css('opacity',0);
+	$('.star-rating>div>.id0b').css('opacity',0);
+	$('.star-rating>div>.id0a').css('color','orange');
+	$('.star-rating>div>.id0b').css('color','#fabd00');
+	$('.star-rating>div>.id0c').css('color','gray');
+
+	var star_rating_callback = function(event){
+		var val = parseInt($(this).children('input').val());	
+		var aorb = (event.type == "click") ? 'a':'b';
+
+		for(var i = 1 ; i <= 5 ; i++){
+			if(i*2<=val){
+				$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star').css('opacity',1);
+				$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star-half').css('opacity',1);
+			}else if((i-1)*2<val){
+				$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star').css('opacity',0);
+				$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star-half').css('opacity',1);
+			}else{
+				$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star').css('opacity',0);
+				$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star-half').css('opacity',0);
+			}
+		}
+		
+		if(event.type='click'){
+			$('#commentsRegModal .star-rating>input[type=hidden]').val(val)
+		}
+	};
+
+	$('.star-rating>div>.val-div').on("mouseover",star_rating_callback);
+	$('.star-rating>div>.val-div').on("click",star_rating_callback);
+	$('.star-rating').on("mouseleave",function(){$('.star-rating>div>.id0b').css('opacity',0);});
+});
+
 $(document).ready(function(){
 	
 	$("#commentsRegModal .btn-btn1").on('click',function(){
@@ -13,9 +83,9 @@ $(document).ready(function(){
 		var contents = $("#commentsRegModal .input-textarea").val();
 		console.log('the content of comments to be sent'+contents);
 		
-		var rating = $('#commentsRegModal .rating input[type=radio]:checked').val()
+		var rating = $('#commentsRegModal .star-rating>input[type=hidden]').val()
 		
-		if(rating){
+		if(rating>0){
 			$.ajax({
 		    	  type: 'GET',
 		    	  url: 'registercomment.mw',
@@ -27,10 +97,13 @@ $(document).ready(function(){
 		    	  dataType: 'json'
 			 });			
 		}else{
-			alert('rating À» ÀÔ·ÂÇÏ¼¼¿ä');
+			alert('ratin');
 		}
 		
-		var rating = $('#commentsRegModal .rating input[type=radio]:checked').prop( "checked", false);
+		var rating = $('#commentsRegModal .rating>input[type=hidden]').val(0);
+		$('.star-rating>div>.id0a').css('opacity',0);
+		$('.star-rating>div>.id0b').css('opacity',0);
+		
 		
 	});
 	
@@ -53,20 +126,57 @@ $(document).ready(function(){
 						</div>
 						<div class="form-group" style="position:relative; height:40px;">
 							<label style="position:relative; float:left; line-height:40px; margin-right:5px;"><span class="glyphicon glyphicon-eye-open"></span>Rating:</label> 
-							<div style="position:relative; float:left;">
-							<fieldset class="rating">
-	    					<input type="radio" id="star5" name="rating" value="10" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-	    					<input type="radio" id="star4half" name="rating" value="9" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-	    					<input type="radio" id="star4" name="rating" value="8" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-	    					<input type="radio" id="star3half" name="rating" value="7" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-	    					<input type="radio" id="star3" name="rating" value="6" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-	    					<input type="radio" id="star2half" name="rating" value="5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-	    					<input type="radio" id="star2" name="rating" value="4" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-	    					<input type="radio" id="star1half" name="rating" value="3" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-	    					<input type="radio" id="star1" name="rating" value="2" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-	  						<input type="radio" id="starhalf" name="rating" value="1" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-							</fieldset>
-							</div>
+							<div class="star-rating" style="margin-left:10px; display:inline-block;">
+		<div>
+			<i class="id0c fas fa-star"></i>
+			<i class="id0a fas fa-star"></i>
+			<i class="id0a fas fa-star-half"></i>
+			<i class="id0b fas fa-star"></i>
+			<i class="id0b fas fa-star-half"></i>
+			<div class="val-div"><input type="hidden" value="1"/></div>		
+			<div class="val-div"><input type="hidden" value="2"/></div>
+		</div>
+		<div>
+			<i class="id0c fas fa-star"></i>
+			<i class="id0a fas fa-star"></i>
+			<i class="id0a fas fa-star-half"></i>
+			<i class="id0b fas fa-star"></i>
+			<i class="id0b fas fa-star-half"></i>
+			<div class="val-div"><input type="hidden" value="3"/></div>		
+			<div class="val-div"><input type="hidden" value="4"/></div>
+		</div>
+		<div>
+			<i class="id0c fas fa-star"></i>
+			<i class="id0a fas fa-star"></i>
+			<i class="id0a fas fa-star-half"></i>
+			<i class="id0b fas fa-star"></i>
+			<i class="id0b fas fa-star-half"></i>
+			<div class="val-div"><input type="hidden" value="5"/></div>		
+			<div class="val-div"><input type="hidden" value="6"/></div>
+		</div>
+		<div>
+			<i class="id0c fas fa-star"></i>
+			<i class="id0a fas fa-star"></i>
+			<i class="id0a fas fa-star-half"></i>
+			<i class="id0b fas fa-star"></i>
+			<i class="id0b fas fa-star-half"></i>
+			<div class="val-div"><input type="hidden" value="7"/></div>		
+			<div class="val-div"><input type="hidden" value="8"/></div>
+		</div>
+		<div>
+			<i class="id0c fas fa-star"></i>
+			<i class="id0a fas fa-star"></i>
+			<i class="id0a fas fa-star-half"></i>
+			<i class="id0b fas fa-star"></i>
+			<i class="id0b fas fa-star-half"></i>
+			<div class="val-div"><input type="hidden" value="9"/></div>		
+			<div class="val-div"><input type="hidden" value="10"/></div>
+		</div>
+		
+		<input type="hidden" value="0"/>
+
+	</div>
+
 							<span style="line-height:40px;"> &nbsp </span>
 							<span class="rating-msg" style="line-height:40px;"></span>
 						</div>

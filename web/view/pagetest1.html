@@ -4,77 +4,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<title></title>
-	<style type="text/css">
-
-		.star-rating{
-			position: relative;
-			height: 10px;
-		}
-		
-		.star-rating *{
-			margin : 0;
-			padding: 0;
-		}
-
-		.star-rating>div{
-			position: relative;
-			float: left;
-			width: 20%;
-			height: 100%;
-		}
-
-
-		.star-rating>div>.val-div{
-			position: relative;
-			float: left;
-			width: 45%;
-			height: 100%;
-		}
-		
-		.star-rating>div>i{
-			position: absolute;
-		}
-
-
-	</style>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			var height = $('.star-rating').height();
-			$('.star-rating>div>i').css('font-size',height);
-			var ratio = 1.125;
-			$('.star-rating').width(height*5*ratio);
-
-			$('.star-rating>div>.id0a').css('opacity',0);
-			$('.star-rating>div>.id0b').css('opacity',0);
-			$('.star-rating>div>.id0a').css('color','orange');
-			$('.star-rating>div>.id0b').css('color','yellow');
-			$('.star-rating>div>.id0c').css('color','gray');
-
-			var star_rating_callback = function(event){
-				var val = parseInt($(this).children('input').val());	
-				var aorb = (event.type == "click") ? 'a':'b';
-
-				for(var i = 1 ; i <= 5 ; i++){
-					if(i*2<=val){
-						$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star').css('opacity',1);
-						$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star-half').css('opacity',1);
-					}else if((i-1)*2<val){
-						$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star').css('opacity',0);
-						$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star-half').css('opacity',1);
-					}else{
-						$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star').css('opacity',0);
-						$('.star-rating>div:nth-child('+i+')>.id0'+aorb+'.fa-star-half').css('opacity',0);
-					}
-				}	
-			};
-
-			$('.star-rating>div>.val-div').on("mouseover",star_rating_callback);
-			$('.star-rating>div>.val-div').on("click",star_rating_callback);
-			$('.star-rating').on("mouseleave",function(){$('.star-rating>div>.id0b').css('opacity',0);});
-		});
-
-
-	</script>
+	
 </head>
 <body>
 
