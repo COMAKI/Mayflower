@@ -46,6 +46,7 @@ public class CommentService implements Service<Comment,String> {
 	
 	public ArrayList<Comment> getBySpot(String spotid) throws Exception {
 		return cdao.selectBySpot(spotid);
+		
 	}
 
 }

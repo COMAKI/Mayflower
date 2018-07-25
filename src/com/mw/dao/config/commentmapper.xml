@@ -13,9 +13,6 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	
 	<select id="selectBySpot" parameterType="String" resultType="comment">
 		SELECT * FROM COMMENTS
-<!-- 		<if test="#{spot_id} != null">  -->
-<!-- 			WHERE SPOT_ID = #{spot_id} -->
-<!-- 		</if> -->
 	</select>
 	
 	<insert id="insert" parameterType="comment">
