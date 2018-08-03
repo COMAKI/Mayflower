@@ -145,10 +145,9 @@ INSERT INTO COMMENTS VALUES (
 	,1
 );
 
-
 INSERT INTO SPOTS VALUES (
-"0"
- ,'dummy TOilet'
+'0'
+ ,'dummy Toilet'
  ,'1'
  ,'2'
  ,' '
@@ -156,8 +155,8 @@ INSERT INTO SPOTS VALUES (
  ,'서울특별시 중구  51-2'
  ,'연중무휴'
  ,'02-3396-5472'
- ,'126.01'
- ,'30.5'	
+ ,'127.04'
+ ,'37.57'	
  ,' '
  ,' '
  ,'admin'
@@ -166,7 +165,6 @@ INSERT INTO SPOTS VALUES (
 );
 
 commit; 
-
 
 
 -- check data
