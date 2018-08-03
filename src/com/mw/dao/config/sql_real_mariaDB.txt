@@ -1,0 +1,175 @@
+----- not run exist database db
+CREATE DATABASE db;
+
+use db;
+
+
+DROP TABLE COMMENTS  ;
+DROP TABLE SPOTS  ;
+DROP TABLE IMAGES  ;
+DROP TABLE SUBCATEGORIES  ;
+DROP TABLE CATEGORIES  ;
+DROP TABLE USERS  ;
+
+create TABLE USERS(
+id VARCHAR(50)
+,name VARCHAR(50)
+,password  VARCHAR(50)
+,phone VARCHAR(50)	
+,regdate   VARCHAR(50)
+,authority VARCHAR(10)	
+);
+
+/**********************************/
+/* Table Name: CATEGORIES */
+/**********************************/
+CREATE TABLE CATEGORIES(
+ id VARCHAR(50) NULL ,
+ name VARCHAR(200)		 NULL 
+);
+
+
+/**********************************/
+/* Table Name: SUBCATEGORIES */
+/**********************************/
+CREATE TABLE SUBCATEGORIES(
+id VARCHAR(50) NULL ,
+category_id VARCHAR(50) NULL ,
+name VARCHAR(200) NULL 
+);
+
+/**********************************/
+/* Table Name: IMAGES */
+/**********************************/
+CREATE TABLE IMAGES(
+id VARCHAR(50) NULL ,
+name VARCHAR(500) NULL ,
+filepath VARCHAR(3000) NULL ,
+user_id VARCHAR(50) NULL ,
+regdate VARCHAR(50) NULL 
+);
+
+/**********************************/
+/* Table Name: SPOTS */
+/**********************************/
+CREATE TABLE SPOTS(
+ id VARCHAR(50) NULL ,
+ name VARCHAR(500) NULL ,
+ category_id VARCHAR(50) NULL ,
+ subcategory_id VARCHAR(50) NULL ,
+ image_id VARCHAR(50) NULL ,
+ address1 VARCHAR(500) NULL ,
+ address2 VARCHAR(500) NULL ,
+ ophour VARCHAR(500) NULL ,
+ phone VARCHAR(50) NULL ,
+ lng VARCHAR(50) NULL ,
+ lat VARCHAR(50) NULL ,
+ regdate VARCHAR(50) NULL ,
+ lastdate VARCHAR(50) NULL ,
+ user_id VARCHAR(50) NULL ,
+ properties VARCHAR(2000) NULL ,
+ avg_rating DECIMAL(3,2) NULL 
+);
+
+
+/**********************************/
+/* Table Name: COMMENTS */
+/**********************************/
+CREATE TABLE COMMENTS(
+ id VARCHAR(50) NULL ,
+ user_id VARCHAR(50) NULL ,
+ spot_id VARCHAR(50) NULL ,
+ content VARCHAR(500) NULL ,
+ image_id VARCHAR(50) NULL ,
+ regdate VARCHAR(50) NULL ,
+ rating INT(3) NULL
+);
+
+---- config setting 
+
+Insert into USERS (ID,NAME,PASSWORD,PHONE,REGDATE,AUTHORITY) 
+values (
+'admin@maki.com'
+,'admin'
+,'admin'
+,'010'
+,' '
+,'1'
+);
+
+
+-- truncate table spots;
+
+-- drop sequence spot_id_seq ;
+-- create sequence spot_id_seq start with 1 increment BY 1;
+
+
+-- drop sequence comment_id_seq ;
+-- create sequence comment_id_seq start with 1 increment BY 1;
+
+
+-- insert COMMENT default data : spot_id == 0
+
+INSERT INTO COMMENTS VALUES (
+	'1',
+	-- comment_id_seq.nextval,	
+	'admin',
+	'0',
+	'i like it',
+	'image01',
+	DATE_FORMAT(now(), '%Y-%m-%d')
+	,4
+);
+
+
+INSERT INTO COMMENTS VALUES (
+	'2',
+	-- comment_id_seq.nextval,	
+	'user02',
+	'0',
+	'i don''t care',
+	'image01',
+	DATE_FORMAT(now(), '%Y-%m-%d')
+	,2
+);
+
+
+INSERT INTO COMMENTS VALUES (
+	'3',
+	-- comment_id_seq.nextval,	
+	'user03',
+	'0',
+	'i hate it',
+	'image01',
+	DATE_FORMAT(now(), '%Y-%m-%d')
+	,1
+);
+
+
+INSERT INTO SPOTS VALUES (
+"0"
+ ,'dummy TOilet'
+ ,'1'
+ ,'2'
+ ,' '
+ ,'서울특별시 중구  3'
+ ,'서울특별시 중구  51-2'
+ ,'연중무휴'
+ ,'02-3396-5472'
+ ,'126.01'
+ ,'30.5'	
+ ,' '
+ ,' '
+ ,'admin'
+ ,' '
+ ,'0.0'
+);
+
+commit; 
+
+
+
+-- check data
+SELECT * FROM USERS;
+SELECT * FROM SPOTS;
+SELECT * FROM COMMENTS;

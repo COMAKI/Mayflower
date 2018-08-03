@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="comment">
 	<![CDATA[
 				INSERT INTO COMMENTS VALUES (
-					comment_id_seq.nextval
+					#{id}
 					,#{user_id}
 					,#{spot_id}
 					,#{content}

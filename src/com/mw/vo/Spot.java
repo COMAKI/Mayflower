@@ -1,5 +1,8 @@
 package com.mw.vo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Spot {
 	/* NEED TO INPUT CORRECT VALUES AND METHODS */
 	private String id;
@@ -19,9 +22,13 @@ public class Spot {
 	private String properties;
 	private String avg_rating;
 
-	public Spot(){};
+	public Spot(){
+		
+		this.id = new SimpleDateFormat("MMddHHmmssSSSS").format(new Date()); 
+	};
 
 	public Spot(String id, String name, String category_id, String subcategory_id, String image_id, String address1, String address2, String ophour, String phone, double lng, double lat, String regdate, String lastdate, String user_id, String properties, String avg_rating) {
+		this();
 		this.id = id;
 		this.name = name;
 		this.category_id = category_id;
