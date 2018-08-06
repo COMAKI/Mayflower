@@ -28,8 +28,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 					 ,#{address2}    
 					 ,#{ophour}    
 					 ,#{phone}    
-					 ,CAST(#{lng}, VARCHAR(50))
-					 ,CAST(#{lat}, VARCHAR(50))
+					 ,CONVERT(#{lng}, CHAR(50))
+					 ,CONVERT(#{lat}, CHAR(50))
 					 ,DATE_FORMAT(now(), '%Y-%m-%d')
 					 ,DATE_FORMAT(now(), '%Y-%m-%d')
 					 ,#{user_id}    
