@@ -1,5 +1,8 @@
 package com.mw.vo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Comment {
 
 	private String id;
@@ -11,10 +14,12 @@ public class Comment {
 	private double rating;
 
 	public Comment() {
+		this.regdate = new SimpleDateFormat("MM-dd").format(new Date());  
 	}
 
 	public Comment(String id, String user_id, String spot_id, String content, String image_id, String regdate,
 	               double rating) {
+		this();
 		this.id = id;
 		this.user_id = user_id;
 		this.spot_id = spot_id;

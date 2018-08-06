@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 					,#{spot_id}
 					,#{content}
 					,#{image_id}
-					,TO_CHAR(sysdate)
+					,#{regdate}
 					,#{rating}
 				)
 	]]>		

@@ -12,7 +12,8 @@ PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
 	
 	<mappers>
 		<mapper resource="com/mw/dao/config/usermapper.xml"/>
-		<mapper resource="com/mw/dao/config/spotmapper.xml"/>
+<!-- 		<mapper resource="com/mw/dao/config/spotmapper.xml"/> -->
+		<mapper resource="com/mw/dao/config/spotmapper_maria.xml"/>
 		<mapper resource="com/mw/dao/config/commentmapper.xml"/>
 	</mappers>
 </configuration>

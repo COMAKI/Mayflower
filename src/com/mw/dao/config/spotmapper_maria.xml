@@ -19,8 +19,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="spot">
 	 <![CDATA[
 				INSERT INTO SPOTS VALUES (
-					-- TO_CHAR(spot_id_seq.nextval)
-					 #{id}					
+					#{id}					
 					 ,#{name}    
 					 ,#{category_id}    
 					 ,#{subcategory_id}    
@@ -29,10 +28,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 					 ,#{address2}    
 					 ,#{ophour}    
 					 ,#{phone}    
-					 ,TO_CHAR(#{lng}) 
-					 ,TO_CHAR(#{lat})    
-					 ,TO_CHAR(SYSDATE)
-					 ,TO_CHAR(SYSDATE)
+					 ,CAST(#{lng}, VARCHAR(50))
+					 ,CAST(#{lat}, VARCHAR(50))
+					 ,DATE_FORMAT(now(), '%Y-%m-%d')
+					 ,DATE_FORMAT(now(), '%Y-%m-%d')
 					 ,#{user_id}    
 					 ,#{properties}    
 					 ,#{avg_rating}    
